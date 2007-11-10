@@ -2,3 +2,6 @@ syntax: regexp
 ^deps
 ^\.metadata.*/\.log
 ^\.metadata/\.lock
+^\.metadata/\.plugins/org\.eclipse\.core\.resources/\.history
+^\.metadata/\.plugins/org\.eclipse\.core\.resources/.*\.tree
+\.o$

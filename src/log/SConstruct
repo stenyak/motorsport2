@@ -1,1 +1,11 @@
-SharedObject("log", "log.cpp", CPPPATH = [".", "/usr/include/boost-1_33_1"])
+sources = Split("""
+    log.cpp
+    """)
+includePaths = Split("""
+    /usr/include/boost-1_33_1
+    """)
+name = "log"
+
+
+#StaticLibrary(target = name, source = sources, CPPPATH = includePaths)
+SharedLibrary(target = name, source = sources, CPPPATH = includePaths)

@@ -1,1 +1,17 @@
-Program("motorsport.cpp")
+sources = Split("""
+    main.cpp
+    motorsport.cpp
+    """)
+includePaths = Split("""
+    /usr/include/boost-1_33_1
+    """)
+libPaths = Split("""
+    """)
+libs = Split("""
+    boost_program_options-gcc-mt-s
+    """)
+name = "motorsport"
+
+Program(target = name, source = sources, CPPPATH = includePaths, LIBPATH= libPaths, LIBS = libs)
+#StaticLibrary(target = name, source = sources, CPPPATH = includePaths)
+#SharedLibrary(target = name, source = sources, CPPPATH = includePaths)
