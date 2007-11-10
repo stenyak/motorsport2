@@ -1,3 +1,5 @@
-#Sat Nov 10 03:12:19 CET 2007
+#Sat Nov 10 15:18:15 CET 2007
 eclipse.preferences.version=1
+org.eclipse.debug.ui.DebugView.org.eclipse.cdt.debug.ui.cDebug.show_full_paths=true
+org.eclipse.debug.ui.BreakpointView.org.eclipse.cdt.debug.ui.cDebug.show_full_paths=true
 SoundBehaviorDialog.recentSounds=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<recentSounds/>\r\n

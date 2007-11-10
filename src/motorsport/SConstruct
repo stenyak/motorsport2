@@ -13,5 +13,5 @@ libs = Split("""
 name = "motorsport"
 
 Program(target = name, source = sources, CPPPATH = includePaths, LIBPATH= libPaths, LIBS = libs)
-#StaticLibrary(target = name, source = sources, CPPPATH = includePaths)
-#SharedLibrary(target = name, source = sources, CPPPATH = includePaths)
+#StaticLibrary(target = name, source = sources, CPPPATH = includePaths, LIBPATH= libPaths, LIBS = libs)
+SharedLibrary(target = name, source = sources, CPPPATH = includePaths, LIBPATH= libPaths, LIBS = libs)

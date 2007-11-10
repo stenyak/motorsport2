@@ -1,11 +1,76 @@
-sources = Split("""
-    log.cpp
-    """)
-includePaths = Split("""
-    /usr/include/boost-1_33_1
-    """)
-name = "log"
+def cfgAppend(cfg, prefix):
+    for key in cfg:
+        try:
+            #join strings, append lists
+            if type(cfg[key]) == type(""):
+                cfg[key] = prefix[key] + cfg[key]
+            else:
+                cfg[key] = prefix[key].append(cfg[key])
+        except:
+            #key prolly doesn't exist
+            continue
+    return cfg
+
+def cfgPrint(cfg, prefix="    "):
+    for key in cfg:
+        print (prefix + key + ": " + "".join(cfg[key]))
+
+def cfgBuild(cfg, type, installPath):
+    env = Environment(CCFLAGS = cfg["ccflags"])
+    obj = 0;
+    if type == "StaticLibrary":
+        obj = env.StaticLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
+    if type == "SharedLibrary":
+        obj = env.SharedLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
+    if type == "Program":
+        obj = env.Program      (target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"])
+    env.Install(installPath, obj)
+    env.Alias('all', installPath)
+
+def build (cfgs, type, cfgName, installPath):
+    #create final cfg set, prefixing custom options to default ones
+    cfg = cfgAppend(cfgs["default"], cfgs[cfgName])
+    cfgBuild(cfg, type, installPath)
+    return cfg
 
 
-#StaticLibrary(target = name, source = sources, CPPPATH = includePaths)
-SharedLibrary(target = name, source = sources, CPPPATH = includePaths)
+cfgs = {
+    "log": {
+        "default": {
+            "name": "stklog"
+            ,"includePaths": Split(""" """)
+            ,"libPaths": Split(""" """)
+            ,"libs": Split(""" """)
+            ,"sources": Split("""log.cpp""")
+            ,"ccflags": " -Wall"
+            ,"installPath": "lib"
+            }
+        ,"debug": {
+            "name":"d"
+            ,"ccflags": "-g"
+            }
+        ,"release": {
+            }
+        }
+        #testlibs = [dbgname, Split(""" """)]
+    ,"tests": {
+        "default": {
+            "name": "tests"
+            ,"includePaths": Split(""" """)
+            ,"libPaths": Split("""lib .""")     #FIXME: they are joined wrongly
+            ,"libs": Split("""dlog""")
+            ,"sources": Split("""tests.cpp""")
+            ,"ccflags": " -Wall"
+            ,"installPath": "lib"
+            }
+        ,"debug": {
+            "name":"d"
+            ,"ccflags": "-g"
+            }
+        ,"release": {
+            }
+        }
+    }
+
+cfgPrint(build(cfgs["log"], "StaticLibrary", "debug", "lib"), "log.");
+cfgPrint(build(cfgs["tests"], "Program", "debug", "bin"), "tests.");

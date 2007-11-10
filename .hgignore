@@ -5,3 +5,4 @@ syntax: regexp
 ^\.metadata/\.plugins/org\.eclipse\.core\.resources/\.history
 ^\.metadata/\.plugins/org\.eclipse\.core\.resources/.*\.tree
 \.o$
+\.sconsign\.dblite
