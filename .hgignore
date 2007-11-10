@@ -1,0 +1,4 @@
+syntax: regexp
+^deps
+^\.metadata.*/\.log
+^\.metadata/\.lock

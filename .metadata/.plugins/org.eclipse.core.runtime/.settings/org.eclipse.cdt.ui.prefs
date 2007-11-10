@@ -1,0 +1,18 @@
+#Sat Nov 10 03:12:25 CET 2007
+useQuickDiffPrefPage=true
+org.eclipse.cdt.ui.outline.groupnamespaces=true
+closeBrackets=false
+ensureNewlineAtEOF=true
+org.eclipse.cdt.ui.outline.groupincludes=true
+useAnnotationsPrefPage=true
+org.eclipse.cdt.ui.cview.groupincludes=true
+closeAngularBrackets=false
+consoleOnTop=true
+formatter_settings_version=1
+formatter_profile=org.eclipse.cdt.ui.default.allman_profile
+eclipse.preferences.version=1
+org.eclipse.cdt.ui.text.templates.custom=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates><template autoinsert\="true" context\="org.eclipse.cdt.ui.text.templates.c" deleted\="false" description\="default multiline comment" enabled\="false" id\="org.eclipse.cdt.ui.text.templates.c.comment" name\="comment">\r\n/*\r\n * author ${user}\r\n *\r\n * To change this generated comment edit the template variable "comment"\:\r\n * Window &gt; Preferences &gt; C/C++ &gt; Editor &gt; Templates.\r\n */\r\n</template></templates>
+hoverModifierMasks=org.eclipse.cdt.ui.BestMatchHover;0;org.eclipse.cdt.debug.internal.ui.editors.DebugTextHover;0;org.eclipse.cdt.ui.CDocHover;0;org.eclipse.cdt.ui.CSourceHover;131072;org.eclipse.cdt.ui.AnnotationHover;0;
+hoverModifiers=org.eclipse.cdt.ui.BestMatchHover;0;org.eclipse.cdt.debug.internal.ui.editors.DebugTextHover;\!0;org.eclipse.cdt.ui.CDocHover;\!0;org.eclipse.cdt.ui.CSourceHover;Shift;org.eclipse.cdt.ui.AnnotationHover;\!0;
+closeBraces=false
+closeStrings=false
