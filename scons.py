@@ -18,7 +18,7 @@ if not fhs:
     scons = re.compile("\/").sub("\\\\", scons)
 
 #now that we got scons path, put the necessary parameters
-cmd = "python \""+scons+"\" -Q"
+cmd = "python \""+scons+"\""
 
 if sys.argv[1] == "clean":
     cmd += " -c"

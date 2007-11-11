@@ -1,76 +1,79 @@
 def cfgAppend(cfg, prefix):
+    r = cfg.copy()
     for key in cfg:
         try:
             #join strings, append lists
             if type(cfg[key]) == type(""):
-                cfg[key] = prefix[key] + cfg[key]
+                r[key] = prefix[key] + cfg[key]
             else:
-                cfg[key] = prefix[key].append(cfg[key])
+                r[key] = prefix[key] + cfg[key]
         except:
             #key prolly doesn't exist
             continue
-    return cfg
+    return r
 
 def cfgPrint(cfg, prefix="    "):
     for key in cfg:
-        print (prefix + key + ": " + "".join(cfg[key]))
+        print prefix + key + " = ", cfg[key]
 
-def cfgBuild(cfg, type, installPath):
+def cfgBuild(cfg, type):
     env = Environment(CCFLAGS = cfg["ccflags"])
     obj = 0;
+    usr = "..\\..\\usr\\"
     if type == "StaticLibrary":
         obj = env.StaticLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
+        env.Install(usr+"lib", obj)
     if type == "SharedLibrary":
         obj = env.SharedLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
+        env.Install(usr+"lib", obj)
     if type == "Program":
-        obj = env.Program      (target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"])
-    env.Install(installPath, obj)
-    env.Alias('all', installPath)
+        obj = env.Program      (target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
+        env.Install(usr+"bin", obj)
+    #env.Install(installPath, obj)
+    return obj
 
-def build (cfgs, type, cfgName, installPath):
-    #create final cfg set, prefixing custom options to default ones
-    cfg = cfgAppend(cfgs["default"], cfgs[cfgName])
-    cfgBuild(cfg, type, installPath)
-    return cfg
+def build (cfgs, type, cfgName):
+    r = {}
+    r["cfg"] = cfgAppend(cfgs["default"], cfgs[cfgName])
+    r["obj"] = cfgBuild(r["cfg"], type)
+    return r
 
-
-cfgs = {
-    "log": {
-        "default": {
-            "name": "stklog"
-            ,"includePaths": Split(""" """)
-            ,"libPaths": Split(""" """)
-            ,"libs": Split(""" """)
-            ,"sources": Split("""log.cpp""")
-            ,"ccflags": " -Wall"
-            ,"installPath": "lib"
-            }
-        ,"debug": {
-            "name":"d"
-            ,"ccflags": "-g"
-            }
-        ,"release": {
-            }
+cfgLog = {
+    "default": {
+        "name": "stklog"
+        ,"includePaths": Split(" ")
+        ,"libPaths": Split(" ")
+        ,"libs": Split(" ")
+        ,"sources": Split("log.cpp")
+        ,"ccflags": " -Wall -Wno-deprecated"
+        ,"installPath": "lib"
         }
-        #testlibs = [dbgname, Split(""" """)]
-    ,"tests": {
-        "default": {
-            "name": "tests"
-            ,"includePaths": Split(""" """)
-            ,"libPaths": Split("""lib .""")     #FIXME: they are joined wrongly
-            ,"libs": Split("""dlog""")
-            ,"sources": Split("""tests.cpp""")
-            ,"ccflags": " -Wall"
-            ,"installPath": "lib"
-            }
-        ,"debug": {
-            "name":"d"
-            ,"ccflags": "-g"
-            }
-        ,"release": {
-            }
+    ,"debug": {
+        "name":"d"
+        ,"ccflags": "-g"
+        }
+    ,"release": {
         }
     }
-
-cfgPrint(build(cfgs["log"], "StaticLibrary", "debug", "lib"), "log.");
-cfgPrint(build(cfgs["tests"], "Program", "debug", "bin"), "tests.");
+log = build(cfgLog, "StaticLibrary", "debug");
+#log = build(cfgLog, "SharedLibrary", "debug");
+cfgPrint(log["cfg"], "log.")
+cfgTests = {
+    "default": {
+        "name": "tests"
+        ,"includePaths": Split(" ")
+        ,"libPaths": Split(".")
+        ,"libs": [log["obj"], Split(" ")]
+        ,"sources": Split("tests.cpp")
+        ,"ccflags": " -Wall"
+        ,"installPath": "lib"
+        }
+    ,"debug": {
+        "name":"d"
+        ,"ccflags": "-g"
+        }
+    ,"release": {
+        }
+    }
+tests = build(cfgTests, "Program", "debug");
+cfgPrint(tests["cfg"], "tests.")

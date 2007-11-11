@@ -2,6 +2,8 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.views.problem">
 	</section>
+	<section name="org.eclipse.ui.views.task">
+	</section>
 	<section name="CleanDialogSettings">
 		<item value="443" key="DIALOG_WIDTH"/>
 		<item value="false" key="BUILD_NOW"/>

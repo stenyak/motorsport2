@@ -4,5 +4,13 @@ syntax: regexp
 ^\.metadata/\.lock
 ^\.metadata/\.plugins/org\.eclipse\.core\.resources/\.history
 ^\.metadata/\.plugins/org\.eclipse\.core\.resources/.*\.tree
+^\.metadata/\.plugins/org\.eclipse\.core\.resources/\.safetable/org\.eclipse\.core\.resources
+\.sconsign\.dblite$
+\.markers$
+\.snap$
+history\.index$
 \.o$
-\.sconsign\.dblite
+^\.scons\.py\.swp$
+^usr$
+^src/[^/]*/.*\.a$
+^src/[^/]*/.*\.exe$

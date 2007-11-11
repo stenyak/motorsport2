@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="23" version="2.0">
+<workbench progressCount="16" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="66" y="94">
 <fastViewData fastViewLocation="1024"/>
@@ -13,7 +13,7 @@
 <coolItem id="org.eclipse.cdt.ui.CElementCreationActionSet" itemType="typeToolBarContribution" x="161" y="22"/>
 <coolItem id="org.eclipse.cdt.ui.buildConfigActionSet" itemType="typeToolBarContribution" x="85" y="22"/>
 <coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="161" y="22"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="61" y="22"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="37" y="22"/>
 <coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="61" y="22"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="185" y="22"/>
@@ -23,7 +23,7 @@
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
-<page focus="true" label="Workspace - C/C++">
+<page focus="true" label="Workspace - Debug">
 <editors>
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
@@ -33,33 +33,41 @@
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
+<part id="4"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="motorsport.cpp" partName="motorsport.cpp" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/motorsport/motorsport.cpp" title="motorsport.cpp" tooltip="motorsport/motorsport.cpp" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/motorsport/motorsport.cpp"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="0"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="log.h" partName="log.h" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/log/log.h" title="log.h" tooltip="log/log.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/log/log.h"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="14"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.ui.DefaultTextEditor" name="SConstruct" partName="SConstruct" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/motorsport/SConstruct" title="SConstruct" tooltip="motorsport/SConstruct" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/motorsport/SConstruct"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="162"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="log.cpp" partName="log.cpp" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/log/log.cpp" title="log.cpp" tooltip="log/log.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/log/log.cpp"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="295"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="motorsport.h" partName="motorsport.h" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/motorsport/motorsport.h" title="motorsport.h" tooltip="motorsport/motorsport.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/motorsport/motorsport.h"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="78"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="tests.cpp" partName="tests.cpp" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/log/tests.cpp" title="tests.cpp" tooltip="log/tests.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/log/tests.cpp"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="202"/>
 </editor>
-<editor id="org.eclipse.ui.DefaultTextEditor" name="compile.sh" partName="compile.sh" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/motorsport/compile.sh" title="compile.sh" tooltip="motorsport/compile.sh" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/motorsport/compile.sh"/>
-<editorState selectionHPixel="0" selectionLength="28" selectionOffset="110"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="tests.h" partName="tests.h" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/log/tests.h" title="tests.h" tooltip="log/tests.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/log/tests.h"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="144"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.ui.DefaultTextEditor" name="SConstruct" partName="SConstruct" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/log/SConstruct" title="SConstruct" tooltip="log/SConstruct" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/log/SConstruct"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="1367"/>
 </editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
 <viewState CommonNavigator.LINKING_ENABLED="0" CommonNavigator.LINKING_ENABLED.delayed="0" org.eclipse.cdt.ui.cview.groupincludes="true" org.eclipse.cdt.ui.editor.CUChildren="true" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
 </view>
+<view id="org.eclipse.debug.ui.DebugView" partName="Debug">
+<viewState/>
+</view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
-<viewState columnWidth0="381" columnWidth1="83" columnWidth2="62" columnWidth3="52" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
+<viewState columnWidth0="457" columnWidth1="83" columnWidth2="62" columnWidth3="52" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
 <columnOrder columnOrderIndex="0"/>
 <columnOrder columnOrderIndex="1"/>
 <columnOrder columnOrderIndex="2"/>
@@ -70,11 +78,19 @@
 <view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
 </view>
+<view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints">
+<viewState>
+<isTrackingSelection value="false"/>
+</viewState>
+</view>
+<view id="org.eclipse.debug.ui.VariableView" partName="Variables">
+<viewState/>
+</view>
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.ui.DefaultTextEditor" activePerspective="org.eclipse.cdt.ui.CPerspective">
+<perspectives activePart="org.eclipse.ui.DefaultTextEditor" activePerspective="org.eclipse.debug.ui.DebugPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.cdt.internal.ui.CPerspectiveFactory" id="org.eclipse.cdt.ui.CPerspective" label="C/C++"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -99,6 +115,7 @@
 <alwaysOnActionSet id="org.eclipse.cdt.ui.OpenActionSet"/>
 <alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.presentation"/>
 <alwaysOnActionSet id="eclox.ui.buildActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
 <show_view_action id="org.eclipse.ui.console.ConsoleView"/>
 <show_view_action id="org.eclipse.search.ui.views.SearchView"/>
 <show_view_action id="org.eclipse.ui.views.ContentOutline"/>
@@ -123,12 +140,94 @@
 <perspective_action id="org.eclipse.team.ui.TeamSynchronizingPerspective"/>
 <view id="org.eclipse.ui.views.ProblemView"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.debug.ui.DebugView"/>
 <view id="org.eclipse.ui.navigator.ProjectExplorer"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <fastViewBars/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.ui.internal.ViewStack@27e8d">&#x0A;<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@90ed81" ratio="0.75" ratioLeft="756" ratioRight="252" relationship="2" relative="org.eclipse.ui.internal.ViewStack@27e8d">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33"/>
+</folder>
+</info>
+<info folder="true" part="bottom" ratio="0.63586956" ratioLeft="468" ratioRight="268" relationship="4" relative="org.eclipse.ui.internal.ViewStack@27e8d">&#x0A;<folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<page content="org.eclipse.ui.views.TaskList" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@75a263" ratio="0.48290974" ratioLeft="551" ratioRight="590" relationship="2" relative="bottom">&#x0A;<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">&#x0A;<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.cdt.ui.CView" ratio="0.5" ratioLeft="223" ratioRight="223" relationship="2" relative="org.eclipse.ui.internal.ViewStack@75a263"/>
+<info part="org.eclipse.ui.views.ResourceNavigator" ratio="0.5" ratioLeft="223" ratioRight="223" relationship="2" relative="org.eclipse.ui.internal.ViewStack@75a263"/>
+<info part="org.eclipse.ui.views.BookmarkView" ratio="0.5" ratioLeft="223" ratioRight="223" relationship="2" relative="org.eclipse.ui.internal.ViewStack@75a263"/>
+<info folder="true" part="topRight" ratio="0.75" ratioLeft="567" ratioRight="189" relationship="2" relative="org.eclipse.ui.internal.ViewStack@27e8d">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.cdt.make.ui.views.MakeView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.24921466" ratioLeft="238" ratioRight="717" relationship="2" relative="org.eclipse.ui.internal.ViewStack@27e8d"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@18fe465" ratio="0.64785993" ratioLeft="333" ratioRight="181" relationship="4" relative="org.eclipse.ui.internal.ViewStack@27e8d">&#x0A;<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.eclipse.debug.internal.ui.DebugPerspectiveFactory" id="org.eclipse.debug.ui.DebugPerspective" label="Debug"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.WorkingSetActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.update.ui.softwareUpdates"/>
+<alwaysOnActionSet id="eclox.ui.buildActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.cdt.debug.ui.debugActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<show_view_action id="org.eclipse.debug.ui.DebugView"/>
+<show_view_action id="org.eclipse.debug.ui.VariableView"/>
+<show_view_action id="org.eclipse.debug.ui.BreakpointView"/>
+<show_view_action id="org.eclipse.debug.ui.ExpressionView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.cdt.debug.ui.SignalsView"/>
+<show_view_action id="org.eclipse.debug.ui.RegisterView"/>
+<show_view_action id="org.eclipse.debug.ui.MemoryView"/>
+<show_view_action id="org.eclipse.cdt.debug.ui.DisassemblyView"/>
+<show_view_action id="org.eclipse.cdt.debug.ui.ModulesView"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<perspective_action id="org.eclipse.cdt.ui.CPerspective"/>
+<view id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<view id="org.eclipse.debug.ui.VariableView"/>
+<view id="org.eclipse.debug.ui.BreakpointView"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<view id="org.eclipse.debug.ui.DebugView"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.ui.views.ProblemView"/>
+<fastViewBars/>
 <layout>
 <mainWindow>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@27e8d">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@15bfbc9">
 <folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">
 <page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
 <presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
@@ -136,25 +235,19 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@90ed81" ratio="0.75" ratioLeft="756" ratioRight="252" relationship="2" relative="org.eclipse.ui.internal.ViewStack@27e8d">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
-<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
-<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33"/>
-</folder>
-</info>
-<info folder="true" part="bottom" ratio="0.7024456" ratioLeft="517" ratioRight="219" relationship="4" relative="org.eclipse.ui.internal.ViewStack@27e8d">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1854b3a" ratio="0.7496617" ratioLeft="554" ratioRight="185" relationship="4" relative="org.eclipse.ui.internal.ViewStack@15bfbc9">
 <folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
-<page content="org.eclipse.ui.views.TaskList" label="LabelNotFound"/>
-<page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
 <part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@75a263" ratio="0.48290974" ratioLeft="551" ratioRight="590" relationship="2" relative="bottom">
+<info part="org.eclipse.ui.views.TaskList" ratio="0.5" ratioLeft="572" ratioRight="572" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1854b3a"/>
+<info part="org.eclipse.ui.views.BookmarkView" ratio="0.5" ratioLeft="572" ratioRight="572" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1854b3a"/>
+<info part="org.eclipse.ui.views.PropertySheet" ratio="0.5" ratioLeft="572" ratioRight="572" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1854b3a"/>
+<info part="org.eclipse.debug.ui.MemoryView" ratio="0.5" ratioLeft="572" ratioRight="572" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1854b3a"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@583e4a" ratio="0.5" ratioLeft="572" ratioRight="572" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1854b3a">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
@@ -162,22 +255,48 @@
 </presentation>
 </folder>
 </info>
-<info part="org.eclipse.cdt.ui.CView" ratio="0.5" ratioLeft="223" ratioRight="223" relationship="2" relative="org.eclipse.ui.internal.ViewStack@75a263"/>
-<info part="org.eclipse.ui.views.ResourceNavigator" ratio="0.5" ratioLeft="223" ratioRight="223" relationship="2" relative="org.eclipse.ui.internal.ViewStack@75a263"/>
-<info part="org.eclipse.ui.views.BookmarkView" ratio="0.5" ratioLeft="223" ratioRight="223" relationship="2" relative="org.eclipse.ui.internal.ViewStack@75a263"/>
-<info folder="true" part="topRight" ratio="0.75" ratioLeft="567" ratioRight="189" relationship="2" relative="org.eclipse.ui.internal.ViewStack@27e8d">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.cdt.make.ui.views.MakeView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33"/>
-</folder>
-</info>
-<info part="org.eclipse.ui.editorss" ratio="0.24921466" ratioLeft="238" ratioRight="717" relationship="2" relative="org.eclipse.ui.internal.ViewStack@27e8d"/>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@18fe465" ratio="0.64785993" ratioLeft="333" ratioRight="181" relationship="4" relative="org.eclipse.ui.internal.ViewStack@27e8d">
-<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@667262" ratio="0.75" ratioLeft="858" ratioRight="286" relationship="2" relative="org.eclipse.ui.internal.ViewStack@15bfbc9">
+<folder activePageID="org.eclipse.debug.ui.BreakpointView" appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
+<page content="org.eclipse.debug.ui.BreakpointView" label="Breakpoints"/>
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
 <part id="0"/>
+<part id="1"/>
+<part id="2"/>
 </presentation>
+</folder>
+</info>
+<info part="org.eclipse.cdt.debug.ui.DisassemblyView" ratio="0.5" ratioLeft="143" ratioRight="143" relationship="2" relative="org.eclipse.ui.internal.ViewStack@667262"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@10e7534" ratio="0.4993234" ratioLeft="369" ratioRight="370" relationship="4" relative="org.eclipse.ui.internal.ViewStack@667262">
+<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="858" ratioRight="286" relationship="2" relative="org.eclipse.ui.internal.ViewStack@15bfbc9">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info part="org.eclipse.cdt.debug.ui.SignalsView" ratio="0.7496617" ratioLeft="554" ratioRight="185" relationship="4" relative="org.eclipse.ui.internal.ViewStack@15bfbc9"/>
+<info part="org.eclipse.ui.views.ResourceNavigator" ratio="0.5" ratioLeft="572" ratioRight="572" relationship="2" relative="org.eclipse.cdt.debug.ui.SignalsView"/>
+<info part="org.eclipse.debug.ui.ExpressionView" ratio="0.5" ratioLeft="572" ratioRight="572" relationship="2" relative="org.eclipse.cdt.debug.ui.SignalsView"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@40c648" ratio="0.5" ratioLeft="572" ratioRight="572" relationship="2" relative="org.eclipse.cdt.debug.ui.SignalsView">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.19014084" ratioLeft="162" ratioRight="690" relationship="2" relative="org.eclipse.ui.internal.ViewStack@15bfbc9"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1ac3cb6" ratio="0.74909747" ratioLeft="415" ratioRight="139" relationship="4" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.cdt.debug.ui.ModulesView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33"/>
 </folder>
 </info>
 </mainWindow>
@@ -187,163 +306,162 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/motorsport.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/main.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/motorsport.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/main.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/motorsport/SConstruct"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/log.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/log.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/tests.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/tests.cpp"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/log/SConstruct"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/motorsport/compile.sh"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/motorsport/SConstruct"/>
 </editors>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="220" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="42" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="220" y="0"/>
-</item>
-<item historyLabel="motorsport.cpp" index="0">
-<position info="not_deleted" x="182" y="0"/>
-</item>
 <item historyLabel="SConstruct" index="4">
 <position/>
 </item>
 <item historyLabel="SConstruct" index="5">
-<position/>
-</item>
-<item historyLabel="SConstruct" index="4">
-<position info="not_deleted" x="0" y="107"/>
-</item>
-<item historyLabel="SConstruct" index="5">
-<position/>
-</item>
-<item historyLabel="SConstruct" index="4">
-<position info="not_deleted" x="493" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="103" y="0"/>
-</item>
-<item historyLabel="main.h" index="3">
-<position info="not_deleted" x="340" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="103" y="0"/>
-</item>
-<item historyLabel="motorsport.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="103" y="0"/>
-</item>
-<item historyLabel="motorsport.cpp" index="0">
-<position info="not_deleted" x="195" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="101" y="0"/>
-</item>
-<item historyLabel="main.h" index="3">
-<position info="not_deleted" x="340" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="101" y="0"/>
-</item>
-<item historyLabel="motorsport.cpp" index="0">
-<position info="not_deleted" x="108" y="0"/>
-</item>
-<item historyLabel="main.h" index="3">
-<position info="not_deleted" x="36" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="150" y="0"/>
-</item>
-<item historyLabel="motorsport.cpp" index="0">
-<position info="not_deleted" x="108" y="0"/>
-</item>
-<item historyLabel="motorsport.h" index="2">
-<position info="not_deleted" x="48" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="150" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="220" y="0"/>
-</item>
-<item historyLabel="motorsport.cpp" index="0">
-<position info="not_deleted" x="108" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="217" y="0"/>
-</item>
-<item historyLabel="main.h" index="3">
-<position info="not_deleted" x="36" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="101" y="0"/>
-</item>
-<item historyLabel="motorsport.h" index="2">
-<position info="not_deleted" x="78" y="0"/>
-</item>
-<item historyLabel="motorsport.cpp" index="0">
-<position info="not_deleted" x="108" y="0"/>
-</item>
-<item historyLabel="motorsport.cpp" index="0">
-<position info="not_deleted" x="970" y="0"/>
-</item>
-<item historyLabel="motorsport.cpp" index="0">
-<position info="not_deleted" x="338" y="0"/>
-</item>
-<item historyLabel="SConstruct" index="4">
-<position info="not_deleted" x="65" y="12"/>
-</item>
-<item historyLabel="SConstruct" index="5">
-<position/>
+<position info="not_deleted" x="525" y="19"/>
 </item>
 <item historyLabel="SConstruct" index="4">
 <position/>
 </item>
-<item historyLabel="compile.sh" index="6">
+<item historyLabel="tests.h" index="2">
+<position info="not_deleted" x="40" y="34"/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="315" y="0"/>
+</item>
+<item historyLabel="log.cpp" index="1">
+<position info="not_deleted" x="297" y="0"/>
+</item>
+<item historyLabel="log.h" index="0">
+<position info="not_deleted" x="50" y="0"/>
+</item>
+<item historyLabel="log.cpp" index="1">
+<position info="not_deleted" x="39" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="234" y="21"/>
+</item>
+<item historyLabel="tests.h" index="2">
+<position info="not_deleted" x="140" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="250" y="0"/>
+</item>
+<item historyLabel="tests.h" index="2">
+<position info="not_deleted" x="144" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="300" y="17"/>
+</item>
+<item historyLabel="log.cpp" index="1">
+<position info="not_deleted" x="39" y="0"/>
+</item>
+<item historyLabel="log.h" index="0">
+<position info="not_deleted" x="50" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="300" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="207" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="329" y="0"/>
+</item>
+<item historyLabel="SConstruct" index="4">
 <position/>
 </item>
-<item historyLabel="SConstruct" index="4">
-<position info="not_deleted" x="186" y="0"/>
+<item historyLabel="log.cpp" index="1">
+<position info="not_deleted" x="39" y="0"/>
 </item>
-<item historyLabel="compile.sh" index="6">
-<position info="not_deleted" x="110" y="28"/>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="178" y="0"/>
 </item>
-<item historyLabel="SConstruct" index="4">
-<position info="not_deleted" x="216" y="0"/>
+<item historyLabel="log.cpp" index="1">
+<position info="not_deleted" x="39" y="0"/>
 </item>
-<item historyLabel="compile.sh" index="6">
-<position info="not_deleted" x="110" y="28"/>
-</item>
-<item historyLabel="SConstruct" index="4">
-<position info="not_deleted" x="216" y="0"/>
-</item>
-<item historyLabel="motorsport.cpp" index="0">
-<position info="not_deleted" x="338" y="0"/>
+<item historyLabel="tests.h" index="2">
+<position info="not_deleted" x="144" y="0"/>
 </item>
 <item historyLabel="SConstruct" index="4">
-<position info="not_deleted" x="216" y="0"/>
-</item>
-<item historyLabel="motorsport.cpp" index="0">
 <position/>
 </item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="97" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="317" y="0"/>
+</item>
+<item historyLabel="log.cpp" index="1">
+<position info="not_deleted" x="39" y="0"/>
+</item>
+<item historyLabel="tests.h" index="2">
+<position info="not_deleted" x="144" y="0"/>
+</item>
 <item historyLabel="SConstruct" index="4">
-<position info="not_deleted" x="162" y="0"/>
+<position/>
 </item>
-<item historyLabel="compile.sh" index="6">
-<position info="not_deleted" x="110" y="28"/>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="97" y="0"/>
 </item>
-<item historyLabel="motorsport.h" index="2">
-<position info="not_deleted" x="78" y="0"/>
+<item historyLabel="log.cpp" index="1">
+<position info="not_deleted" x="39" y="0"/>
+</item>
+<item historyLabel="log.cpp" index="1">
+<position info="not_deleted" x="295" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="317" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="255" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="97" y="0"/>
+</item>
+<item historyLabel="SConstruct" index="4">
+<position/>
+</item>
+<item historyLabel="tests.h" index="2">
+<position info="not_deleted" x="144" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="97" y="0"/>
+</item>
+<item historyLabel="log.cpp" index="1">
+<position info="not_deleted" x="295" y="0"/>
+</item>
+<item historyLabel="log.h" index="0">
+<position info="not_deleted" x="14" y="0"/>
+</item>
+<item historyLabel="SConstruct" index="4">
+<position/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="97" y="0"/>
+</item>
+<item historyLabel="log.cpp" index="1">
+<position info="not_deleted" x="295" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="317" y="0"/>
+</item>
+<item historyLabel="SConstruct" index="4">
+<position info="not_deleted" x="779" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="295" y="22"/>
+</item>
+<item historyLabel="tests.cpp" index="3">
+<position info="not_deleted" x="202" y="0"/>
+</item>
+<item historyLabel="log.h" index="0">
+<position info="not_deleted" x="14" y="0"/>
+</item>
+<item historyLabel="log.cpp" index="1">
+<position info="not_deleted" x="295" y="0"/>
 </item>
 <item active="true" historyLabel="SConstruct" index="4">
-<position info="not_deleted" x="162" y="0"/>
+<position/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -362,11 +480,17 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="compile.sh" tooltip="motorsport/compile.sh">
-<persistable path="/motorsport/compile.sh"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="SConstruct" tooltip="log/SConstruct">
 <persistable path="/log/SConstruct"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="log.cpp" tooltip="log/log.cpp">
+<persistable path="/log/log.cpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="log.h" tooltip="log/log.h">
+<persistable path="/log/log.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="compile.sh" tooltip="motorsport/compile.sh">
+<persistable path="/motorsport/compile.sh"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="motorsport.h" tooltip="motorsport/motorsport.h">
 <persistable path="/motorsport/motorsport.h"/>
@@ -377,26 +501,8 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.cpp" tooltip="motorsport/main.cpp">
 <persistable path="/motorsport/main.cpp"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="SConstruct" tooltip="motorsport/SConstruct">
-<persistable path="/motorsport/SConstruct"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="log.h" tooltip="log/log.h">
-<persistable path="/log/log.h"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="motorsport.cpp" tooltip="motorsport/motorsport.cpp">
 <persistable path="/motorsport/motorsport.cpp"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="log.cpp" tooltip="log/log.cpp">
-<persistable path="/log/log.cpp"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="compile.sh" tooltip="log/compile.sh">
-<persistable path="/log/compile.sh"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="Log.h" tooltip="log/Log.h">
-<persistable path="/log/Log.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="Log.cpp" tooltip="log/Log.cpp">
-<persistable path="/log/Log.cpp"/>
 </file>
 </mruList>
 </workbench>
