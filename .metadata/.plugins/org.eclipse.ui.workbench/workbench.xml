@@ -42,21 +42,21 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/log/log.cpp"/>
 <editorState selectionHPixel="0" selectionLength="0" selectionOffset="588"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="log.h" partName="log.h" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/log/log.h" title="log.h" tooltip="log/log.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/log/log.h"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="514"/>
-</editor>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="tests.cpp" partName="tests.cpp" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/log/tests.cpp" title="tests.cpp" tooltip="log/tests.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/log/tests.cpp"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="343"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="1407"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="tests.h" partName="tests.h" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/log/tests.h" title="tests.h" tooltip="log/tests.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/log/tests.h"/>
-<editorState selectionHPixel="0" selectionLength="4" selectionOffset="142"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="92"/>
 </editor>
 <editor id="org.eclipse.ui.DefaultTextEditor" name="SConstruct" partName="SConstruct" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/log/SConstruct" title="SConstruct" tooltip="log/SConstruct" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/log/SConstruct"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="2221"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="2371"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="log.h" partName="log.h" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/log/log.h" title="log.h" tooltip="log/log.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/log/log.h"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="551"/>
 </editor>
 </editors>
 <views>
@@ -70,7 +70,7 @@
 <viewState/>
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
-<viewState columnWidth0="457" columnWidth1="83" columnWidth2="62" columnWidth3="52" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
+<viewState columnWidth0="436" columnWidth1="83" columnWidth2="62" columnWidth3="52" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
 <columnOrder columnOrderIndex="0"/>
 <columnOrder columnOrderIndex="1"/>
 <columnOrder columnOrderIndex="2"/>
@@ -314,130 +314,13 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/log.cpp"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/log.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/tests.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/log/SConstruct"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/log.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/tests.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/log.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/log.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/log.h"/>
 </editors>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position info="not_deleted" x="582" y="0"/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.h" index="1">
-<position info="not_deleted" x="170" y="0"/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position info="not_deleted" x="105" y="0"/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.h" index="1">
-<position info="not_deleted" x="514" y="0"/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position info="not_deleted" x="688" y="0"/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position info="not_deleted" x="52" y="0"/>
-</item>
-<item historyLabel="log.h" index="1">
-<position info="not_deleted" x="514" y="0"/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position info="not_deleted" x="52" y="0"/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position info="not_deleted" x="402" y="22"/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position info="not_deleted" x="58" y="0"/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position info="not_deleted" x="725" y="25"/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position info="not_deleted" x="688" y="0"/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
-<item historyLabel="log.cpp" index="0">
-<position/>
-</item>
 <item historyLabel="log.cpp" index="0">
 <position info="not_deleted" x="590" y="0"/>
 </item>
@@ -462,8 +345,131 @@
 <item historyLabel="log.cpp" index="0">
 <position info="not_deleted" x="588" y="0"/>
 </item>
-<item active="true" historyLabel="tests.cpp" index="2">
+<item historyLabel="tests.cpp" index="2">
 <position/>
+</item>
+<item historyLabel="SConstruct" index="3">
+<position info="not_deleted" x="2162" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position info="not_deleted" x="48" y="0"/>
+</item>
+<item historyLabel="SConstruct" index="3">
+<position info="not_deleted" x="2162" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position info="not_deleted" x="1407" y="0"/>
+</item>
+<item historyLabel="SConstruct" index="3">
+<position info="not_deleted" x="2162" y="0"/>
+</item>
+<item historyLabel="log.cpp" index="4">
+<position info="not_deleted" x="588" y="0"/>
+</item>
+<item historyLabel="tests.h" index="5">
+<position info="not_deleted" x="142" y="4"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position info="not_deleted" x="1407" y="0"/>
+</item>
+<item historyLabel="log.h" index="6">
+<position info="not_deleted" x="514" y="0"/>
+</item>
+<item historyLabel="SConstruct" index="3">
+<position info="not_deleted" x="2162" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position info="not_deleted" x="61" y="0"/>
+</item>
+<item historyLabel="SConstruct" index="3">
+<position info="not_deleted" x="2371" y="0"/>
+</item>
+<item historyLabel="log.cpp" index="4">
+<position info="not_deleted" x="588" y="0"/>
+</item>
+<item historyLabel="log.h" index="6">
+<position info="not_deleted" x="551" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position info="not_deleted" x="36" y="0"/>
+</item>
+<item historyLabel="tests.h" index="5">
+<position info="not_deleted" x="142" y="4"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position info="not_deleted" x="36" y="0"/>
+</item>
+<item historyLabel="tests.h" index="5">
+<position info="not_deleted" x="92" y="0"/>
+</item>
+<item historyLabel="SConstruct" index="3">
+<position info="not_deleted" x="2371" y="0"/>
+</item>
+<item historyLabel="tests.h" index="5">
+<position info="not_deleted" x="92" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position info="not_deleted" x="36" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position/>
+</item>
+<item historyLabel="log.h" index="6">
+<position info="not_deleted" x="551" y="0"/>
+</item>
+<item historyLabel="log.cpp" index="4">
+<position info="not_deleted" x="588" y="0"/>
+</item>
+<item historyLabel="log.h" index="6">
+<position info="not_deleted" x="551" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position/>
+</item>
+<item historyLabel="log.h" index="6">
+<position info="not_deleted" x="533" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position/>
+</item>
+<item historyLabel="log.h" index="6">
+<position info="not_deleted" x="533" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position info="not_deleted" x="262" y="0"/>
+</item>
+<item historyLabel="tests.h" index="5">
+<position info="not_deleted" x="92" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position info="not_deleted" x="256" y="0"/>
+</item>
+<item historyLabel="tests.h" index="5">
+<position info="not_deleted" x="92" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position info="not_deleted" x="256" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position info="not_deleted" x="672" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position info="not_deleted" x="1353" y="0"/>
+</item>
+<item historyLabel="tests.cpp" index="2">
+<position info="not_deleted" x="234" y="59"/>
+</item>
+<item historyLabel="log.cpp" index="7">
+<position info="not_deleted" x="588" y="0"/>
+</item>
+<item historyLabel="log.h" index="8">
+<position/>
+</item>
+<item active="true" historyLabel="tests.cpp" index="2">
+<position info="not_deleted" x="700" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -482,6 +488,9 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="log.h" tooltip="log/log.h">
+<persistable path="/log/log.h"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.binaryEditor" name="tests.o" tooltip="log/tests.o">
 <persistable path="/log/tests.o"/>
 </file>
@@ -493,9 +502,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tests.cpp" tooltip="log/tests.cpp">
 <persistable path="/log/tests.cpp"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="log.h" tooltip="log/log.h">
-<persistable path="/log/log.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="log.cpp" tooltip="log/log.cpp">
 <persistable path="/log/log.cpp"/>

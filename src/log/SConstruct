@@ -61,7 +61,8 @@ log = build(cfgLog, "StaticLibrary", "debug");
 cfgTests = {
     "default": {
         "name": "tests"
-        ,"includePaths": Split(" ")
+        ,"includePaths": Split("""../../deps/testsoon/include
+                                  /usr/include/boost-1_33_1""")
         ,"libPaths": Split(".")
         ,"libs": [log["obj"], Split(" ")]
         ,"sources": Split("tests.cpp")
