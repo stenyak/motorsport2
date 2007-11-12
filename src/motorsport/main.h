@@ -7,17 +7,14 @@
      - doxygen plugin (web: http://download.gna.org/eclox/update)
      - cdt plugin (web)
      - cygwin
-   - scons
+   - scons-local
   - Cygwin:
      - boost
      - g++
      - gdb
-     - cppunit
+     - testsoon
      - doxygen
-     
 */
-
 int main(int argc, char*argv[]);
-
 
 #endif /*MAIN_H_*/
