@@ -13,12 +13,18 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="log" key="selection"/>
+		<item value="name" key="selection"/>
 		<list key="findhistory">
+			<item value="name"/>
+			<item value="&#x09;"/>
+			<item value="&quot;&quot;&quot;"/>
 			<item value="log"/>
 			<item value="voy"/>
 		</list>
 		<list key="replacehistory">
+			<item value="    "/>
+			<item value=""/>
+			<item value="&quot;"/>
 		</list>
 	</section>
 </section>

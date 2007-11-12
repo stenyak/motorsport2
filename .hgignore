@@ -1,10 +1,12 @@
 syntax: regexp
-^deps
-^\.metadata.*/\.log
-^\.metadata/\.lock
-^\.metadata/\.plugins/org\.eclipse\.core\.resources/\.history
-^\.metadata/\.plugins/org\.eclipse\.core\.resources/.*\.tree
-^\.metadata/\.plugins/org\.eclipse\.core\.resources/\.safetable/org\.eclipse\.core\.resources
+^deps$
+^\.metadata.*/\.log$
+^\.metadata/\.lock$
+^\.metadata/\.plugins/org\.eclipse\.core\.resources/\.history$
+^\.metadata/\.plugins/org\.eclipse\.core\.resources/.*\.tree$
+^\.metadata/\.plugins/org\.eclipse\.core\.resources/\.safetable/org\.eclipse\.core\.resources$
+^\.metadata/\.plugins/org\.eclipse\.core\.runtime/\.settings/org\.eclipse\.debug\.core\.prefs$
+^\.metadata/.*\.pdom
 \.sconsign\.dblite$
 \.markers$
 \.snap$

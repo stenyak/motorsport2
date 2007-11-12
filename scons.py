@@ -18,7 +18,7 @@ if not fhs:
     scons = re.compile("\/").sub("\\\\", scons)
 
 #now that we got scons path, put the necessary parameters
-cmd = "python \""+scons+"\""
+cmd = "python \""+scons+"\" -Q"
 
 if sys.argv[1] == "clean":
     cmd += " -c"
@@ -27,5 +27,6 @@ if sys.argv[1] == "all":
 
 p = Popen(cmd, shell=True,stdout=PIPE,stderr=PIPE)
 print (''.join(p.stdout.readlines() ))
+print ("---------------------------------------------------")
 print (''.join(p.stderr.readlines() ))
 

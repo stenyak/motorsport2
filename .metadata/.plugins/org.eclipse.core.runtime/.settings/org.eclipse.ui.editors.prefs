@@ -1,5 +1,6 @@
-#Thu Nov 08 02:06:24 CET 2007
+#Mon Nov 12 01:25:57 CET 2007
 spacesForTabs=true
 eclipse.preferences.version=1
 overviewRuler_migration=migrated_3.1
 lineNumberRuler=true
+undoHistorySize=500
