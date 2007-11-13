@@ -38,15 +38,14 @@ def build (cfgs, type, cfgName):
     r["obj"] = cfgBuild(r["cfg"], type)
     return r
 
-cfgMosp = {
+cfgMotorsportSim = {
     "default": {
-        "name": "motorsport"
+        "name": "motorsportSim"
         ,"includePaths": Split("/usr/include/boost-1_33_1")
         ,"libPaths": Split(" ")
-        ,"libs": Split("boost_program_options-gcc-mt-s")
-        ,"sources": Split("main.cpp motorsport.cpp")
-        ,"ccflags": " -Wall -Wextra"
-        ,"installPath": "lib"
+        ,"libs": Split(" ")
+        ,"sources": Split("motorsport.cpp")
+        ,"ccflags": " -Wall -Wextra -pedantic"
         }
     ,"debug": {
         "name":"d"
@@ -55,20 +54,18 @@ cfgMosp = {
     ,"release": {
         }
     }
-#mosp = build(cfgMosp, "StaticLibrary", "debug");
-#mosp = build(cfgMosp, "SharedLibrary", "debug");
-mosp = build(cfgMosp, "Program", "debug");
-#cfgPrint(mosp["cfg"], "mosp.")
-"""
-cfgTests = {
+motorsportSim = build(cfgMotorsportSim, "StaticLibrary", "debug");
+#motorsportSim = build(cfgMotorsportSim, "SharedLibrary", "debug");
+#motorsportSim = build(cfgMotorsportSim, "Program", "debug");
+#cfgPrint(motorsportSim["cfg"], "mosp.")
+cfgMotorsport = {
     "default": {
-        "name": "tests"
-        ,"includePaths": Split("../../deps/testsoon/include /usr/include/boost-1_33_1")
+        "name": "motorsport"
+        ,"includePaths": Split("/usr/include/boost-1_33_1")
         ,"libPaths": Split(".")
-        ,"libs": [log["obj"], Split(" ")]
-        ,"sources": Split("tests.cpp")
-        ,"ccflags": " -Wall"
-        ,"installPath": "lib"
+        ,"libs": [motorsportSim["obj"], Split("boost_program_options-gcc-mt")]
+        ,"sources": Split("main.cpp")
+        ,"ccflags": " -Wall -Wextra -pedantic"
         }
     ,"debug": {
         "name":"d"
@@ -77,6 +74,5 @@ cfgTests = {
     ,"release": {
         }
     }
-tests = build(cfgTests, "Program", "debug");
-#cfgPrint(tests["cfg"], "tests.")
-"""
+motorsport = build(cfgMotorsport, "Program", "debug");
+#cfgPrint(motorsport["cfg"], "tests.")

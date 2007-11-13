@@ -45,8 +45,7 @@ cfgLog = {
         ,"libPaths": Split(" ")
         ,"libs": Split(" ")
         ,"sources": Split("log.cpp")
-        ,"ccflags": " -Wall -Wno-deprecated"
-        ,"installPath": "lib"
+        ,"ccflags": " -Wall -Wno-deprecated -pedantic"
         }
     ,"debug": {
         "name":"d"
@@ -66,8 +65,7 @@ cfgTests = {
         ,"libPaths": Split(".")
         ,"libs": [log["obj"], Split(" ")]
         ,"sources": Split("tests.cpp")
-        ,"ccflags": " -Wall"
-        ,"installPath": "lib"
+        ,"ccflags": " -Wall -pedantic"
         }
     ,"debug": {
         "name":"d"

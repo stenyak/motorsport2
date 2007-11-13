@@ -38,7 +38,7 @@ TEST(log_genericCheck)
     Equals("d : main.cpp(id):15: message 5", log->log(Log::Dev, "main.cpp", 15, "message %i", 5));
     delete log;
 }
-TEST_REGISTRY;
+TEST_REGISTRY
 int main (int argc, char *argv[])
 {
     Tests*tests = new Tests();

@@ -27,7 +27,7 @@ class Log
     virtual ~Log();
     std::string log(Level level, std::string file, int line, std::string msg, ...);
   private:
-    const std::string Log::getLevelString (Level level);
+    const std::string getLevelString (Level level);
     std::string id;
 };
 }
