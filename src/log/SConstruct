@@ -20,16 +20,17 @@ def cfgBuild(cfg, type):
     env = Environment(CCFLAGS = cfg["ccflags"])
     obj = 0;
     usr = "..\\..\\usr\\"
-    if type == "StaticLibrary":
-        obj = env.StaticLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
+    if type == "StaticLibrary" or type == "SharedLibrary":
+        if type == "StaticLibrary":
+            obj = env.StaticLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
+        if type == "SharedLibrary":
+            obj = env.SharedLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
         env.Install(usr+"lib", obj)
-    if type == "SharedLibrary":
-        obj = env.SharedLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
-        env.Install(usr+"lib", obj)
+        for header in (cfg["headers"]):
+            Command(usr+"include\\"+header, header, Copy("$TARGET", "$SOURCE"))
     if type == "Program":
-        obj = env.Program      (target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
+        obj = env.Program (target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
         env.Install(usr+"bin", obj)
-    #env.Install(installPath, obj)
     return obj
 
 def build (cfgs, type, cfgName):
@@ -45,6 +46,7 @@ cfgLog = {
         ,"libPaths": Split(" ")
         ,"libs": Split(" ")
         ,"sources": Split("log.cpp")
+        ,"headers": Split("log.h")
         ,"ccflags": " -Wall -Wno-deprecated -pedantic"
         }
     ,"debug": {
@@ -65,6 +67,7 @@ cfgTests = {
         ,"libPaths": Split(".")
         ,"libs": [log["obj"], Split(" ")]
         ,"sources": Split("tests.cpp")
+        ,"headers": Split(" ")
         ,"ccflags": " -Wall -pedantic"
         }
     ,"debug": {
