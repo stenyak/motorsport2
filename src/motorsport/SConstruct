@@ -27,11 +27,13 @@ def cfgBuild(cfg, type):
             obj = env.SharedLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
         env.Install(usr+"lib", obj)
         for header in (cfg["headers"]):
-            Command(usr+"include\\"+header, header, Copy("$TARGET", "$SOURCE"))
+            dir = usr+"include\\"
+            Command(dir+header, header, Copy("$TARGET", "$SOURCE"))
     if type == "Program":
         obj = env.Program (target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
         env.Install(usr+"bin", obj)
     return obj
+
 
 def build (cfgs, type, cfgName):
     r = {}

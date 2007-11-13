@@ -1,5 +1,4 @@
-#Sat Nov 10 03:12:19 CET 2007
+#Tue Nov 13 01:27:41 CET 2007
 org.eclipse.cdt.debug.core.cDebug.common_source_containers=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<sourceLookupDirector>\r\n<sourceContainers duplicates\="false"/>\r\n</sourceLookupDirector>\r\n
 eclipse.preferences.version=1
 BreakpointActionManager.actionData=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<breakpointActionData/>\r\n
-org.eclipse.cdt.debug.core.cDebug.defaultDebugger=
