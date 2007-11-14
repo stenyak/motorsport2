@@ -42,16 +42,16 @@ def build (cfgs, type, cfgName):
 
 cfgLog = {
     "default": {
-        "name": "stklog"
+        "name": "StkLog"
         ,"includePaths": Split("/usr/include/boost-1_33_1")
         ,"libPaths": Split(" ")
         ,"libs": Split(" ")
-        ,"sources": Split("log.cpp")
-        ,"headers": Split("log.h")
+        ,"sources": Split("Log.cpp")
+        ,"headers": Split("Log.h")
         ,"ccflags": "-Wall -Wextra -Wno-deprecated "
         }
     ,"debug": {
-        "name":"d"
+        "name":"D"
         ,"ccflags": "-g"
         }
     ,"release": {
@@ -62,18 +62,18 @@ log = build(cfgLog, "StaticLibrary", "debug");
 #cfgPrint(log["cfg"], "log.")
 cfgTests = {
     "default": {
-        "name": "tests"
+        "name": "Tests"
         ,"includePaths": [log["cfg"]["includePaths"],
                           Split("../../deps/testsoon/include")]
         ,"libPaths": Split(".")
         ,"libs": [log["obj"],
                   Split(" ")]
-        ,"sources": Split("tests.cpp")
+        ,"sources": Split("Tests.cpp")
         ,"headers": Split(" ")
         ,"ccflags": "-Wall -Wextra "
         }
     ,"debug": {
-        "name":"d"
+        "name":"D"
         ,"ccflags": "-g "
         }
     ,"release": {

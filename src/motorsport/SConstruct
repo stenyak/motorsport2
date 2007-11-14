@@ -43,16 +43,16 @@ def build (cfgs, type, cfgName):
 
 cfgMotorsportSim = {
     "default": {
-        "name": "motorsportSim"
+        "name": "MotorsportSim"
         ,"includePaths": Split("../../usr/include /usr/include/boost-1_33_1")
         ,"libPaths": Split("../../usr/lib")
-        ,"libs": Split("stklogd")
-        ,"sources": Split("motorsport.cpp")
-        ,"headers": Split("motorsport.h")
+        ,"libs": Split("StkLogD")
+        ,"sources": Split("Motorsport.cpp MotorsportConfig.cpp")
+        ,"headers": Split("Motorsport.h")
         ,"ccflags": "-Wall -Wextra -pedantic "
         }
     ,"debug": {
-        "name":"d"
+        "name":"D"
         ,"ccflags": "-g"
         }
     ,"release": {
@@ -64,7 +64,7 @@ motorsportSim = build(cfgMotorsportSim, "StaticLibrary", "debug");
 #cfgPrint(motorsportSim["cfg"], "mosp.")
 cfgMotorsport = {
     "default": {
-        "name": "motorsport"
+        "name": "Motorsport"
         ,"includePaths": [motorsportSim["cfg"]["includePaths"],
                           Split("../../usr/include /usr/include/boost-1_33_1")]
         ,"libPaths": [motorsportSim["cfg"]["libPaths"],
@@ -77,7 +77,7 @@ cfgMotorsport = {
         ,"ccflags": "-Wall -Wextra -pedantic "
         }
     ,"debug": {
-        "name":"d"
+        "name":"D"
         ,"ccflags": "-g "
         }
     ,"release": {

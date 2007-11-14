@@ -28,9 +28,9 @@ int main(int argc, char*argv[])
         if (vm.count("run"))
         {
             log->user("Running Motorsport simulation.");
-            Motorsport::pOptions opt(new Motorsport::Options);
-            opt->setRun(true);
-            pMotorsport motorsport ( new Motorsport(opt) );
+            pMotorsportConfig config(new MotorsportConfig());
+            config->setRun(true);
+            pMotorsport motorsport ( new Motorsport(config) );
             result = motorsport->start();
         }
         else

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="14" version="2.0">
+<workbench progressCount="18" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="66" y="94">
 <fastViewData fastViewLocation="1024"/>
@@ -34,29 +34,49 @@
 <part id="2"/>
 <part id="3"/>
 <part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
+<part id="8"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.h" partName="main.h" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/motorsport/main.h" title="main.h" tooltip="motorsport/main.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/motorsport/main.h"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="34"/>
-</editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.cpp" partName="main.cpp" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/motorsport/main.cpp" title="main.cpp" tooltip="motorsport/main.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/motorsport/main.cpp"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="611"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="908"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="motorsport.cpp" partName="motorsport.cpp" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/motorsport/motorsport.cpp" title="motorsport.cpp" tooltip="motorsport/motorsport.cpp" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/motorsport/motorsport.cpp"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="511"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.h" partName="main.h" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/motorsport/main.h" title="main.h" tooltip="motorsport/main.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/motorsport/main.h"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="64"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.ui.DefaultTextEditor" name="SConstruct" partName="SConstruct" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/log/SConstruct" title="SConstruct" tooltip="log/SConstruct" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/log/SConstruct"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="482"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MotorsportConfig.h" partName="MotorsportConfig.h" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/motorsport/MotorsportConfig.h" title="MotorsportConfig.h" tooltip="motorsport/MotorsportConfig.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/motorsport/MotorsportConfig.h"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="93"/>
 </editor>
 <editor id="org.eclipse.ui.DefaultTextEditor" name="SConstruct" partName="SConstruct" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/motorsport/SConstruct" title="SConstruct" tooltip="motorsport/SConstruct" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/motorsport/SConstruct"/>
-<editorState selectionHPixel="0" selectionLength="69" selectionOffset="1151"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="1646"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="Id.cpp" partName="Id.cpp" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/motorsport/Id.cpp" title="Id.cpp" tooltip="motorsport/Id.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/motorsport/Id.cpp"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="11"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="Id.h" partName="Id.h" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/motorsport/Id.h" title="Id.h" tooltip="motorsport/Id.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/motorsport/Id.h"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="70"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MotorsportConfig.cpp" partName="MotorsportConfig.cpp" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/motorsport/MotorsportConfig.cpp" title="MotorsportConfig.cpp" tooltip="motorsport/MotorsportConfig.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/motorsport/MotorsportConfig.cpp"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="Motorsport.cpp" partName="Motorsport.cpp" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/motorsport/Motorsport.cpp" title="Motorsport.cpp" tooltip="motorsport/Motorsport.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/motorsport/Motorsport.cpp"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="11"/>
+</editor>
+<editor id="org.eclipse.ui.DefaultTextEditor" name="SConstruct" partName="SConstruct" path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/log/SConstruct" title="SConstruct" tooltip="log/SConstruct" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/log/SConstruct"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="1958"/>
 </editor>
 </editors>
 <views>
@@ -93,7 +113,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.ui.DefaultTextEditor" activePerspective="org.eclipse.cdt.ui.CPerspective">
+<perspectives activePart="org.eclipse.cdt.ui.editor.CEditor" activePerspective="org.eclipse.cdt.ui.CPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.cdt.internal.ui.CPerspectiveFactory" id="org.eclipse.cdt.ui.CPerspective" label="C/C++"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -195,7 +215,7 @@
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.24921466" ratioLeft="238" ratioRight="717" relationship="2" relative="org.eclipse.ui.internal.ViewStack@27e8d"/>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@18fe465" ratio="0.64785993" ratioLeft="333" ratioRight="181" relationship="4" relative="org.eclipse.ui.internal.ViewStack@27e8d">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@18fe465" ratio="0.6473118" ratioLeft="301" ratioRight="164" relationship="4" relative="org.eclipse.ui.internal.ViewStack@27e8d">
 <folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
@@ -241,7 +261,6 @@
 <view id="org.eclipse.ui.navigator.ProjectExplorer"/>
 <view id="org.eclipse.debug.ui.VariableView"/>
 <view id="org.eclipse.debug.ui.BreakpointView"/>
-<view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="org.eclipse.debug.ui.ExpressionView"/>
 <view id="org.eclipse.debug.ui.DebugView"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
@@ -278,16 +297,15 @@
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@667262" ratio="0.71078" ratioLeft="811" ratioRight="330" relationship="2" relative="org.eclipse.ui.internal.ViewStack@15bfbc9">
-<folder activePageID="org.eclipse.debug.ui.ExpressionView" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.debug.ui.BreakpointView" appearance="2" expanded="2">
 <page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="Breakpoints"/>
-<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="Expressions"/>
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
 <part id="0"/>
 <part id="1"/>
 <part id="2"/>
-<part id="3"/>
 </presentation>
 </folder>
 </info>
@@ -329,169 +347,170 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/motorsport.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/main.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/motorsport/SConstruct"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/log/SConstruct"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/motorsport/compile.sh"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/log.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/tests.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/tests.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/main.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/motorsport.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/motorsport.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/log/SConstruct"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/main.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/log.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/motorsportConfig.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/motorsportConfig.cpp"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/motorsport/SConstruct"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/Id.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/Id.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/log/log.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/MotorsportConfig.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/MotorsportConfig.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/motorsport/Motorsport.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/log/SConstruct"/>
 </editors>
-<item historyLabel="SConstruct" index="2">
-<position info="not_deleted" x="1774" y="0"/>
+<item historyLabel="SConstruct" index="6">
+<position info="not_deleted" x="1902" y="0"/>
 </item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="520" y="37"/>
+<item historyLabel="main.cpp" index="2">
+<position info="not_deleted" x="908" y="0"/>
 </item>
-<item historyLabel="SConstruct" index="2">
-<position info="not_deleted" x="2296" y="0"/>
+<item historyLabel="motorsportConfig.h" index="4">
+<position info="not_deleted" x="663" y="0"/>
 </item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="149" y="0"/>
+<item historyLabel="motorsport.cpp" index="1">
+<position info="not_deleted" x="290" y="0"/>
 </item>
-<item historyLabel="motorsport.cpp" index="0">
-<position info="not_deleted" x="167" y="0"/>
+<item historyLabel="motorsportConfig.h" index="4">
+<position info="not_deleted" x="231" y="0"/>
 </item>
-<item historyLabel="SConstruct" index="2">
-<position info="not_deleted" x="1151" y="7"/>
+<item historyLabel="motorsport.h" index="0">
+<position info="not_deleted" x="152" y="0"/>
 </item>
-<item historyLabel="motorsport.cpp" index="0">
-<position info="not_deleted" x="27" y="16"/>
+<item historyLabel="motorsportConfig.cpp" index="5">
+<position info="not_deleted" x="138" y="0"/>
 </item>
-<item historyLabel="motorsport.cpp" index="0">
+<item historyLabel="motorsportConfig.h" index="4">
+<position info="not_deleted" x="93" y="0"/>
+</item>
+<item historyLabel="motorsportConfig.cpp" index="5">
+<position info="not_deleted" x="138" y="0"/>
+</item>
+<item historyLabel="motorsportConfig.h" index="4">
+<position info="not_deleted" x="93" y="0"/>
+</item>
+<item historyLabel="Id.cpp" index="7">
+<position/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position/>
+</item>
+<item historyLabel="log.cpp" index="9">
+<position/>
+</item>
+<item historyLabel="log.h" index="3">
+<position info="not_deleted" x="1116" y="0"/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position info="not_deleted" x="129" y="0"/>
+</item>
+<item historyLabel="SConstruct" index="6">
+<position info="not_deleted" x="1883" y="0"/>
+</item>
+<item historyLabel="motorsportConfig.h" index="4">
+<position info="not_deleted" x="93" y="0"/>
+</item>
+<item historyLabel="motorsportConfig.cpp" index="5">
+<position info="not_deleted" x="11" y="0"/>
+</item>
+<item historyLabel="SConstruct" index="6">
+<position info="not_deleted" x="1883" y="0"/>
+</item>
+<item historyLabel="motorsportConfig.cpp" index="5">
+<position info="not_deleted" x="11" y="0"/>
+</item>
+<item historyLabel="motorsportConfig.h" index="4">
+<position info="not_deleted" x="93" y="0"/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position info="not_deleted" x="191" y="0"/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position info="not_deleted" x="143" y="0"/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position info="not_deleted" x="146" y="42"/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position info="not_deleted" x="73" y="0"/>
+</item>
+<item historyLabel="Id.cpp" index="7">
+<position info="not_deleted" x="11" y="0"/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position info="not_deleted" x="73" y="0"/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position info="not_deleted" x="146" y="43"/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position info="not_deleted" x="0" y="13"/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position info="not_deleted" x="146" y="43"/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position info="not_deleted" x="224" y="0"/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position info="not_deleted" x="873" y="3"/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position info="not_deleted" x="496" y="0"/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position info="not_deleted" x="873" y="3"/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position info="not_deleted" x="809" y="0"/>
+</item>
+<item historyLabel="SConstruct" index="6">
+<position info="not_deleted" x="1902" y="0"/>
+</item>
+<item historyLabel="motorsportConfig.h" index="4">
+<position info="not_deleted" x="93" y="0"/>
+</item>
+<item historyLabel="motorsportConfig.cpp" index="5">
+<position info="not_deleted" x="11" y="0"/>
+</item>
+<item historyLabel="motorsportConfig.h" index="4">
+<position info="not_deleted" x="93" y="0"/>
+</item>
+<item historyLabel="MotorsportConfig.h" index="10">
+<position info="not_deleted" x="93" y="0"/>
+</item>
+<item historyLabel="MotorsportConfig.cpp" index="11">
+<position/>
+</item>
+<item historyLabel="Motorsport.cpp" index="12">
+<position/>
+</item>
+<item historyLabel="SConstruct" index="6">
+<position info="not_deleted" x="2978" y="0"/>
+</item>
+<item historyLabel="SConstruct" index="13">
+<position/>
+</item>
+<item historyLabel="SConstruct" index="6">
+<position info="not_deleted" x="1646" y="0"/>
+</item>
+<item historyLabel="Id.h" index="8">
+<position info="not_deleted" x="809" y="0"/>
+</item>
+<item historyLabel="Id.cpp" index="7">
+<position info="not_deleted" x="11" y="0"/>
+</item>
+<item historyLabel="Id.h" index="8">
 <position info="not_deleted" x="206" y="0"/>
 </item>
-<item historyLabel="motorsport.cpp" index="0">
-<position info="not_deleted" x="170" y="0"/>
+<item historyLabel="Id.cpp" index="7">
+<position info="not_deleted" x="11" y="0"/>
 </item>
-<item historyLabel="compile.sh" index="4">
-<position info="not_deleted" x="171" y="0"/>
-</item>
-<item historyLabel="SConstruct" index="2">
-<position info="not_deleted" x="484" y="934"/>
-</item>
-<item historyLabel="SConstruct" index="3">
-<position/>
-</item>
-<item historyLabel="SConstruct" index="2">
-<position info="not_deleted" x="2559" y="32"/>
-</item>
-<item historyLabel="SConstruct" index="3">
-<position info="not_deleted" x="1793" y="0"/>
-</item>
-<item historyLabel="SConstruct" index="2">
-<position info="not_deleted" x="2296" y="0"/>
-</item>
-<item historyLabel="log.h" index="5">
-<position/>
-</item>
-<item historyLabel="tests.h" index="6">
-<position/>
-</item>
-<item historyLabel="tests.cpp" index="7">
-<position/>
-</item>
-<item historyLabel="tests.h" index="6">
-<position info="not_deleted" x="153" y="0"/>
-</item>
-<item historyLabel="tests.cpp" index="7">
-<position info="not_deleted" x="1409" y="0"/>
-</item>
-<item historyLabel="tests.h" index="6">
-<position info="not_deleted" x="404" y="0"/>
-</item>
-<item historyLabel="tests.cpp" index="7">
-<position info="not_deleted" x="1409" y="0"/>
-</item>
-<item historyLabel="tests.h" index="6">
-<position info="not_deleted" x="404" y="0"/>
-</item>
-<item historyLabel="tests.cpp" index="7">
-<position info="not_deleted" x="194" y="0"/>
-</item>
-<item historyLabel="log.h" index="5">
-<position/>
-</item>
-<item historyLabel="tests.h" index="6">
-<position info="not_deleted" x="333" y="0"/>
-</item>
-<item historyLabel="log.h" index="5">
-<position info="not_deleted" x="51" y="0"/>
-</item>
-<item historyLabel="main.h" index="8">
-<position/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="149" y="0"/>
-</item>
-<item historyLabel="main.h" index="8">
-<position info="not_deleted" x="601" y="0"/>
-</item>
-<item historyLabel="motorsport.h" index="9">
-<position/>
-</item>
-<item historyLabel="main.h" index="8">
-<position info="not_deleted" x="601" y="0"/>
-</item>
-<item historyLabel="motorsport.h" index="9">
-<position/>
-</item>
-<item historyLabel="main.h" index="8">
-<position info="not_deleted" x="601" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position/>
-</item>
-<item historyLabel="main.h" index="8">
-<position info="not_deleted" x="601" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="1025" y="0"/>
-</item>
-<item historyLabel="main.h" index="8">
-<position info="not_deleted" x="601" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="611" y="0"/>
-</item>
-<item historyLabel="main.h" index="8">
-<position info="not_deleted" x="601" y="0"/>
-</item>
-<item historyLabel="main.cpp" index="1">
-<position info="not_deleted" x="611" y="0"/>
-</item>
-<item historyLabel="main.h" index="8">
-<position info="not_deleted" x="34" y="0"/>
-</item>
-<item historyLabel="motorsport.h" index="9">
-<position/>
-</item>
-<item historyLabel="motorsport.cpp" index="10">
-<position/>
-</item>
-<item historyLabel="motorsport.h" index="9">
-<position info="not_deleted" x="521" y="0"/>
-</item>
-<item historyLabel="SConstruct" index="11">
-<position/>
-</item>
-<item historyLabel="motorsport.h" index="9">
-<position info="not_deleted" x="521" y="0"/>
-</item>
-<item historyLabel="SConstruct" index="11">
-<position info="not_deleted" x="484" y="959"/>
-</item>
-<item historyLabel="SConstruct" index="12">
-<position/>
-</item>
-<item active="true" historyLabel="SConstruct" index="11">
-<position info="not_deleted" x="484" y="959"/>
+<item active="true" historyLabel="Id.h" index="8">
+<position info="not_deleted" x="206" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -510,17 +529,32 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="SConstruct" tooltip="motorsport/SConstruct">
-<persistable path="/motorsport/SConstruct"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="SConstruct" tooltip="log/SConstruct">
 <persistable path="/log/SConstruct"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="motorsport.cpp" tooltip="motorsport/motorsport.cpp">
-<persistable path="/motorsport/motorsport.cpp"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="Motorsport.cpp" tooltip="motorsport/Motorsport.cpp">
+<persistable path="/motorsport/Motorsport.cpp"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.cpp" tooltip="motorsport/main.cpp">
-<persistable path="/motorsport/main.cpp"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="MotorsportConfig.cpp" tooltip="motorsport/MotorsportConfig.cpp">
+<persistable path="/motorsport/MotorsportConfig.cpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="log.cpp" tooltip="log/log.cpp">
+<persistable path="/log/log.cpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="Id.h" tooltip="motorsport/Id.h">
+<persistable path="/motorsport/Id.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="Id.cpp" tooltip="motorsport/Id.cpp">
+<persistable path="/motorsport/Id.cpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="SConstruct" tooltip="motorsport/SConstruct">
+<persistable path="/motorsport/SConstruct"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="MotorsportConfig.h" tooltip="motorsport/MotorsportConfig.h">
+<persistable path="/motorsport/MotorsportConfig.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="log.h" tooltip="log/log.h">
+<persistable path="/log/log.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="motorsport.h" tooltip="motorsport/motorsport.h">
 <persistable path="/motorsport/motorsport.h"/>
@@ -528,23 +562,14 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.h" tooltip="motorsport/main.h">
 <persistable path="/motorsport/main.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tests.cpp" tooltip="log/tests.cpp">
-<persistable path="/log/tests.cpp"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.cpp" tooltip="motorsport/main.cpp">
+<persistable path="/motorsport/main.cpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="motorsport.cpp" tooltip="motorsport/motorsport.cpp">
+<persistable path="/motorsport/motorsport.cpp"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tests.h" tooltip="log/tests.h">
 <persistable path="/log/tests.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="log.h" tooltip="log/log.h">
-<persistable path="/log/log.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="compile.sh" tooltip="motorsport/compile.sh">
-<persistable path="/motorsport/compile.sh"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.binaryEditor" name="dmotorsport.exe" tooltip="motorsport/dmotorsport.exe">
-<persistable path="/motorsport/dmotorsport.exe"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="log.cpp" tooltip="log/log.cpp">
-<persistable path="/log/log.cpp"/>
 </file>
 </mruList>
 </workbench>
