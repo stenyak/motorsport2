@@ -1,17 +1,20 @@
+#include <iostream>
+#include <boost/program_options.hpp>
 #include "main.h"
 #include "motorsport.h"
-#include <boost/program_options.hpp>
-#include <iostream>
+#include <log.h>
 using namespace boost;
 using namespace std;
+using namespace stk;
 
 int main(int argc, char*argv[])
 {
+    pLog log(new Log("Motorsport Wrapper"));
     int result = 0;
     program_options::options_description desc("Allowed options");
     desc.add_options()
-        ("help", "produce help message")
-        ("run", "run motorsport simulation");
+        ("help", "produce help message.")
+        ("run", "run Motorsport Simulation.");
     program_options::variables_map vm;
     program_options::store(program_options::parse_command_line(argc, argv, desc), vm);
     program_options::notify(vm);    
@@ -24,19 +27,17 @@ int main(int argc, char*argv[])
     {
         if (vm.count("run"))
         {
-            cout<< "Running Motorsport simulation."<< endl;
+            log->user("Running Motorsport simulation.");
             Motorsport::pOptions opt(new Motorsport::Options);
             opt->setRun(true);
-            pMotorsport mosp ( new Motorsport(opt) );
-            mosp->start();
-            //result = mosp->main(argc, argv);
+            pMotorsport motorsport ( new Motorsport(opt) );
+            result = motorsport->start();
         }
         else
         {
-            cout<< "No option was chosen."<< endl;
+            log->warn("No option was chosen.");
             result = 1;
         }
     }
-    cin.get();
     return result;
 }

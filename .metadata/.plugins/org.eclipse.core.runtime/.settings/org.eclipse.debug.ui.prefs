@@ -1,4 +1,4 @@
-#Mon Nov 12 02:21:15 CET 2007
+#Wed Nov 14 01:42:06 CET 2007
 DEBUG.consoleOpenOnErr=false
 org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<launchPerspectives/>\r\n
 DEBUG.consoleOpenOnOut=false
@@ -6,7 +6,7 @@ StringVariablePreferencePage=185,154,153,123,
 pref_state_memento.org.eclipse.debug.ui.VariableView=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<VariablesViewMemento org.eclipse.debug.ui.SASH_DETAILS_PART\="315" org.eclipse.debug.ui.SASH_VIEW_PART\="684"/>
 pref_state_memento.org.eclipse.debug.ui.RegisterView=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<VariablesViewMemento org.eclipse.debug.ui.SASH_DETAILS_PART\="315" org.eclipse.debug.ui.SASH_VIEW_PART\="684"/>
 Console.highWaterMark=88000
-pref_state_memento.org.eclipse.debug.ui.ExpressionView=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<VariablesViewMemento org.eclipse.debug.ui.SASH_DETAILS_PART\="660" org.eclipse.debug.ui.SASH_VIEW_PART\="330"/>
+pref_state_memento.org.eclipse.debug.ui.ExpressionView=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<VariablesViewMemento org.eclipse.debug.ui.SASH_DETAILS_PART\="666" org.eclipse.debug.ui.SASH_VIEW_PART\="333"/>
 org.eclipse.debug.ui.manage_view_perspectives=org.eclipse.debug.ui.DebugPerspective,
 preferredDetailPanes=DefaultDetailPane\:DefaultDetailPane|
 org.eclipse.debug.ui.switch_perspective_on_suspend=always

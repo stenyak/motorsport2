@@ -4,9 +4,9 @@ def cfgAppend(cfg, prefix):
         try:
             #join strings, append lists
             if type(cfg[key]) == type(""):
-                r[key] = prefix[key] + cfg[key]
+                r[key] = cfg[key] + prefix[key]
             else:
-                r[key] = prefix[key] + cfg[key]
+                r[key] = cfg[key] + prefix[key]
         except:
             #key prolly doesn't exist
             continue
@@ -43,12 +43,12 @@ def build (cfgs, type, cfgName):
 cfgLog = {
     "default": {
         "name": "stklog"
-        ,"includePaths": Split(" ")
+        ,"includePaths": Split("/usr/include/boost-1_33_1")
         ,"libPaths": Split(" ")
         ,"libs": Split(" ")
         ,"sources": Split("log.cpp")
         ,"headers": Split("log.h")
-        ,"ccflags": " -Wall -Wno-deprecated -pedantic"
+        ,"ccflags": "-Wall -Wextra -Wno-deprecated "
         }
     ,"debug": {
         "name":"d"
@@ -63,13 +63,14 @@ log = build(cfgLog, "StaticLibrary", "debug");
 cfgTests = {
     "default": {
         "name": "tests"
-        ,"includePaths": Split("""../../deps/testsoon/include
-                                  /usr/include/boost-1_33_1""")
+        ,"includePaths": [log["cfg"]["includePaths"],
+                          Split("../../deps/testsoon/include")]
         ,"libPaths": Split(".")
-        ,"libs": [log["obj"], Split(" ")]
+        ,"libs": [log["obj"],
+                  Split(" ")]
         ,"sources": Split("tests.cpp")
         ,"headers": Split(" ")
-        ,"ccflags": " -Wall -pedantic"
+        ,"ccflags": "-Wall -Wextra "
         }
     ,"debug": {
         "name":"d"

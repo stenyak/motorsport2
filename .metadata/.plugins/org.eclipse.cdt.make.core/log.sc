@@ -12,6 +12,7 @@
 <includePath path="C:/cygwin/usr/include/w32api"/>
 <includePath path="C:/Documents and Settings/stenyak/home/dev/motorsport"/>
 <includePath path="c:/Documents and Settings/stenyak/home/dev/motorsport/deps/testsoon/include"/>
+<includePath path="c:\usr\include\boost-1_33_1" removed="true"/>
 <includePath path="C:/cygwin/usr/include/boost-1_33_1"/>
 <includePath path="C:/Documents and Settings/stenyak/home/dev/motorsport/src/log"/>
 <definedSymbol symbol="__cplusplus=1"/>

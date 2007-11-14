@@ -22,6 +22,7 @@
 @returns 0 on success
 @returns 1 if no option was provided
 @returns 2 if help screen was triggered. */
+
 int main(int argc, char*argv[]);
 
 #endif /*MAIN_H_*/

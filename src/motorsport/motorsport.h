@@ -1,6 +1,7 @@
 #ifndef MOTORSPORT_H_
 #define MOTORSPORT_H_
 
+#include <log.h>
 #include <boost/shared_ptr.hpp>
 using namespace boost;
 
@@ -45,6 +46,7 @@ class Motorsport
     pOptions options;
     /** Private constructor, without any options. Should not be called. TODO find out how to prevent its execution. Make it virtual or whatever... */
     Motorsport();
+    stk::pLog log;
 };
 
 #endif /*MOTORSPORT_H_*/

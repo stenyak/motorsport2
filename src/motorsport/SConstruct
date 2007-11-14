@@ -4,9 +4,9 @@ def cfgAppend(cfg, prefix):
         try:
             #join strings, append lists
             if type(cfg[key]) == type(""):
-                r[key] = prefix[key] + cfg[key]
+                r[key] = cfg[key] + prefix[key]
             else:
-                r[key] = prefix[key] + cfg[key]
+                r[key] = cfg[key] + prefix[key]
         except:
             #key prolly doesn't exist
             continue
@@ -44,12 +44,12 @@ def build (cfgs, type, cfgName):
 cfgMotorsportSim = {
     "default": {
         "name": "motorsportSim"
-        ,"includePaths": Split("/usr/include/boost-1_33_1")
-        ,"libPaths": Split(" ")
-        ,"libs": Split(" ")
+        ,"includePaths": Split("../../usr/include /usr/include/boost-1_33_1")
+        ,"libPaths": Split("../../usr/lib")
+        ,"libs": Split("stklogd")
         ,"sources": Split("motorsport.cpp")
         ,"headers": Split("motorsport.h")
-        ,"ccflags": " -Wall -Wextra -pedantic"
+        ,"ccflags": "-Wall -Wextra -pedantic "
         }
     ,"debug": {
         "name":"d"
@@ -65,12 +65,16 @@ motorsportSim = build(cfgMotorsportSim, "StaticLibrary", "debug");
 cfgMotorsport = {
     "default": {
         "name": "motorsport"
-        ,"includePaths": Split("/usr/include/boost-1_33_1")
-        ,"libPaths": Split(".")
-        ,"libs": [motorsportSim["obj"], Split("boost_program_options-gcc-mt")]
+        ,"includePaths": [motorsportSim["cfg"]["includePaths"],
+                          Split("../../usr/include /usr/include/boost-1_33_1")]
+        ,"libPaths": [motorsportSim["cfg"]["libPaths"],
+                     Split(".")]
+        ,"libs": [motorsportSim["obj"],
+                  motorsportSim["cfg"]["libs"],
+                  Split("boost_program_options-gcc-mt")]
         ,"sources": Split("main.cpp")
         ,"headers": Split(" ")
-        ,"ccflags": " -Wall -Wextra -pedantic"
+        ,"ccflags": "-Wall -Wextra -pedantic "
         }
     ,"debug": {
         "name":"d"

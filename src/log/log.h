@@ -2,6 +2,8 @@
 #define LOG_H_
 
 #include <string>
+#include <boost/shared_ptr.hpp>
+using namespace boost;
 
 /** Macros that call the appropriate log methods. */
 #define error(x, ...) log(Log::Error,__FILE__,(int)(__LINE__),x,##__VA_ARGS__)
@@ -14,6 +16,9 @@
 /** Namespace for libraries that could be made independent from Motorsport. */
 namespace stk
 {
+    class Log;
+    /** Shared pointer to Motorsport object.*/
+    typedef shared_ptr<Log> pLog;  
 /** Logging class. It currently only outputs to std::cout. It has several \ref level "levels" of priority, and allows to identify each log instance with an \ref id. */
 class Log
 {
@@ -42,6 +47,7 @@ class Log
     @returns the string that gets logged, once formatting has taken place. */
     std::string log(Level level, std::string file, int line, std::string msg, ...);
   private:
+    void construct(std::string id);
     /** Converts a priority \ref level into an string.
     @param level the desired priority \ref level to be converted.
     @returns an string that is later usually used in the output log string. */

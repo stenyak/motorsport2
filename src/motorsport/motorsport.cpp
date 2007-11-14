@@ -3,7 +3,7 @@
 #include <iostream>
 
 using namespace std;
-//using namespace stk;
+using namespace stk;
 
 Motorsport::Options::Options()
 {
@@ -17,16 +17,15 @@ bool Motorsport::Options::getRun(        ) {return this->run;}
 Motorsport::Motorsport(Motorsport::pOptions options)
 {
     this->options = options;
+    log.reset(new Log("Motorsport Simulator"));
 }
 int Motorsport::start()
 {
     int result = 0;
     if (options->getRun())
     {
-        cout<< "Running Motorsport!"<< endl;
+        log->dev("Motorsport Simulator started.");
     }
-    //  Log *l = new Log();
-    //  delete l;
     return result;
 }
 
