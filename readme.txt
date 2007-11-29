@@ -10,7 +10,7 @@ scons-LICENSE  scons-README  scons-local-0.97  scons-time.py  scons.py  sconsign
 stenyak@1ksurvivor~/home/dev/motorsport$ ls deps/testsoon/
 Doxyfile  SConstruct  help  include  src
 
--You can access the online documentation at http://dev.stenyak.com/motorsport/trunk/doc/ It may not be very up to date though. You can also generate the documentation by yourself if you chdir into the project dirs and then run "doxygen".
+-You can access the online documentation at http://motorsport.stenyak.com/trunk/doc/ It may not be very up to date though. You can also generate the documentation by yourself if you chdir into the project dirs and then run "doxygen".
 stenyak@1ksurvivor~/home/dev/motorsport$ cd src/log/
 stenyak@1ksurvivor~/home/dev/motorsport/src/log$ doxygen
 stenyak@1ksurvivor~/home/dev/motorsport/src/log$ cd ../motorsport
