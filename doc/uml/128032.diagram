@@ -1,0 +1,25 @@
+format 49
+
+packagecanvas 128672 
+  package_ref 128032 // core
+    xyzwh 191 108 2000 416 310
+classcanvas 128800 class_ref 128032 // Core
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 233 234 2005
+  end
+classcanvas 128928 class_ref 128160 // Group
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 452 211 2005
+  end
+relationcanvas 129312 relation_ref 128160 // <directional aggregation>
+  from ref 128800 z 2004 to ref 128928
+  role_a_pos 415 235 3000 no_role_b
+  multiplicity_a_pos 435 257 3000 no_multiplicity_b
+relationcanvas 129440 relation_ref 128288 // <directional aggregation>
+  from ref 128928 z 2004 stereotype "<<vector>>" xyz 450 184 3000 to point 476 160
+  line 129568 z 2004 to point 539 160
+  line 129824 z 2004 to point 539 249
+  line 129696 z 2004 to ref 128928
+  role_a_pos 518 235 3000 no_role_b
+  multiplicity_a_pos 518 257 3000 no_multiplicity_b
+end
