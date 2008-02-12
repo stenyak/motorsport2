@@ -28,8 +28,8 @@
     "list" "list" "List" "sequence"
     "set" "set" "Set" "sequence"
     "map" "map" "Map" "sequence"
-    "sharedptr" "shared_ptr" "" ""
-    "sharedptr_vector" "vector<shared_ptr" "" ""
+    "shared_ptr" "shared_ptr" "shared_ptr" "shared_ptr"
+    "vector_shared_ptr" "vector<shared_ptr" "vector<shared_ptr" ""
   
   classes_stereotypes 13 // uml cpp java php idl
     "class" "class" "class" "class" "valuetype"
@@ -61,8 +61,7 @@ ${definition}
 ${namespace_end}
 #endif
 "
-  cpp_default_src_content "/** Copyright (C) 2008 Motorsport Project contributors (see license.txt) */
-${comment}
+  cpp_default_src_content "${comment}
 ${includes}
 ${namespace_start}
 ${members}
@@ -93,7 +92,7 @@ ${items}
   cpp_default_typedef_decl "${description}
 typedef ${type} ${name};
 "
-  cpp_default_attribute_declaration "    ${description}${mutable}${volatile}${const}${type} ${name}${value};
+  cpp_default_attribute_declaration "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};
 " // multiplicity 1
   "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
 " // multiplicity * a..b
@@ -101,11 +100,11 @@ typedef ${type} ${name};
 " // multiplicity [..]
   cpp_default_enum_item_declaration "  ${description}${name}${value},"
   cpp_association_aggregation_declaration
-    "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
+    "    ${description}${static}${mutable}${volatile}${stereotype}<${type}> ${name}${value};
 " // multiplicity 1
     "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> > ${name}${value};
 " // multiplicity * a..b
-    "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> > ${name}${multiplicity}${value};
+    "    ${description}${static}${mutable}${volatile}${const}${type} * ${name}${multiplicity}${value};
 " // multiplicity [..]
   cpp_aggregation_by_value_declaration
     "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};

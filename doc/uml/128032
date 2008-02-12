@@ -1,7 +1,7 @@
 format 49
 "core" // core
-  revision 2
-  modified_by 69 "stenyak"
+  revision 5
+  modified_by 9 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -35,7 +35,8 @@ format 49
     draw_component_as_icon default show_component_req_prov default show_component_rea default
     artifact 128032 "Core"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+      cpp_h "/** Copyright (C) 2008 Motorsport Project contributors (see license.txt) */
+#ifndef ${NAMESPACE}_${NAME}_H
 #define ${NAMESPACE}_${NAME}_H
 
 ${comment}
@@ -46,7 +47,8 @@ ${definition}
 ${namespace_end}
 #endif
 "
-      cpp_src "${comment}
+      cpp_src "/** Copyright (C) 2008 Motorsport Project contributors (see license.txt) */
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
@@ -58,7 +60,8 @@ ${namespace_end}"
 
     artifact 128160 "Group"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+      cpp_h "/** Copyright (C) 2008 Motorsport Project contributors (see license.txt) */
+#ifndef ${NAMESPACE}_${NAME}_H
 #define ${NAMESPACE}_${NAME}_H
 
 ${comment}
@@ -69,7 +72,8 @@ ${definition}
 ${namespace_end}
 #endif
 "
-      cpp_src "${comment}
+      cpp_src "/** Copyright (C) 2008 Motorsport Project contributors (see license.txt) */
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
@@ -99,7 +103,7 @@ ${namespace_end}"
     associated_deployment_view deploymentview_ref 128032 // deployment
     class 128032 "Core"
       visibility package 
-      cpp_decl "/** ${description}*/
+      cpp_decl "${description}
 ${template}class ${name}${inherit} {
 ${members}};
 ${inlines}
@@ -109,13 +113,13 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      comment "This is the Motorsport Core library, which handles the controller layer of any simulation based off Motorsport."
+      comment "/** This is the Motorsport Core library, which handles the controller layer of any simulation based off Motorsport. */"
       classrelation 128288 // world (<directional aggregation>)
 	relation 128160 o-->
-	  a role_name "world" multiplicity "1" protected
-	    comment "The root group of objects, which is the virtual world."
-	    cpp default "    /** ${description}*/
-${static}${mutable}${volatile}${const}shared_ptr<${type}> ${name}${value};
+	  stereotype "sharedptr_vector"
+	  a role_name "world" multiplicity "*" protected
+	    comment "/** The root group of objects, which is the virtual world. */"
+	    cpp default "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> > ${name}${value};
 "
 	    classrelation_ref 128288 // world (<directional aggregation>)
 	  b parent class_ref 128160 // Group
@@ -124,7 +128,7 @@ ${static}${mutable}${volatile}${const}shared_ptr<${type}> ${name}${value};
 
     class 128160 "Group"
       visibility package 
-      cpp_decl "/** ${description}*/
+      cpp_decl "${description}
 ${template}class ${name}${inherit} {
 ${members}};
 ${inlines}
@@ -134,12 +138,13 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      comment "Represents a world physic object, which may have more groups inside."
+      comment "/** Represents a world physic object, which may have more groups inside. */"
       classrelation 128416 // groups (<directional aggregation>)
 	relation 128288 o-->
 	  stereotype "vector"
 	  a role_name "groups" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}< shared_ptr<${type}> > ${name}${value};
+	    comment "/** \\TODO: add description */"
+	    cpp default "    ${description}${static}${mutable}${volatile}${const}${stereotype}< shared_ptr<${type}> > ${name}${value};
 "
 	    classrelation_ref 128416 // groups (<directional aggregation>)
 	  b parent class_ref 128160 // Group
@@ -149,60 +154,110 @@ ${inlines}
 	preserve_cpp_body_indent public explicit_return_type ""
 	nparams 1
 	  param in name "id" explicit_type "string"
-	cpp_decl "    /** ${description}*/
-${inline}${name}${(}${t0} ${p0}${)}${volatile}${throw};
+	cpp_decl "    ${description}${inline}${name}${(}${t0} ${p0}${)}${volatile}${throw};
 "
-	cpp_def "/** ${description}*/
-${inline}${class}::${name}${(}${t0} ${p0}${)}${volatile}${throw} {
+	cpp_def "${description}${inline}${class}::${name}${(}${t0} ${p0}${)}${volatile}${throw} {
   ${body}}
 "
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "Simple constructor."
+	comment "/** Simple constructor. */"
       end
 
       operation 128160 "~Group"
 	preserve_cpp_body_indent public explicit_return_type ""
 	nparams 0
-	cpp_decl "    /** ${description}*/
-${inline}${virtual}${name}${(}${)}${volatile}${throw};
+	cpp_decl "    ${description}${inline}${virtual}${name}${(}${)}${volatile}${throw};
 "
-	cpp_def "/** ${description}*/
-${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw} {
   ${body}}
 "
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
+	comment "/** Simple destructor. */"
       end
 
       attribute 128032 "id"
 	private explicit_type "string"
 	multiplicity "1"
-	cpp_decl "    /** ${description}*/
-${mutable}${volatile}${const}${type} ${name}${value};
+	cpp_decl "    ${description}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
 	php_decl ""
 	idl_decl ""
-	comment "Unique identifier."
+	get_oper operation_ref 129253 // get_id
+	set_oper operation_ref 129381 // set_id
+	comment "/** Unique identifier. */"
       end
 
       operation 128288 "getId"
 	preserve_cpp_body_indent public explicit_return_type "string"
 	nparams 0
-	cpp_decl "    /** ${description}*/
-${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "/** ${description}*/
-${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "Returns the id of the group."
+	comment "/** Returns the id of the group. */"
+      end
+
+      operation 129253 "get_id"
+	force_body_gen const cpp_inline public explicit_return_type "string"
+	nparams 0
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${description}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return id;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 128032 // id
+      end
+
+      operation 129381 "set_id"
+	force_body_gen public explicit_return_type "void"
+	nparams 1
+	  param in name "value" explicit_type "string"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw};
+"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  id = ${p0};
+}
+"
+	cpp_name_spec "set_${name}"
+	
+	java_name_spec "set${Name}"
+	
+	php_name_spec "set${Name}"
+	
+	idl_name_spec "set_${name}"
+	set_of_attribute attribute_ref 128032 // id
+      end
+
+      operation 129509 "testConstraint"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 1
+	  param in name "test" explicit_type "int"
+	constraint "pre : test > 1"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
       end
     end
   end

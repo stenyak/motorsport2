@@ -1,0 +1,9 @@
+format 49
+
+packagecanvas 128280 
+  package_ref 128024 // core
+    xyzwh 82 49 2000 348 294
+packagecanvas 128408 
+  package_ref 128152 // simulator
+    xyzwh 456 48 2000 337 292
+end
