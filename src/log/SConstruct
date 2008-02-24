@@ -1,3 +1,15 @@
+import os
+
+#first part of scons path
+pwd = os.getenv("PWD")
+
+#detect if current OS follows Filesystem Hierarchy Standard
+fhs = pwd[:1] == "/"
+sep = "/"
+
+if not fhs:
+    sep = "\\"
+
 def cfgAppend(cfg, prefix):
     r = cfg.copy()
     for key in cfg:
@@ -19,7 +31,7 @@ def cfgPrint(cfg, prefix="    "):
 def cfgBuild(cfg, type):
     env = Environment(CCFLAGS = cfg["ccflags"])
     obj = 0;
-    usr = "..\\..\\usr\\"
+    usr = ".."+sep+".."+sep+"usr"+sep+""
     if type == "StaticLibrary" or type == "SharedLibrary":
         if type == "StaticLibrary":
             obj = env.StaticLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
@@ -27,7 +39,7 @@ def cfgBuild(cfg, type):
             obj = env.SharedLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
         env.Install(usr+"lib", obj)
         for header in (cfg["headers"]):
-            dir = usr+"include\\"
+            dir = usr+"include"+sep+""
             Command(dir+header, header, Copy("$TARGET", "$SOURCE"))
     if type == "Program":
         obj = env.Program (target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
@@ -43,7 +55,7 @@ def build (cfgs, type, cfgName):
 cfgLog = {
     "default": {
         "name": "StkLog"
-        ,"includePaths": Split("/usr/include/boost-1_33_1")
+        ,"includePaths": Split("/usr/include /usr/include/boost /usr/include/boost-1_33_1")
         ,"libPaths": Split(" ")
         ,"libs": Split(" ")
         ,"sources": Split("Log.cpp")
@@ -57,8 +69,8 @@ cfgLog = {
     ,"release": {
         }
     }
-log = build(cfgLog, "StaticLibrary", "debug");
-#log = build(cfgLog, "SharedLibrary", "debug");
+#log = build(cfgLog, "StaticLibrary", "debug");
+log = build(cfgLog, "SharedLibrary", "debug");
 #cfgPrint(log["cfg"], "log.")
 cfgTests = {
     "default": {

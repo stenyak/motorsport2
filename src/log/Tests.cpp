@@ -1,5 +1,5 @@
-#include "tests.h"
-#include "log.h"
+#include "Tests.h"
+#include "Log.h"
 #include <testsoon.hpp>
 #include <iostream>
 using namespace stk;

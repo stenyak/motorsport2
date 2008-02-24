@@ -1,8 +1,8 @@
 #include <iostream>
 #include <boost/program_options.hpp>
 #include "main.h"
-#include "motorsport.h"
-#include <log.h>
+#include "Motorsport.h"
+#include <Log.h>
 using namespace boost;
 using namespace std;
 using namespace stk;

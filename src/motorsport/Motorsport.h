@@ -1,7 +1,7 @@
 #ifndef MOTORSPORT_H_
 #define MOTORSPORT_H_
 
-#include <log.h>
+#include <Log.h>
 #include <boost/shared_ptr.hpp>
 #include "motorsportConfig.h"
 using namespace boost;
