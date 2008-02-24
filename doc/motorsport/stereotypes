@@ -7,9 +7,9 @@
     ---- 4 "list" "set" "vector" "map"
     ---> 4 "list" "set" "vector" "map"
     ---|> 4 "{complete,disjoint}" "{incomplete,disjoint}" "{complete,overlapping}" "{incomplete,overlapping}"
-    o--- 6 "list" "set" "vector" "map" "shared_ptr" "vector_shared_ptr"
+    o--- 7 "list" "set" "vector" "map" "shared_ptr" "vector_shared_ptr" "weak_ptr"
     *--- 4 "list" "set" "vector" "map"
-    o--> 6 "list" "set" "vector" "map" "shared_ptr" "vector_shared_ptr"
+    o--> 7 "list" "set" "vector" "map" "shared_ptr" "vector_shared_ptr" "weak_ptr"
     *--> 4 "list" "set" "vector" "map"
     -_-> 2 "friend" "import"
     -_-|> 1 "bind"
@@ -25,7 +25,7 @@
     -_-> 2 "deploy" "manifest"
   end
   
-  attribute_stereotypes  6 "list" "set" "vector" "map" "shared_ptr" "vector_shared_ptr"
+  attribute_stereotypes  7 "list" "set" "vector" "map" "shared_ptr" "vector_shared_ptr" "weak_ptr"
   operation_stereotypes  0
   state_stereotypes  3 "machine" "submachine" "top"
   activity_stereotypes  0

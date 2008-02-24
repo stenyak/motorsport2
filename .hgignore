@@ -12,6 +12,7 @@ syntax: regexp
 \.snap$
 history\.index$
 \.o$
+\.swp$
 ^\.scons\.py\.swp$
 ^usr$
 ^src/[^/]*/.*\.a$

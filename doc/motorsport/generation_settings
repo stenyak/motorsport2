@@ -1,8 +1,6 @@
 
   cpp_default_defs 
   cpp_h_extension "h" cpp_src_extension "cpp" java_extension "java" php_extension "php" idl_extension "idl"
-  cpp_include_with_path
-  cpp_root_relative_path
   cpp_javadoc_comment
 
   type_forms 15 // uml cpp java idl cpp_in cpp_out cpp_inout cpp_return
@@ -22,14 +20,15 @@
     "double" "double" "double" "double" "${type}" "${type} &" "${type} &" "${type}"
     "string" "string" "String" "string" "${type}" "${type} &" "${type} &" "${type}"
   
-  relations_stereotypes 7 // uml cpp java idl
+  relations_stereotypes 8 // uml cpp java idl
     "sequence" "vector" "Vector" "sequence"
     "vector" "vector" "Vector" "sequence"
     "list" "list" "List" "sequence"
     "set" "set" "Set" "sequence"
     "map" "map" "Map" "sequence"
     "shared_ptr" "shared_ptr" "shared_ptr" "shared_ptr"
-    "vector_shared_ptr" "vector<shared_ptr" "vector<shared_ptr" ""
+    "vector_shared_ptr" "vector<shared_ptr" "vector<shared_ptr" "vector<shared_ptr"
+    "weak ptr" "weak ptr" "weak ptr" "weak ptr"
   
   classes_stereotypes 13 // uml cpp java php idl
     "class" "class" "class" "class" "valuetype"
@@ -52,7 +51,6 @@
   cpp_default_h_content "/** Copyright (C) 2008 Motorsport Project contributors (see license.txt) */
 #ifndef ${NAMESPACE}_${NAME}_H
 #define ${NAMESPACE}_${NAME}_H
-
 ${comment}
 ${includes}
 ${declarations}
@@ -69,57 +67,40 @@ ${namespace_end}"
   cpp_default_class_decl "${description}
 ${template}class ${name}${inherit} {
 ${members}};
-${inlines}
-"
+${inlines}"
   cpp_default_external_class_decl "${name}
-#include <${name}.h>
-"
+#include <${name}.h>"
   cpp_default_struct_decl "${description}
 ${template}struct ${name}${inherit} {
 ${members}};
-${inlines}
-"
+${inlines}"
   cpp_default_union_decl "${description}
 ${template}union ${name} {
 ${members}};
-${inlines}
-"
+${inlines}"
   cpp_default_enum_decl "${description}
 enum ${name} {
 ${items}
-};
-"
+};"
   cpp_default_typedef_decl "${description}
-typedef ${type} ${name};
-"
-  cpp_default_attribute_declaration "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};
-" // multiplicity 1
-  "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
-" // multiplicity * a..b
-  "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${multiplicity}${value};
-" // multiplicity [..]
+typedef ${type} ${name};"
+  cpp_default_attribute_declaration "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};" // multiplicity 1
+  "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};" // multiplicity * a..b
+  "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${multiplicity}${value};" // multiplicity [..]
   cpp_default_enum_item_declaration "  ${description}${name}${value},"
   cpp_association_aggregation_declaration
-    "    ${description}${static}${mutable}${volatile}${stereotype}<${type}> ${name}${value};
-" // multiplicity 1
-    "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> > ${name}${value};
-" // multiplicity * a..b
-    "    ${description}${static}${mutable}${volatile}${const}${type} * ${name}${multiplicity}${value};
-" // multiplicity [..]
+    "    ${description}${static}${mutable}${volatile}${stereotype}<${type}> ${name}${value};" // multiplicity 1
+    "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> > ${name}${value};" // multiplicity * a..b
+    "    ${description}${static}${mutable}${volatile}${const}${type} * ${name}${multiplicity}${value};" // multiplicity [..]
   cpp_aggregation_by_value_declaration
-    "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};
-" // multiplicity 1
-    "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
-" // multiplicity * a..b
-    "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${multiplicity}${value};
-" // multiplicity [..]
-  cpp_get "get${Name}" inline const value_const public
-  cpp_set "set${Name}" public
-  cpp_default_operation_declaration "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
+    "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};" // multiplicity 1
+    "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};" // multiplicity * a..b
+    "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${multiplicity}${value};" // multiplicity [..]
+  cpp_get "get${Name}" const value_const public
+  cpp_set "set${Name}" param_const param_ref public
+  cpp_default_operation_declaration "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
   cpp_default_operation_definition "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
+  ${body}}"
   java_default_src_content "${comment}
 ${package}
 ${imports}

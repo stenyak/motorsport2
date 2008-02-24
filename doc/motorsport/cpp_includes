@@ -11,3 +11,14 @@ using namespace std;"
 "string" "#include <string>
 using namespace std;"
 
+"shared_ptr" "#include <boost/shared_ptr.hpp>
+using namespace boost;"
+
+"vector_shared_ptr" "#include <boost/shared_ptr.hpp>
+#include <vector>
+using namespace std;
+using namespace boost;"
+
+"weak_ptr" "#include <boost/weak_ptr.hpp>
+using namespace boost;"
+

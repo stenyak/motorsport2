@@ -1,8 +1,8 @@
 format 49
 "motorsport"
-  revision 1
-  modified_by 24 "stenyak"
-  cpp_root_dir "usr/"
+  revision 5
+  modified_by 102 "stenyak"
+  cpp_root_dir "/home/stenyak/dev/motorsport/motorsport/doc/motorsport/"
 
   artifact_default_description "/** \\TODO: add description */"
   class_default_description "/** \\TODO: add description */"
@@ -14,7 +14,7 @@ format 49
   // class settings
   default_attribute_visibility protected default_relation_visibility protected default_operation_visibility protected
   //class diagram settings
-  draw_all_relations yes hide_attributes no hide_operations no show_members_full_definition no show_members_visibility no show_members_stereotype no show_parameter_dir yes show_parameter_name yes package_name_in_tab yes class_drawing_mode natural drawing_language uml show_context_mode no auto_label_position yes show_infonote yes shadow yes
+  draw_all_relations yes hide_attributes no hide_operations no show_members_full_definition no show_members_visibility no show_members_stereotype no show_parameter_dir yes show_parameter_name yes package_name_in_tab yes class_drawing_mode natural drawing_language uml show_context_mode no auto_label_position yes show_infonote no shadow yes
   //use case diagram settings
   package_name_in_tab no show_context no auto_label_position yes draw_all_relations yes shadow yes
   //sequence diagram settings
@@ -43,6 +43,8 @@ format 49
   mark_for_import
   
   cpp_namespace "motorsport"
+  ncouples 1
+  key "html dir" value "/home/stenyak/tmp/"
   classview 128024 "model"
     //class diagram settings
     draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -65,7 +67,9 @@ format 49
     end
   end
 
-  package_ref 128024 // core
+  package_ref 128024 // motorsport
 
   package_ref 128152 // simulator
+preserve_bodies
+
 end
