@@ -1,8 +1,7 @@
 format 49
 "motorsport"
-  revision 6
-  modified_by 107 "stenyak"
-  cpp_root_dir "/home/stenyak/dev/motorsport/motorsport/doc/motorsport/"
+  revision 7
+  modified_by 68 "stenyak"
 
   artifact_default_description "/** \\TODO: add description */"
   class_default_description "/** \\TODO: add description */"
