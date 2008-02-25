@@ -1,7 +1,7 @@
 format 49
 "motorsport"
-  revision 5
-  modified_by 102 "stenyak"
+  revision 6
+  modified_by 107 "stenyak"
   cpp_root_dir "/home/stenyak/dev/motorsport/motorsport/doc/motorsport/"
 
   artifact_default_description "/** \\TODO: add description */"
@@ -69,7 +69,7 @@ format 49
 
   package_ref 128024 // motorsport
 
-  package_ref 128152 // simulator
+  package_ref 128152 // motorsport-sim
 preserve_bodies
 
 end

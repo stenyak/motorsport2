@@ -1,7 +1,7 @@
 format 49
-"simulator" // simulator
-  revision 3
-  modified_by 102 "stenyak"
+"motorsport-sim" // motorsport-sim
+  revision 4
+  modified_by 107 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -28,11 +28,33 @@ format 49
   
   cpp_h_dir "motorsport-sim/include"
   cpp_src_dir "motorsport-sim/src"
-  cpp_namespace "simulator"
+  cpp_namespace "motorsport_sim"
   deploymentview 128152 "deployment"
     //deployment diagram settings
     package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
     draw_component_as_icon default show_component_req_prov default show_component_rea default
+    artifact 129254 "Sim"
+      stereotype "source"
+      cpp_h "/** Copyright (C) 2008 Motorsport Project contributors (see license.txt) */
+#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 129254 // Sim
+      end
+    end
   end
 
   classview 128280 "model"
@@ -65,25 +87,25 @@ ${inlines}"
       
       comment "/** Motorsport Simulation main class. */"
       operation 130406 "Sim"
-	protected explicit_return_type ""
+	preserve_cpp_body_indent public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};"
 	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw} {
   ${body}}"
-	
-	
+	preserve_java_body_indent 
+	preserve_php_body_indent 
 	
 	comment "/** Default constructor. Instantiates a Motorsport \\ref Core amongst other things.  */"
       end
 
       operation 130534 "~Sim"
-	protected explicit_return_type ""
+	preserve_cpp_body_indent public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${description}${inline}${virtual}${name}${(}${)}${volatile}${throw};"
 	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw} {
   ${body}}"
-	
-	
+	preserve_java_body_indent 
+	preserve_php_body_indent 
 	
 	comment "/** Simple destructor. */"
       end

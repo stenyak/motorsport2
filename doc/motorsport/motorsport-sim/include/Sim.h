@@ -1,17 +1,17 @@
 /** Copyright (C) 2008 Motorsport Project contributors (see license.txt) */
-#ifndef SIMULATOR_SIM_H
-#define SIMULATOR_SIM_H
+#ifndef MOTORSPORT_SIM_SIM_H
+#define MOTORSPORT_SIM_SIM_H
 
-namespace simulator {
+namespace motorsport_sim {
 
 /** Motorsport Simulation main class. */
 class Sim {
-  protected:
+  public:
     /** Default constructor. Instantiates a Motorsport \ref Core amongst other things.  */
     Sim();
     /** Simple destructor. */
     ~Sim();
 };
 
-} // namespace simulator
+} // namespace motorsport_sim
 #endif

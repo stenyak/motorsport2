@@ -3,7 +3,6 @@
 #define MOTORSPORT_GROUP_H
 
 
-#include "Loggable.h"
 #include <string>
 using namespace std;
 #include <boost/shared_ptr.hpp>
@@ -12,6 +11,7 @@ using namespace boost;
 using namespace std;
 #include <boost/weak_ptr.hpp>
 using namespace boost;
+#include "Loggable.h"
 
 #include <boost/enable_shared_from_this.hpp>
 using namespace boost;
@@ -30,6 +30,8 @@ class Group : public Loggable, public enable_shared_from_this<Group> {
     /** Moves a group to the \ref groups list of this group. The group gets its parent group changed accordingly. */
     void addGroup(shared_ptr< Group > group);
 
+    /** \returns a string that helps identify the object in the generated logs. */
+    virtual const string getName() const;
 
   protected:
     /** Children groups. For example, a car has 4 wheels and a chassis. Therefore, a "car" group would contain 5 groups. */

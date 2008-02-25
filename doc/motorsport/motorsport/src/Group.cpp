@@ -28,6 +28,17 @@ void Group::addGroup(shared_ptr< Group > group) {
   // Bouml preserved body end 0001F9E5
 }
 
+/** \returns a string that helps identify the object in the generated logs. */
+const string Group::getName() const {
+  // Bouml preserved body begin 0001FE66
+  string result;
+  if (shared_ptr<Group> p = parent.lock()) result += p->getName();
+  result += "/";
+  result += Loggable::getName();
+  return result;
+  // Bouml preserved body end 0001FE66
+}
+
 /** Default constructor, should not be used. */
 Group::Group(): Loggable("default name") {
   // Bouml preserved body begin 0001FBE6

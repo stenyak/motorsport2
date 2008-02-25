@@ -9,6 +9,10 @@ namespace motorsport {
 
 /** By creating a class derived from this, the class acquires the ability to generate detailed logs. */
 class Loggable {
+  public:
+    /** \returns a string that helps identify the object in the generated logs. */
+    virtual const string getName() const;
+
   protected:
     /** Loggable constructor.
     \param string a \ref name that helps identify logs origin. */
@@ -16,9 +20,6 @@ class Loggable {
 
     /** Simple destructor. */
     virtual ~Loggable() {};
-
-    /** \returns a string that helps identify the object in the generated logs. */
-    virtual const string & getName() const;
 
     /** A name for the object to be logged. It will help identify where logs came from. */
     string name;

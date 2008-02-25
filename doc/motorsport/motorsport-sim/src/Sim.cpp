@@ -1,7 +1,7 @@
 
 #include "Sim.h"
 
-namespace simulator {
+namespace motorsport_sim {
 
 /** Default constructor. Instantiates a Motorsport \ref Core amongst other things.  */
 Sim::Sim() {
@@ -14,4 +14,4 @@ Sim::~Sim() {
   // Bouml preserved body end 0001FDE6
 }
 
-} // namespace simulator
+} // namespace motorsport_sim
