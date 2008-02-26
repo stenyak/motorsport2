@@ -1,6 +1,6 @@
 
-#include "Core.h"
-#include "Group.h"
+#include "motorsport/Core.h"
+#include "motorsport/Group.h"
 
 namespace motorsport {
 

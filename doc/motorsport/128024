@@ -1,7 +1,7 @@
 format 49
 "motorsport" // motorsport
-  revision 6
-  modified_by 107 "stenyak"
+  revision 7
+  modified_by 68 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -26,8 +26,8 @@ format 49
   package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
   show_infonote default drawing_language default
   
-  cpp_h_dir "motorsport/include"
-  cpp_src_dir "motorsport/src"
+  cpp_h_dir "motorsport"
+  cpp_src_dir "motorsport"
   cpp_namespace "motorsport"
   deploymentview 128024 "deployment"
     //deployment diagram settings
@@ -148,6 +148,19 @@ ${inlines}
 	preserve_php_body_indent 
 	
 	comment "/** \\returns a string that helps identify the object in the generated logs. */"
+      end
+
+      operation 128068 "debugStr"
+	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "const string"
+	nparams 1
+	  param in name "indent" explicit_type "int"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0} = 0${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Returns an string with some debug information about the loggable object. */"
       end
 
       operation 129638 "Loggable"
@@ -339,6 +352,21 @@ ${inlines}
 	comment "/** Moves a group to the \\ref groups list of this group. The group gets its parent group changed accordingly. */"
       end
 
+      operation 128324 "removeGroup"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 1
+	  param in name "group" type class_ref 129381 // Group
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}shared_ptr< ${t0} > ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}shared_ptr< ${t0} > ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Moves a group to the \\ref groups list of this group. The group gets its parent group changed accordingly. */"
+      end
+
       operation 130662 "getName"
 	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "const string"
 	nparams 0
@@ -350,6 +378,19 @@ ${inlines}
 	preserve_php_body_indent 
 	
 	comment "/** \\returns a string that helps identify the object in the generated logs. */"
+      end
+
+      operation 128196 "debugStr"
+	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "const string"
+	nparams 1
+	  param in name "indent" explicit_type "int"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0} = 0${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Returns an string with some debug information about the group. */"
       end
 
       classrelation 129381 // groups (<directional aggregation>)

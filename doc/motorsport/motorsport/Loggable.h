@@ -12,6 +12,8 @@ class Loggable {
   public:
     /** \returns a string that helps identify the object in the generated logs. */
     virtual const string getName() const;
+    /** Returns an string with some debug information about the loggable object. */
+    virtual const string debugStr(int indent = 0) const;
 
   protected:
     /** Loggable constructor.
