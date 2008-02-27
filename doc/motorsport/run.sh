@@ -23,7 +23,7 @@ do
     dirs="$dirs:$i"
 done
 
-file=$binDir/../share/$(basename $0)
+file=$binDir/../share/$(basename $0)/bin
 
 if   [ -f $file/$(basename $0) ]
 then
@@ -31,6 +31,8 @@ then
 elif [ -f $file/$(basename $0)D ]
 then
     file=$file/$(basename $0)D
+else
+    echo "Error, executable file not found :-("
 fi
 
 LD_LIBRARY_PATH="$dirs" $file
