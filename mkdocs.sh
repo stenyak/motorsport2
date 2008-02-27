@@ -31,4 +31,4 @@ mkcd doc
         fi
     done
 cd ..
-cd cwd
+cd $cwd
