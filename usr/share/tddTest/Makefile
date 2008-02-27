@@ -1,14 +1,16 @@
 all: 
-	g++ -o tddTest *.cpp -fprofile-arcs -ftest-coverage -L../../usr/lib -I../../usr/include ../../usr/lib/libUnitTest++.a
-	#g++ -o tddTest *.cpp -fprofile-arcs -ftest-coverage -lunittest++ -L../../usr/lib -I../../usr/include ../../usr/lib/libUnitTest++.a
+	mkdir -p bin
+	g++ -o bin/tddTest *.cpp -fprofile-arcs -ftest-coverage -L../../lib -I../../include ../../lib/libUnitTest++.a
+	#g++ -o bin/tddTest *.cpp -fprofile-arcs -ftest-coverage -lunittest++ -L../../lib -I../../include ../../lib/libUnitTest++.a
 
 .PHONY: clean
 clean:
-	rm *.o tddTest *.gcov *.gc* || true
+	rm *.o bin/tddTest *.gcov *.gc* || true
+	rmdir -rf bin || true
 
 .PHONY: run
 run:
-	./tddTest
+	bin/tddTest
 
 .PHONY: cov
 cov:
