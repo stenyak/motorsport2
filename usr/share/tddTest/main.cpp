@@ -66,7 +66,7 @@ TEST(max)
     CHECK_EQUAL(max(-5,3), 3);
     CHECK_EQUAL(max(0,0), 0);
 }
-int main (int argc, char*argv[])
+int main (int, char*[])
 {
     return UnitTest::RunAllTests();
 }

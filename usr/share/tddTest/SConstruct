@@ -1,11 +1,4 @@
 import os
-#first part of scons path
-pwd = os.getenv("PWD")
-#detect if current OS follows Filesystem Hierarchy Standard
-fhs = pwd[:1] == "/"
-sep = "/"
-if not fhs:
-    sep = "\\"
 #merges two configuations
 def cfgAppend(cfg, prefix):
     r = cfg.copy()
@@ -26,21 +19,20 @@ def cfgPrint(cfg, prefix="    "):
         print prefix + key + " = ", cfg[key]
 #builds and installs the specified config
 def cfgBuild(cfg, type):
-    env = Environment(CCFLAGS = cfg["ccflags"], CPPPATH=cfg["includePaths"])
+    env = Environment(CCFLAGS = cfg["ccflags"])
     obj = 0;
-    prefix = ARGUMENTS.get('prefix', "usr")
-    prefix += sep
+    prefix = ARGUMENTS.get('prefix', ".")
     if type == "StaticLibrary" or type == "SharedLibrary":
         if type == "StaticLibrary":
             obj = env.StaticLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
         if type == "SharedLibrary":
             obj = env.SharedLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
-        env.Install(prefix+"lib"+sep+cfg["name"], obj)
+        env.Install(os.path.join(prefix,cfg["libInstallPath"]), obj)
         for header in (cfg["headers"]):
-            env.Install(prefix+"include"+sep+cfg["name"], header)
+            env.Install(os.path.join(prefix,cfg["includeInstallPath"]), header)
     if type == "Program":
         obj = env.Program (target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
-        env.Install(prefix+"bin", obj)
+        env.Install(os.path.join(prefix,cfg["binInstallPath"]), obj)
     return obj
 #builds and installs the merged configs
 def build (cfgs, type, cfgName):
@@ -53,12 +45,15 @@ def build (cfgs, type, cfgName):
 cfgTest = {
     "default": {
         "name": "tddTest"
-        ,"includePaths": Split("../../usr/include")
-        ,"libPaths": Split("../../usr/lib")
+        ,"includePaths": Split("../../include")
+        ,"libPaths": Split("../../lib")
         ,"libs": Split("")
-        ,"sources": Split("main.cpp ../../usr/lib/libUnitTest++.a")
+        ,"sources": Split("main.cpp ../../lib/libUnitTest++.a")
         ,"headers": Split("")
         ,"ccflags": "-fprofile-arcs -ftest-coverage -Wall -Wextra -Wno-deprecated "
+        ,"includeInstallPath": "include"
+        ,"libInstallPath": "lib"
+        ,"binInstallPath": "bin"
         }
     ,"debug": {
         "name":"D"
@@ -67,7 +62,7 @@ cfgTest = {
     ,"release": {
         }
     }
-#sim = build(cfgTest, "StaticLibrary", "debug");
-#sim = build(cfgTest, "SharedLibrary", "debug");
+#tddTest = build(cfgTest, "StaticLibrary", "debug");
+#tddTest = build(cfgTest, "SharedLibrary", "debug");
 tddTest = build(cfgTest, "Program", "release");
 #cfgPrint(core["cfg"], "sim.")
