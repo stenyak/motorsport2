@@ -1,8 +1,8 @@
 format 49
 "motorsport"
-  revision 7
-  modified_by 68 "stenyak"
-  cpp_root_dir "./"
+  revision 8
+  modified_by 51 "stenyak"
+  cpp_root_dir "usr/share/"
 
   artifact_default_description "/** \\TODO: add description */"
   class_default_description "/** \\TODO: add description */"

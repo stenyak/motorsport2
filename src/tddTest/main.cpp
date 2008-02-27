@@ -8,14 +8,15 @@ int sum(int v1, int v2)
 int absolute(float v1)
 {
     int v = (int)v1;
-    if (v<0)
+    if (v1<0)
         v--;
     return v;
 }
 int absolute(double v1)
 {
     int v = (int)v1;
-    if (v<0) v--;
+    if (v<0)
+        v--;
     return v;
 }
 int max(int v1, int v2)
@@ -47,7 +48,9 @@ TEST(absolute)
     CHECK_EQUAL(absolute(1.3), 1);
     CHECK_EQUAL(absolute(0.0), 0);
     CHECK_EQUAL(absolute(-5.5), -6);
+    CHECK_EQUAL(absolute(-0.1), -1);
     CHECK_EQUAL(absolute(1.3f), 1);
+    CHECK_EQUAL(absolute(0.1f), 0);
     CHECK_EQUAL(absolute(-0.1f), -1);
 }
 TEST(sum)

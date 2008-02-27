@@ -1,11 +1,4 @@
 import os
-#first part of scons path
-pwd = os.getenv("PWD")
-#detect if current OS follows Filesystem Hierarchy Standard
-fhs = pwd[:1] == "/"
-sep = "/"
-if not fhs:
-    sep = "\\"
 #merges two configuations
 def cfgAppend(cfg, prefix):
     r = cfg.copy()
@@ -28,18 +21,18 @@ def cfgPrint(cfg, prefix="    "):
 def cfgBuild(cfg, type):
     env = Environment(CCFLAGS = cfg["ccflags"])
     obj = 0;
-    prefix = ARGUMENTS.get('prefix', "usr")
+    prefix = ARGUMENTS.get('prefix', ".")
     if type == "StaticLibrary" or type == "SharedLibrary":
         if type == "StaticLibrary":
             obj = env.StaticLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
         if type == "SharedLibrary":
             obj = env.SharedLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
-        env.Install(prefix+sep+cfg["libInstallPath"], obj)
+        env.Install(os.path.join(prefix,cfg["libInstallPath"]), obj)
         for header in (cfg["headers"]):
-            env.Install(prefix+sep+cfg["includeInstallPath"], header)
+            env.Install(os.path.join(prefix,cfg["includeInstallPath"]), header)
     if type == "Program":
         obj = env.Program (target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
-        env.Install(prefix+sep+cfg["binInstallPath"], obj)
+        env.Install(os.path.join(prefix,cfg["binInstallPath"]), obj)
     return obj
 #builds and installs the merged configs
 def build (cfgs, type, cfgName):
@@ -58,8 +51,8 @@ cfgCore = {
         ,"sources": Split("Core.cpp Loggable.cpp Group.cpp")
         ,"headers": Split("Core.h Group.h Loggable.h")
         ,"ccflags": "-Wall -Wextra -Wno-deprecated "
-        ,"includeInstallPath": "include/motorsport"
-        ,"libInstallPath": "lib/motorsport"
+        ,"includeInstallPath": "include"
+        ,"libInstallPath": "lib"
         ,"binInstallPath": "bin"
         }
     ,"debug": {

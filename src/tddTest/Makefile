@@ -1,5 +1,6 @@
 all: 
-	g++ -o tddTest *.cpp -fprofile-arcs -ftest-coverage -lunittest++
+	g++ -o tddTest *.cpp -fprofile-arcs -ftest-coverage -L../../usr/lib -I../../usr/include ../../usr/lib/libUnitTest++.a
+	#g++ -o tddTest *.cpp -fprofile-arcs -ftest-coverage -lunittest++ -L../../usr/lib -I../../usr/include ../../usr/lib/libUnitTest++.a
 
 .PHONY: clean
 clean:
