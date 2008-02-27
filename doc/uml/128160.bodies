@@ -1,3 +1,0 @@
-class Group
-!!!128032.cpp!!!	Group(in id : string)
-    this->id = id;
