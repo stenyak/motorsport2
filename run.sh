@@ -35,4 +35,9 @@ else
     echo "Error, executable file not found :-("
 fi
 
-LD_LIBRARY_PATH="$dirs" $file
+if [ "$OSTYPE" == "cygwin" ]
+then
+    PATH="$PATH:$dirs" LD_LIBRARY_PATH="$dirs" $file
+else
+    LD_LIBRARY_PATH="$dirs" $file
+fi
