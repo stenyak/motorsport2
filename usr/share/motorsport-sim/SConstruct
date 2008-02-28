@@ -19,19 +19,19 @@ def cfgPrint(cfg, prefix="    "):
         print prefix + key + " = ", cfg[key]
 #builds and installs the specified config
 def cfgBuild(cfg, type):
-    env = Environment(CCFLAGS = cfg["ccflags"])
+    env = Environment(CCFLAGS = cfg["ccflags"], LINKFLAGS = cfg["ccflags"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"], STATIC_AND_SHARED_OBJECTS_ARE_THE_SAME=1)
     obj = 0;
     prefix = ARGUMENTS.get('prefix', ".")
     if type == "StaticLibrary" or type == "SharedLibrary":
         if type == "StaticLibrary":
-            obj = env.StaticLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
+            obj = env.StaticLibrary(target=cfg["name"], source=cfg["sources"])
         if type == "SharedLibrary":
-            obj = env.SharedLibrary(target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
+            obj = env.SharedLibrary(target=cfg["name"], source=cfg["sources"])
         env.Install(os.path.join(prefix,cfg["libInstallPath"]), obj)
         for header in (cfg["headers"]):
             env.Install(os.path.join(prefix,cfg["includeInstallPath"]), header)
     if type == "Program":
-        obj = env.Program (target=cfg["name"], source=cfg["sources"], CPPPATH=cfg["includePaths"], LIBPATH=cfg["libPaths"], LIBS=cfg["libs"])
+        obj = env.Program (target=cfg["name"], source=cfg["sources"])
         env.Install(os.path.join(prefix,cfg["binInstallPath"]), obj)
     return obj
 #builds and installs the merged configs
@@ -48,7 +48,7 @@ cfgSim = {
         ,"includePaths": Split(".. /usr/include/boost /usr/include/boost-1_33_1")
         ,"libPaths": Split("../../lib/motorsport/ ")
         ,"libs": Split("motorsportD ")
-        ,"sources": Split("Sim.cpp main.cpp ")
+        ,"sources": Split("Sim.cpp main.cpp ../../lib/libUnitTest++.a")
         ,"headers": Split("Sim.h ")
         ,"ccflags": "-Wall -Wextra -Wno-deprecated "
         ,"includeInstallPath": "include"

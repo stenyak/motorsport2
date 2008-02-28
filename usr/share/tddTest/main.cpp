@@ -35,8 +35,8 @@ unsigned int nat(int v1)
 
 TEST(nat)
 {
-    CHECK_EQUAL(nat(2), 2);
-    CHECK_EQUAL(nat(1), 1);
+    CHECK_EQUAL(nat(2), (unsigned int)2);
+    CHECK_EQUAL(nat(1), (unsigned int)1);
     CHECK_THROW(nat(-1), std::string);
     CHECK_THROW(nat(0), std::string);
 
