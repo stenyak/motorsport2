@@ -1,7 +1,7 @@
 format 49
 "motorsport"
-  revision 9
-  modified_by 93 "stenyak"
+  revision 10
+  modified_by 35 "stenyak"
   cpp_root_dir "../../usr/share/"
 
   artifact_default_description "/** \\TODO: add description */"
@@ -64,6 +64,26 @@ format 49
     classdiagram 128024 "class diagram"
       draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
       size A4
+    end
+
+    classdiagram 128035 "secondary"
+      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+      size A4
+    end
+
+    class 128035 "enable_shared_from_this"
+      visibility package 
+      nformals 1
+      formal name "X" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_external cpp_decl "${name}
+#include <boost/${name}.hpp>
+using namespace boost;"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
     end
   end
 

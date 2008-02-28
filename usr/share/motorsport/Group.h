@@ -2,7 +2,6 @@
 #ifndef MOTORSPORT_GROUP_H
 #define MOTORSPORT_GROUP_H
 
-
 #include <string>
 using namespace std;
 #include <boost/shared_ptr.hpp>
@@ -12,9 +11,9 @@ using namespace std;
 #include <boost/weak_ptr.hpp>
 using namespace boost;
 #include "motorsport/Loggable.h"
-
 #include <boost/enable_shared_from_this.hpp>
 using namespace boost;
+
 namespace motorsport {
 
 /** A Group is a class that can hold other \ref groups inside it. Each group represents a concept in the Motorsport virtual world, for example a car, a track, a pitbox, a person, etc. Many classes are derived from this. */

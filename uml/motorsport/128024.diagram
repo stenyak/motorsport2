@@ -31,17 +31,17 @@ relationcanvas 128068 relation_ref 128068 // <directional aggregation>
   role_a_pos 109 177 3000 no_role_b
   multiplicity_a_pos 80 177 3000 no_multiplicity_b
 relationcanvas 128869 relation_ref 129253 // <directional aggregation>
-  from ref 128101 z 2004 stereotype "<<shared_ptr>>" xyz 161 227 3000 to ref 128485
+  from ref 128101 z 2004 stereotype "<<shared_ptr>>" xyz 161 223 3000 to ref 128485
   role_a_pos 260 289 3000 no_role_b
   multiplicity_a_pos 289 322 3000 no_multiplicity_b
 relationcanvas 128997 relation_ref 129381 // <directional aggregation>
-  from ref 128485 z 2004 stereotype "<<vector_shared_ptr>>" xyz 399 254 3000 to point 414 245
+  from ref 128485 z 2004 stereotype "<<vector_shared_ptr>>" xyz 398 254 3000 to point 414 245
   line 129125 z 2004 to point 440 289
   line 129253 z 2004 to ref 128485
   role_a_pos 441 268 3000 no_role_b
   multiplicity_a_pos 441 301 3000 no_multiplicity_b
 relationcanvas 129381 relation_ref 129509 // <directional aggregation>
-  from ref 128485 z 2004 stereotype "<<weak_ptr>>" xyz 181 305 3000 to point 265 280
+  from ref 128485 z 2004 stereotype "<<weak_ptr>>" xyz 181 303 3000 to point 265 280
   line 129509 z 2004 to point 268 322
   line 129637 z 2004 to ref 128485
   role_a_pos 252 316 3000 no_role_b

@@ -1,7 +1,7 @@
 format 49
 "motorsport" // motorsport
-  revision 7
-  modified_by 68 "stenyak"
+  revision 8
+  modified_by 35 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -62,11 +62,8 @@ ${namespace_end}"
       cpp_h "/** Copyright (C) 2008 Motorsport Project contributors (see license.txt) */
 #ifndef ${NAMESPACE}_${NAME}_H
 #define ${NAMESPACE}_${NAME}_H
-
 ${comment}
 ${includes}
-#include <boost/enable_shared_from_this.hpp>
-using namespace boost;
 ${declarations}
 ${namespace_start}
 ${definition}
@@ -129,8 +126,7 @@ ${namespace_end}"
       cpp_decl "${description}
 ${template}class ${name}${inherit} {
 ${members}};
-${inlines}
-"
+${inlines}"
       java_decl ""
       php_decl ""
       idl_decl ""
@@ -216,6 +212,7 @@ ${inlines}
 	
 	comment "/** Default constructor. Should not be used. */"
       end
+
     end
 
     class 129253 "Core"
@@ -286,11 +283,13 @@ ${inlines}"
 
     class 129381 "Group"
       visibility package 
+      nactuals 1
+      actual class class_ref 128035 // enable_shared_from_this
+        rank 0 value class_ref 129381 // Group
       cpp_decl "${description}
-${template}class ${name}${inherit}, public enable_shared_from_this<${name}> {
+${template}class ${name}${inherit} {
 ${members}};
-${inlines}
-"
+${inlines}"
       java_decl ""
       php_decl ""
       idl_decl ""
@@ -435,6 +434,14 @@ ${inlines}
 	    cpp default "${type}"
 	    classrelation_ref 129154 // <realization>
 	  b parent class_ref 129637 // Loggable
+      end
+
+      classrelation 128163 // <realization>
+	relation 128163 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128163 // <realization>
+	  b parent class_ref 128035 // enable_shared_from_this
       end
     end
   end
