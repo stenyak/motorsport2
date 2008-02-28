@@ -34,10 +34,13 @@ mkcd deps
     echo " - Grabbing from svn..."
     svn checkout http://scons.tigris.org/svn/scons/trunk scons --username guest --password ""
     echo " - Building..."
-    export SCONS_LIB_DIR=`pwd`/src/engine
-    python src/script/scons.py build/scons
-    echo " - Copying files..."
-    cd build/scons
-        python setup.py install --prefix=../../../../usr
-    cd ../..
+    cd scons
+        export SCONS_LIB_DIR=`pwd`/src/engine
+        python src/script/scons.py build/scons
+        echo " - Copying files..."
+        cd build/scons
+            python setup.py install --prefix=../../../../usr
+        cd ../..
+    cd ..
+    echo "==== SCons installed ===="
 cd ..
