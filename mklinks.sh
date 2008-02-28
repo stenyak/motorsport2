@@ -15,6 +15,10 @@ mkcd usr
         do
             if [ -d "$i"/include ]
             then
+                if [ -h $(basename "$i") ]
+                then
+                    rm $(basename "$i")
+                fi
                 echo "Creating include link $i ..."
                 ln -s "$i"/include $(basename "$i")
             fi
@@ -26,6 +30,10 @@ mkcd usr
         do
             if [ -d "$i"/lib ]
             then
+                if [ -h $(basename "$i") ]
+                then
+                    rm $(basename "$i")
+                fi
                 echo "Creating lib link $i ..."
                 ln -s "$i"/lib $(basename "$i")
             fi
@@ -38,6 +46,10 @@ mkcd usr
             if [ -f $i/bin/$(basename $i) -o -f $i/bin/$(basename $i)D ]
             then
                 echo "Creating bin link $i ..."
+                if [ -f $(basename "$i") ]
+                then
+                    rm $(basename "$i")
+                fi
                 cp $cwd/run.sh ./$(basename $i)
             fi
         done
