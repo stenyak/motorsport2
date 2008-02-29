@@ -11,7 +11,6 @@ else
 fi
 
 binDir="`pwd`"
-cd ..
 
 # change back directory
 cd "$cwd"

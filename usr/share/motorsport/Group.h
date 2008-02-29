@@ -14,6 +14,8 @@ using namespace boost;
 #include <boost/enable_shared_from_this.hpp>
 using namespace boost;
 
+namespace motorsport { class Exception; } 
+
 namespace motorsport {
 
 /** A Group is a class that can hold other \ref groups inside it. Each group represents a concept in the Motorsport virtual world, for example a car, a track, a pitbox, a person, etc. Many classes are derived from this. */
@@ -21,9 +23,12 @@ class Group : public Loggable, public enable_shared_from_this<Group> {
   public:
     /** Simple constructor.
     \param name the name that will be used in its logs. */
-    Group(const string & name);
+    Group(const string & id);
     /** Simple destructor. */
     virtual ~Group();
+    virtual void setId(const string & id);
+    /** \returns a string that helps identify the object in the generated logs. */
+    virtual const string getGlobalId() const;
     /** Changes the \ref parent. */
     void setParent(shared_ptr< Group > parent);
     /** Moves a group to the \ref groups list of this group. The group gets its parent group changed accordingly. */
@@ -32,8 +37,6 @@ class Group : public Loggable, public enable_shared_from_this<Group> {
     /** Moves a group to the \ref groups list of this group. The group gets its parent group changed accordingly. */
     void removeGroup(shared_ptr< Group > group);
 
-    /** \returns a string that helps identify the object in the generated logs. */
-    virtual const string getName() const;
     /** Returns an string with some debug information about the group. */
     virtual const string debugStr(int indent = 0) const;
 

@@ -1,4 +1,6 @@
 #!/bin/bash
+
+
 function mkcd {
     if [ ! -d $1 ]
     then
@@ -7,7 +9,15 @@ function mkcd {
     fi
     cd $1
 }
-
+cwd1="`pwd`"
+if [ -h "$0" ] ; then
+    basename=`basename "$0"`
+    script=`ls -l "$0" | sed "s/.*${basename} -> //g"`
+    cd "`dirname "$0"`"
+    cd "`dirname "$script"`"
+else
+    cd "`dirname "$0"`"
+fi
 cwd="`pwd`"
 mkcd usr
     mkcd include
@@ -55,3 +65,6 @@ mkcd usr
         done
     cd ..
 cd ..
+
+# change back directory
+cd "$cwd1"

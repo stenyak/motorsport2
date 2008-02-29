@@ -6,7 +6,7 @@ namespace motorsport {
 
 /** Core constructor.
 \param world the root \ref Group where all groups will be held. */
-Core::Core(shared_ptr< Group > world) {
+Core::Core(shared_ptr< Group > world): world(world) {
   // Bouml preserved body begin 0001F8E5
   shared_ptr<Group> w (new Group("world"));
   world = w;

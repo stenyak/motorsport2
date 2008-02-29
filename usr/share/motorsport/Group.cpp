@@ -1,12 +1,14 @@
 
 #include "motorsport/Group.h"
+#include "motorsport/Exception.h"
 
 namespace motorsport {
 
 /** Simple constructor.
 \param name the name that will be used in its logs. */
-Group::Group(const string & name): Loggable(name) {
+Group::Group(const string & id): Loggable(id) {
   // Bouml preserved body begin 0001FAE6
+    setId(id);
   // Bouml preserved body end 0001FAE6
 }
 /** Simple destructor. */
@@ -14,6 +16,28 @@ Group::~Group() {
   // Bouml preserved body begin 0001FB66
   // Bouml preserved body end 0001FB66
 }
+void Group::setId(const string & id) {
+  // Bouml preserved body begin 0001F723
+    Loggable::setId(id);
+
+    string::size_type loc = id.find('/');
+    if( loc != string::npos )
+        throw Exception(string("Can't set the id \"")+id+"\", it must not contain '/' characters.");
+
+    this->id = id;
+  // Bouml preserved body end 0001F723
+}
+/** \returns a string that helps identify the object in the generated logs. */
+const string Group::getGlobalId() const {
+  // Bouml preserved body begin 0001FE66
+    string result;
+    if (shared_ptr<Group> p = parent.lock()) result += p->getGlobalId();
+    result += "/";
+    result += Loggable::getId();
+    return result;
+  // Bouml preserved body end 0001FE66
+}
+
 /** Changes the \ref parent. */
 void Group::setParent(shared_ptr< Group > parent) {
   // Bouml preserved body begin 0001FC66
@@ -50,17 +74,6 @@ void Group::removeGroup(shared_ptr< Group > group) {
   // Bouml preserved body end 0001F544
 }
 
-/** \returns a string that helps identify the object in the generated logs. */
-const string Group::getName() const {
-  // Bouml preserved body begin 0001FE66
-    string result;
-    if (shared_ptr<Group> p = parent.lock()) result += p->getName();
-    result += "/";
-    result += Loggable::getName();
-    return result;
-  // Bouml preserved body end 0001FE66
-}
-
 /** Returns an string with some debug information about the group. */
 const string Group::debugStr(int indent) const {
   // Bouml preserved body begin 0001F4C4
@@ -77,7 +90,7 @@ const string Group::debugStr(int indent) const {
   // Bouml preserved body end 0001F4C4
 }
 /** Default constructor, should not be used. */
-Group::Group(): Loggable("default name") {
+Group::Group(): Loggable("default group id") {
   // Bouml preserved body begin 0001FBE6
   // Bouml preserved body end 0001FBE6
 }

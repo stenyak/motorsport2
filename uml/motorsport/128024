@@ -102,6 +102,29 @@ ${namespace_end}"
 	class_ref 129637 // Loggable
       end
     end
+
+    artifact 128035 "Exception"
+      stereotype "source"
+      cpp_h "/** Copyright (C) 2008 Motorsport Project contributors (see license.txt) */
+#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 128163 // Exception
+      end
+    end
   end
 
   classview 128152 "model"
@@ -121,6 +144,78 @@ ${namespace_end}"
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default
     associated_deployment_view deploymentview_ref 128024 // deployment
+    class 128163 "Exception"
+      visibility public 
+      cpp_decl "${description}
+${template}class ${name}${inherit} {
+${members}};
+${inlines}"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 128291 "Exception"
+	preserve_cpp_body_indent cpp_virtual public explicit_return_type ""
+	nparams 1
+	  param inout name "description" explicit_type "string"
+	cpp_decl "    ${description}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};"
+	cpp_def "${description}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw}: description(description) {
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Simple constructor.
+\\param description a \\ref description of the exception. */"
+      end
+
+      operation 128547 "~Exception"
+	preserve_cpp_body_indent cpp_virtual public explicit_return_type ""
+	nparams 0
+	nexceptions 1
+	  explicit_exception ""
+	cpp_decl "    ${description}${inline}${virtual}${name}${(}${)}${volatile}${throw};"
+	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Simple destructor. */"
+      end
+
+      operation 128419 "what"
+	preserve_cpp_body_indent const cpp_virtual protected explicit_return_type "const char *"
+	nparams 0
+	nexceptions 1
+	  explicit_exception ""
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Returns a \\ref description of the exception. */"
+      end
+
+      attribute 128035 "description"
+	protected explicit_type "string"
+	multiplicity "1"
+	cpp_decl "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};"
+	java_decl ""
+	php_decl ""
+	idl_decl ""
+	comment "/** Description of the exception. */"
+      end
+
+      classrelation 128291 // <realization>
+	relation 128291 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128291 // <realization>
+	  b parent class_ref 128291 // exception
+      end
+    end
+
     class 129637 "Loggable"
       abstract visibility package 
       cpp_decl "${description}
@@ -133,42 +228,14 @@ ${inlines}"
       explicit_switch_type ""
       
       comment "/** By creating a class derived from this, the class acquires the ability to generate detailed logs. */"
-      operation 129254 "getName"
-	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "const string"
-	nparams 0
-	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
-	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	preserve_java_body_indent 
-	preserve_php_body_indent 
-	
-	comment "/** \\returns a string that helps identify the object in the generated logs. */"
-      end
-
-      operation 128068 "debugStr"
-	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "const string"
-	nparams 1
-	  param in name "indent" explicit_type "int"
-	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0} = 0${)}${const}${volatile}${throw}${abstract};"
-	cpp_def "${description}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}"
-	preserve_java_body_indent 
-	preserve_php_body_indent 
-	
-	comment "/** Returns an string with some debug information about the loggable object. */"
-      end
-
       operation 129638 "Loggable"
 	preserve_cpp_body_indent protected explicit_return_type ""
 	nparams 1
-	  param in name "name" explicit_type "string"
+	  param in name "id" explicit_type "string"
 	    defaultvalue "\"No name\""
-	cpp_decl "    ${description}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
-"
-	cpp_def "${description}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw}: name(name) {
-  ${body}}
-"
+	cpp_decl "    ${description}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};"
+	cpp_def "${description}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
@@ -187,10 +254,47 @@ ${inlines}"
 	comment "/** Simple destructor. */"
       end
 
-      attribute 129253 "name"
+      operation 129254 "getId"
+	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "const string"
+	nparams 0
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** \\returns a string that helps identify the object in the generated logs. */"
+      end
+
+      operation 128163 "setId"
+	preserve_cpp_body_indent cpp_virtual public explicit_return_type "void"
+	nparams 1
+	  param in name "id" explicit_type "string"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+      end
+
+      operation 128068 "debugStr"
+	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "const string"
+	nparams 1
+	  param in name "indent" explicit_type "int"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0} = 0${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Returns an string with some debug information about the loggable object. */"
+      end
+
+      attribute 129253 "id"
 	protected explicit_type "string"
 	multiplicity "1"
-	init_value "default name"
 	cpp_decl "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
@@ -204,7 +308,7 @@ ${inlines}"
 	nparams 0
 	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};
 "
-	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw}: id(\"default loggable id\") {
   ${body}}
 "
 	preserve_java_body_indent 
@@ -213,6 +317,13 @@ ${inlines}"
 	comment "/** Default constructor. Should not be used. */"
       end
 
+      classrelation 128419 // <dependency>
+	relation 128419 -_->
+	  a package
+	    cpp default "#include in source"
+	    classrelation_ref 128419 // <dependency>
+	  b parent class_ref 128163 // Exception
+      end
     end
 
     class 129253 "Core"
@@ -232,7 +343,7 @@ ${inlines}"
 	nparams 1
 	  param inout name "world" type class_ref 129381 // Group
 	cpp_decl "    ${description}${inline}${name}${(}shared_ptr< ${t0} > ${p0}${)}${volatile}${throw};"
-	cpp_def "${description}${inline}${class}::${name}${(}shared_ptr< ${t0} > ${p0}${)}${volatile}${throw} {
+	cpp_def "${description}${inline}${class}::${name}${(}shared_ptr< ${t0} > ${p0}${)}${volatile}${throw}: world(world) {
   ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
@@ -300,9 +411,9 @@ ${inlines}"
       operation 129766 "Group"
 	preserve_cpp_body_indent public explicit_return_type ""
 	nparams 1
-	  param in name "name" explicit_type "string"
+	  param in name "id" explicit_type "string"
 	cpp_decl "    ${description}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};"
-	cpp_def "${description}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw}: Loggable(name) {
+	cpp_def "${description}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw}: Loggable(id) {
   ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
@@ -321,6 +432,31 @@ ${inlines}"
 	preserve_php_body_indent 
 	
 	comment "/** Simple destructor. */"
+      end
+
+      operation 128803 "setId"
+	preserve_cpp_body_indent cpp_virtual public explicit_return_type "void"
+	nparams 1
+	  param in name "id" explicit_type "string"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+      end
+
+      operation 130662 "getGlobalId"
+	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "const string"
+	nparams 0
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** \\returns a string that helps identify the object in the generated logs. */"
       end
 
       operation 130150 "setParent"
@@ -366,19 +502,6 @@ ${inlines}"
 	comment "/** Moves a group to the \\ref groups list of this group. The group gets its parent group changed accordingly. */"
       end
 
-      operation 130662 "getName"
-	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "const string"
-	nparams 0
-	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
-	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	preserve_java_body_indent 
-	preserve_php_body_indent 
-	
-	comment "/** \\returns a string that helps identify the object in the generated logs. */"
-      end
-
       operation 128196 "debugStr"
 	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "const string"
 	nparams 1
@@ -420,7 +543,7 @@ ${inlines}"
 	preserve_cpp_body_indent private explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};"
-	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw}: Loggable(\"default name\") {
+	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw}: Loggable(\"default group id\") {
   ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
@@ -442,6 +565,14 @@ ${inlines}"
 	    cpp default "${type}"
 	    classrelation_ref 128163 // <realization>
 	  b parent class_ref 128035 // enable_shared_from_this
+      end
+
+      classrelation 128547 // <dependency>
+	relation 128547 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 128547 // <dependency>
+	  b parent class_ref 128163 // Exception
       end
     end
   end

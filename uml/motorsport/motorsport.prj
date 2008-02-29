@@ -85,6 +85,18 @@ using namespace boost;"
       explicit_switch_type ""
       
     end
+
+    class 128291 "exception"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <${name}>
+using namespace std;"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
   end
 
   package_ref 128024 // motorsport

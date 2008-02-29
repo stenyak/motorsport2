@@ -45,12 +45,12 @@ def build (cfgs, type, cfgName):
 cfgCore = {
     "default": {
         "name": "motorsport"
-        ,"includePaths": Split(".. /usr/include /usr/include/boost /usr/include/boost-1_33_1")
+        ,"includePaths": Split(".. /usr/include /usr/include/boost")
         ,"libPaths": Split("lib ")
         ,"libs": Split(" ")
-        ,"sources": Split("Core.cpp Loggable.cpp Group.cpp ../../lib/libUnitTest++.a")
-        ,"headers": Split("Core.h Group.h Loggable.h")
-        ,"ccflags": "-Wall -Wextra -Wno-deprecated "
+        ,"sources": Split("Core.cpp Loggable.cpp Group.cpp Exception.cpp")
+        ,"headers": Split("Core.h Group.h Loggable.h Exception.h")
+        ,"ccflags": "-Wall -Wextra -Wno-deprecated -fprofile-arcs -ftest-coverage "
         ,"includeInstallPath": "include"
         ,"libInstallPath": "lib"
         ,"binInstallPath": "bin"
@@ -65,3 +65,24 @@ cfgCore = {
 #core = build(cfgCore, "StaticLibrary", "debug");
 core = build(cfgCore, "SharedLibrary", "debug");
 #cfgPrint(core["cfg"], "core.")
+cfgTests = {
+    "default": {
+        "name": "motorsport-tests"
+        ,"includePaths": Split(".. ../../include /usr/include /usr/include/boost")
+        ,"libPaths": Split("lib ")
+        ,"libs": [core["obj"], Split("")]
+        ,"sources": Split("main.cpp ../../lib/libUnitTest++.a")
+        ,"headers": Split("")
+        ,"ccflags": "-Wall -Wextra -Wno-deprecated -fprofile-arcs -ftest-coverage "
+        ,"includeInstallPath": "include"
+        ,"libInstallPath": "lib"
+        ,"binInstallPath": "bin"
+        }
+    ,"debug": {
+        "name":"D"
+        ,"ccflags": "-g"
+        }
+    ,"release": {
+        }
+    }
+tests = build(cfgTests, "Program", "debug");
