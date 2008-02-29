@@ -5,26 +5,30 @@
 #include <string>
 using namespace std;
 
+namespace motorsport { class Exception; } 
+
 namespace motorsport {
 
 /** By creating a class derived from this, the class acquires the ability to generate detailed logs. */
 class Loggable {
+  protected:
+    /** Loggable constructor.
+    \param string a \ref name that helps identify logs origin. */
+    Loggable(const string & id);
+    /** Simple destructor. */
+    virtual ~Loggable() {};
+
+
   public:
     /** \returns a string that helps identify the object in the generated logs. */
-    virtual const string getName() const;
+    virtual const string getId() const;
+    virtual void setId(const string & id);
     /** Returns an string with some debug information about the loggable object. */
     virtual const string debugStr(int indent = 0) const;
 
   protected:
-    /** Loggable constructor.
-    \param string a \ref name that helps identify logs origin. */
-    Loggable(const string & name);
-
-    /** Simple destructor. */
-    virtual ~Loggable() {};
-
     /** A name for the object to be logged. It will help identify where logs came from. */
-    string name;
+    string id;
 
 
   private:
