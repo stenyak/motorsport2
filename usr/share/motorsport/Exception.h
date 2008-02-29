@@ -17,10 +17,12 @@ class Exception : public exception {
     Exception(const string & description);
     /** Simple destructor. */
     virtual ~Exception() throw();
-
-  protected:
     /** Returns a \ref description of the exception. */
-    virtual const char * what() const throw();
+    virtual const string & getDescription() const;
+    /** Returns a \ref description of the exception. */
+    virtual const char * what() const throw(/**/);
+
+  private:
     /** Description of the exception. */
     string description;
 };

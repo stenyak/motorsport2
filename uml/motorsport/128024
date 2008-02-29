@@ -1,7 +1,7 @@
 format 49
 "motorsport" // motorsport
-  revision 8
-  modified_by 35 "stenyak"
+  revision 9
+  modified_by 64 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -183,11 +183,23 @@ ${inlines}"
 	comment "/** Simple destructor. */"
       end
 
+      operation 128064 "getDescription"
+	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "const string &"
+	nparams 0
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Returns a \\ref description of the exception. */"
+      end
+
       operation 128419 "what"
-	preserve_cpp_body_indent const cpp_virtual protected explicit_return_type "const char *"
+	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "const char *"
 	nparams 0
 	nexceptions 1
-	  explicit_exception ""
+	  explicit_exception "/**/"
 	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
 	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}"
@@ -198,7 +210,7 @@ ${inlines}"
       end
 
       attribute 128035 "description"
-	protected explicit_type "string"
+	private explicit_type "string"
 	multiplicity "1"
 	cpp_decl "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};"
 	java_decl ""
@@ -301,20 +313,6 @@ ${inlines}"
 	php_decl ""
 	idl_decl ""
 	comment "/** A name for the object to be logged. It will help identify where logs came from. */"
-      end
-
-      operation 129382 "Loggable"
-	preserve_cpp_body_indent private explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw}: id(\"default loggable id\") {
-  ${body}}
-"
-	preserve_java_body_indent 
-	preserve_php_body_indent 
-	
-	comment "/** Default constructor. Should not be used. */"
       end
 
       classrelation 128419 // <dependency>
@@ -502,19 +500,6 @@ ${inlines}"
 	comment "/** Moves a group to the \\ref groups list of this group. The group gets its parent group changed accordingly. */"
       end
 
-      operation 128196 "debugStr"
-	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "const string"
-	nparams 1
-	  param in name "indent" explicit_type "int"
-	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0} = 0${)}${const}${volatile}${throw}${abstract};"
-	cpp_def "${description}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}"
-	preserve_java_body_indent 
-	preserve_php_body_indent 
-	
-	comment "/** Returns an string with some debug information about the group. */"
-      end
-
       classrelation 129381 // groups (<directional aggregation>)
 	relation 129381 o-->
 	  stereotype "vector_shared_ptr"
@@ -537,18 +522,6 @@ ${inlines}"
 "
 	    classrelation_ref 129509 // parent (<directional aggregation>)
 	  b parent class_ref 129381 // Group
-      end
-
-      operation 130022 "Group"
-	preserve_cpp_body_indent private explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};"
-	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw}: Loggable(\"default group id\") {
-  ${body}}"
-	preserve_java_body_indent 
-	preserve_php_body_indent 
-	
-	comment "/** Default constructor, should not be used. */"
       end
 
       classrelation 129154 // <realization>

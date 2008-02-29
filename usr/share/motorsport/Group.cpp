@@ -74,25 +74,5 @@ void Group::removeGroup(shared_ptr< Group > group) {
   // Bouml preserved body end 0001F544
 }
 
-/** Returns an string with some debug information about the group. */
-const string Group::debugStr(int indent) const {
-  // Bouml preserved body begin 0001F4C4
-    string result;
-    for(int i=indent;i;i--) result+=" ";
-    result += Loggable::debugStr(indent);
-    result += "\n";
-    vector< shared_ptr<Group> >::const_iterator i;
-    for(i=groups.begin(); i!=groups.end(); i++)
-    {
-        result += ((*i)->debugStr(indent+2));
-    }
-    return result;
-  // Bouml preserved body end 0001F4C4
-}
-/** Default constructor, should not be used. */
-Group::Group(): Loggable("default group id") {
-  // Bouml preserved body begin 0001FBE6
-  // Bouml preserved body end 0001FBE6
-}
 
 } // namespace motorsport

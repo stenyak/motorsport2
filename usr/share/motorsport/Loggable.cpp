@@ -36,11 +36,5 @@ const string Loggable::debugStr(int indent) const {
     return result;
   // Bouml preserved body end 0001F444
 }
-/** Default constructor. Should not be used. */
-Loggable::Loggable(): id("default loggable id") {
-  // Bouml preserved body begin 0001F966
-  // Bouml preserved body end 0001F966
-}
-
 
 } // namespace motorsport

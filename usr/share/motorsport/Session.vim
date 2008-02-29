@@ -31,18 +31,18 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +22 main.cpp
+badd +13 main.cpp
 badd +9 Core.cpp
 badd +8 ~/dev/motorsport/usr/share/motorsport-sim/main.cpp
 badd +14 ~/dev/motorsport/usr/share/motorsport-sim/Sim.cpp
 badd +11 Loggable.cpp
-badd +79 Group.cpp
+badd +72 Group.cpp
 badd +24 Exception.h
 badd +58 /usr/lib/gcc/i686-pc-linux-gnu/4.1.2/include/g++-v4/exception
 badd +16 Exception.cpp
 badd +7 Loggable.h
 args main.cpp
-edit Group.cpp
+edit Core.cpp
 set splitbelow splitright
 wincmd _ | wincmd |
 split
@@ -157,11 +157,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 79 - ((13 * winheight(0) + 12) / 25)
+let s:l = 9 - ((8 * winheight(0) + 12) / 25)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-79
+9
 normal! 0
 lcd ~/dev/motorsport/usr/share/motorsport
 wincmd w
@@ -262,11 +262,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 22 - ((14 * winheight(0) + 12) / 24)
+let s:l = 11 - ((7 * winheight(0) + 12) / 24)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-22
+11
 normal! 04l
 wincmd w
 argglobal
@@ -366,7 +366,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 24 - ((14 * winheight(0) + 12) / 24)
+let s:l = 24 - ((0 * winheight(0) + 12) / 24)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -374,6 +374,7 @@ normal! zt
 normal! 037l
 lcd ~/dev/motorsport/usr/share/motorsport
 wincmd w
+2wincmd w
 exe '1resize ' . ((&lines * 25 + 26) / 52)
 exe '2resize ' . ((&lines * 24 + 26) / 52)
 exe 'vert 2resize ' . ((&columns * 78 + 78) / 157)

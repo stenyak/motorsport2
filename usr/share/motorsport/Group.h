@@ -37,8 +37,6 @@ class Group : public Loggable, public enable_shared_from_this<Group> {
     /** Moves a group to the \ref groups list of this group. The group gets its parent group changed accordingly. */
     void removeGroup(shared_ptr< Group > group);
 
-    /** Returns an string with some debug information about the group. */
-    virtual const string debugStr(int indent = 0) const;
 
   protected:
     /** Children groups. For example, a car has 4 wheels and a chassis. Therefore, a "car" group would contain 5 groups. */
@@ -49,10 +47,6 @@ class Group : public Loggable, public enable_shared_from_this<Group> {
     \sa setParent */
     weak_ptr<Group> parent;
 
-
-  private:
-    /** Default constructor, should not be used. */
-    Group();
 };
 
 } // namespace motorsport
