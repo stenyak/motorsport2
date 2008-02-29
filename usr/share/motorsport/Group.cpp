@@ -31,7 +31,8 @@ void Group::setId(const string & id) {
 const string Group::getGlobalId() const {
   // Bouml preserved body begin 0001FE66
     string result;
-    if (shared_ptr<Group> p = parent.lock()) result += p->getGlobalId();
+    if (shared_ptr<Group> p = parent.lock())
+        result += p->getGlobalId();
     result += "/";
     result += Loggable::getId();
     return result;
@@ -74,5 +75,11 @@ void Group::removeGroup(shared_ptr< Group > group) {
   // Bouml preserved body end 0001F544
 }
 
+/** Default constructor, should not be used. */
+Group::Group(): Loggable("") {
+  // Bouml preserved body begin 0001FBE6
+    throw Exception("What the hell?!");
+  // Bouml preserved body end 0001FBE6
+}
 
 } // namespace motorsport

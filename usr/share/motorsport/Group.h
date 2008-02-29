@@ -47,6 +47,10 @@ class Group : public Loggable, public enable_shared_from_this<Group> {
     \sa setParent */
     weak_ptr<Group> parent;
 
+
+  private:
+    /** Default constructor, should not be used. */
+    Group();
 };
 
 } // namespace motorsport

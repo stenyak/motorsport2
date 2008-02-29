@@ -291,19 +291,6 @@ ${inlines}"
 	
       end
 
-      operation 128068 "debugStr"
-	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "const string"
-	nparams 1
-	  param in name "indent" explicit_type "int"
-	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0} = 0${)}${const}${volatile}${throw}${abstract};"
-	cpp_def "${description}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}"
-	preserve_java_body_indent 
-	preserve_php_body_indent 
-	
-	comment "/** Returns an string with some debug information about the loggable object. */"
-      end
-
       attribute 129253 "id"
 	protected explicit_type "string"
 	multiplicity "1"
@@ -313,6 +300,19 @@ ${inlines}"
 	php_decl ""
 	idl_decl ""
 	comment "/** A name for the object to be logged. It will help identify where logs came from. */"
+      end
+
+      operation 129382 "Loggable"
+	preserve_cpp_body_indent private explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Default constructor. Should not be used. */"
       end
 
       classrelation 128419 // <dependency>
@@ -341,13 +341,27 @@ ${inlines}"
 	nparams 1
 	  param inout name "world" type class_ref 129381 // Group
 	cpp_decl "    ${description}${inline}${name}${(}shared_ptr< ${t0} > ${p0}${)}${volatile}${throw};"
-	cpp_def "${description}${inline}${class}::${name}${(}shared_ptr< ${t0} > ${p0}${)}${volatile}${throw}: world(world) {
+	cpp_def "${description}${inline}${class}::${name}${(}shared_ptr< ${t0} > ${p0}${)}${volatile}${throw} {
   ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
 	comment "/** Core constructor.
 \\param world the root \\ref Group where all groups will be held. */"
+      end
+
+      operation 130278 "Core"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Default constructor. Creates a Group named \"world\" as root group.
+\\sa Group */"
       end
 
       operation 129381 "~Core"
@@ -364,6 +378,18 @@ ${inlines}"
 	comment "/** Simple destructor. */"
       end
 
+      operation 128320 "getWorld"
+	preserve_cpp_body_indent public explicit_return_type "shared_ptr<Group>"
+	nparams 0
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Returns the world \\ref Group of this core. */"
+      end
+
       classrelation 129253 // world (<directional aggregation>)
 	relation 129253 o-->
 	  stereotype "shared_ptr"
@@ -375,19 +401,14 @@ ${inlines}"
 	  b parent class_ref 129381 // Group
       end
 
-      operation 130278 "Core"
-	preserve_cpp_body_indent private explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	preserve_java_body_indent 
-	preserve_php_body_indent 
-	
-	comment "/** Default constructor. Should not be used. */"
+      classrelation 128064 // <dependency>
+	relation 128064 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 128064 // <dependency>
+	  b parent class_ref 128163 // Exception
       end
+
     end
 
     class 129381 "Group"
@@ -522,6 +543,18 @@ ${inlines}"
 "
 	    classrelation_ref 129509 // parent (<directional aggregation>)
 	  b parent class_ref 129381 // Group
+      end
+
+      operation 130022 "Group"
+	preserve_cpp_body_indent private explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};"
+	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw}: Loggable(\"\") {
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Default constructor, should not be used. */"
       end
 
       classrelation 129154 // <realization>

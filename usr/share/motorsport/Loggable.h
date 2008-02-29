@@ -23,12 +23,15 @@ class Loggable {
     /** \returns a string that helps identify the object in the generated logs. */
     virtual const string getId() const;
     virtual void setId(const string & id);
-    /** Returns an string with some debug information about the loggable object. */
-    virtual const string debugStr(int indent = 0) const;
 
   protected:
     /** A name for the object to be logged. It will help identify where logs came from. */
     string id;
+
+
+  private:
+    /** Default constructor. Should not be used. */
+    Loggable();
 
 };
 

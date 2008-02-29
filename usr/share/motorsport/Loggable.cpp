@@ -21,20 +21,16 @@ const string Loggable::getId() const {
 void Loggable::setId(const string & id) {
   // Bouml preserved body begin 0001F4A3
     if (id == "")
-        throw Exception("Can't set the it, it must not be empty.");
+        throw Exception("Can't set the id, it must not be empty.");
 
     this->id = id;
   // Bouml preserved body end 0001F4A3
 }
-/** Returns an string with some debug information about the loggable object. */
-const string Loggable::debugStr(int indent) const {
-  // Bouml preserved body begin 0001F444
-    string result;
-    for(int i=indent;i;i--) result+=" ";
-    result += "Name: ";
-    result += id;
-    return result;
-  // Bouml preserved body end 0001F444
+/** Default constructor. Should not be used. */
+Loggable::Loggable() {
+  // Bouml preserved body begin 0001F966
+    throw Exception("Must not use default Loggable() constructor.");
+  // Bouml preserved body end 0001F966
 }
 
 } // namespace motorsport

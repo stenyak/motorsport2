@@ -7,6 +7,7 @@
 using namespace boost;
 
 namespace motorsport { class Group; } 
+namespace motorsport { class Exception; } 
 
 namespace motorsport {
 
@@ -16,18 +17,19 @@ class Core {
     /** Core constructor.
     \param world the root \ref Group where all groups will be held. */
     Core(shared_ptr< Group > world);
+    /** Default constructor. Creates a Group named "world" as root group.
+    \sa Group */
+    Core();
+
     /** Simple destructor. */
     ~Core();
 
+    /** Returns the world \ref Group of this core. */
+    shared_ptr<Group> getWorld();
 
   protected:
     /** Root group of the simulated world. */
     shared_ptr<Group> world;
-
-
-  private:
-    /** Default constructor. Should not be used. */
-    Core();
 
 };
 
