@@ -11,7 +11,7 @@ namespace motorsport { class Exception; }
 
 namespace motorsport {
 
-/** The main component of Motorsport. In theory, several can be created and used simultaneous and independently. However, usually only one is used in a program. */
+/** The main component of Motorsport. In theory, several can be created and used simultaneous and independently. However, usually only one is used for each program. */
 class Core {
   public:
     /** Core constructor.
@@ -24,7 +24,7 @@ class Core {
     /** Simple destructor. */
     virtual ~Core();
 
-    /** Returns the world \ref Group of this core. */
+    /** Returns the \ref world \ref Group of this core. */
     virtual shared_ptr<Group> getWorld() const;
 
   protected:

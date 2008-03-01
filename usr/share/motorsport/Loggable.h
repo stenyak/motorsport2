@@ -22,10 +22,11 @@ class Loggable {
   public:
     /** \returns a string that helps identify the object in the generated logs. */
     virtual const string getId() const;
+    /** Sets the \ref id to the desired string value. */
     virtual void setId(const string & id);
 
   private:
-    /** A name for the object to be logged. It will help identify where logs came from. */
+    /** An identifier name for the object to be logged. It will help identify where logs came from. */
     string id;
 
     /** Default constructor. Should not be used. */

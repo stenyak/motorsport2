@@ -26,26 +26,22 @@ class Group : public Loggable, public enable_shared_from_this<Group> {
     Group(const string & id);
     /** Simple destructor. */
     virtual ~Group();
-    /** Changes the id of this group. The new id should be unique amongst its siblings' ids. */
+    /** Changes the id of this group. The new id should be unique amongst its siblings' ids. \sa addChild */
     virtual void setId(const string & id);
-    /** \returns a string that helps identify the object in the generated logs. */
+    /** \returns a string that helps identify the object in the generated logs. Syntax is similar unix file paths, using forward slashes for separating a group from its parent. For example "/world/vehicle/rearLeftWheel". */
     virtual const string getGlobalId() const;
-    /** Moves a group to the \ref groups list of this group. The group gets its parent group changed accordingly. */
+    /** Adds a group to the list of \ref children of this group. It will first be detached from its previous parent group if necessary. No child id can be shared amongst several children of the same group. */
     virtual void addChild(shared_ptr< Group > child);
 
-    /** Returns the child group that has the provided id. */
+    /** Returns the child group that has the provided id string. \sa addChild */
     virtual shared_ptr<Group> getChild(const string & id) const;
-
-  private:
-    /** Changes the \ref parent group. */
-    virtual void setParent(shared_ptr< Group > parent);
-
-  public:
-    /** Moves a group to the \ref groups list of this group. The group gets its parent group changed accordingly. */
+    /** Removes a child from the list of \ref children of this group. \note The child does *not* get deleted unless it's the last reference of it. */
     virtual void removeChild(shared_ptr< Group > child);
 
 
   private:
+    /** Changes the \ref parent group. \warning It does *not* remove this from the parent's list of \children. */
+    virtual void setParent(shared_ptr< Group > parent);
     /** Returns true if an inmediate child is found on this group.
     \param id the id of the child to be searched. */
     virtual bool isChild(const string & id) const;
@@ -57,7 +53,7 @@ class Group : public Loggable, public enable_shared_from_this<Group> {
     virtual bool isAncestor(shared_ptr< Group > group) const;
     /** Default constructor, should not be used. */
     Group();
-    /** Children groups. For example, a car has 4 wheels and a chassis. Therefore, a "car" group would contain 5 groups. */
+    /** Children groups. For example, a car has 4 wheels and a chassis. Therefore, a "car" group would contain 5 children groups. */
     vector<shared_ptr<Group> > children;
     /** Refers to the group that contains this. Each group can only have one parent. The root group parent is zero or null.
     \sa addGroup

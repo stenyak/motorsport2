@@ -27,7 +27,7 @@ Core::~Core() {
   // Bouml preserved body end 0001F965
 }
 
-/** Returns the world \ref Group of this core. */
+/** Returns the \ref world \ref Group of this core. */
 shared_ptr<Group> Core::getWorld() const {
   // Bouml preserved body begin 0001F540
   return world;

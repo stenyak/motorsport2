@@ -18,6 +18,7 @@ const string Loggable::getId() const {
   // Bouml preserved body end 0001F8E6
 }
 
+/** Sets the \ref id to the desired string value. */
 void Loggable::setId(const string & id) {
   // Bouml preserved body begin 0001F4A3
     if (id == "")

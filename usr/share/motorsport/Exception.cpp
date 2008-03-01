@@ -16,13 +16,13 @@ Exception::~Exception() throw() {
   // Bouml preserved body begin 0001F623
   // Bouml preserved body end 0001F623
 }
-/** Returns a \ref description of the exception. */
+/** Returns a \ref description of the exception. Like \ref what , but using std::strings instead. */
 const string & Exception::getDescription() const {
   // Bouml preserved body begin 0001F440
     return description;
   // Bouml preserved body end 0001F440
 }
-/** Returns a \ref description of the exception. */
+/** Returns a \ref description of the exception. \sa getDescription*/
 const char * Exception::what() const throw(/**/) {
   // Bouml preserved body begin 0001F5A3
   return description.c_str();

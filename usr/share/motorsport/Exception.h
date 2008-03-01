@@ -9,7 +9,7 @@ using namespace std;
 
 namespace motorsport {
 
-
+/** Basic Motorsport exception class. */
 class Exception : public exception {
   public:
     /** Simple constructor.
@@ -17,9 +17,9 @@ class Exception : public exception {
     Exception(const string & description);
     /** Simple destructor. */
     virtual ~Exception() throw();
-    /** Returns a \ref description of the exception. */
+    /** Returns a \ref description of the exception. Like \ref what , but using std::strings instead. */
     virtual const string & getDescription() const;
-    /** Returns a \ref description of the exception. */
+    /** Returns a \ref description of the exception. \sa getDescription*/
     virtual const char * what() const throw(/**/);
 
   private:
