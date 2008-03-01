@@ -30,10 +30,13 @@ void Group::setId(const string & id) {
 const string Group::getGlobalId() const {
   // Bouml preserved body begin 0001FE66
     string result;
+
     if (shared_ptr<Group> p = parent.lock())
         result += p->getGlobalId();
+
     result += "/";
     result += Loggable::getId();
+
     return result;
   // Bouml preserved body end 0001FE66
 }
@@ -85,6 +88,12 @@ void Group::setParent(shared_ptr< Group > parent) {
 /** Moves a group to the \ref groups list of this group. The group gets its parent group changed accordingly. */
 void Group::removeChild(shared_ptr< Group > child) {
   // Bouml preserved body begin 0001F544
+    vector<shared_ptr<Group> >::iterator it;
+    for(it=children.begin(); it!=children.end(); it++)
+        if (*it == child)
+            break;
+
+    children.erase(it);
   // Bouml preserved body end 0001F544
 }
 

@@ -88,6 +88,26 @@ SUITE(testGroup)
         CHECK_THROW(g5->addChild(g6), Exception);
         CHECK_THROW(g5->getChild("unused name"), Exception);
     }
+    TEST(reparenting)
+    {
+        shared_ptr<Group> g8(new Group("test08"));
+        shared_ptr<Group> g9(new Group("test09"));
+        shared_ptr<Group> g10(new Group("test10"));
+
+        g8->addChild(g9);
+        g8->addChild(g10);
+        CHECK_EQUAL(g9, g8->getChild("test09"));
+        CHECK_EQUAL(g10, g8->getChild("test10"));
+
+        g9->addChild(g10);
+        CHECK_EQUAL(g10, g9->getChild("test10"));
+        CHECK_THROW(g8->getChild("test10"), Exception);
+
+        shared_ptr<Group> g11(new Group("test11"));
+        g11->addChild(g9);
+        g8->addChild(g11);
+        CHECK_EQUAL("/test08/test11/test09/test10", g10->getGlobalId());
+    }
 }
 int main (int, char*[])
 {
