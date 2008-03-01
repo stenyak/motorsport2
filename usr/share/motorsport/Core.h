@@ -22,10 +22,10 @@ class Core {
     Core();
 
     /** Simple destructor. */
-    ~Core();
+    virtual ~Core();
 
     /** Returns the world \ref Group of this core. */
-    shared_ptr<Group> getWorld();
+    virtual shared_ptr<Group> getWorld() const;
 
   protected:
     /** Root group of the simulated world. */

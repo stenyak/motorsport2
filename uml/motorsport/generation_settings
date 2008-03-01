@@ -22,7 +22,7 @@
     "double" "double" "double" "double" "${type}" "${type} &" "${type} &" "${type}"
     "string" "string" "String" "string" "${type}" "${type} &" "${type} &" "${type}"
   
-  relations_stereotypes 8 // uml cpp java idl
+  relations_stereotypes 9 // uml cpp java idl
     "sequence" "vector" "Vector" "sequence"
     "vector" "vector" "Vector" "sequence"
     "list" "list" "List" "sequence"
@@ -31,6 +31,7 @@
     "shared_ptr" "shared_ptr" "shared_ptr" "shared_ptr"
     "vector_shared_ptr" "vector<shared_ptr" "vector<shared_ptr" "vector<shared_ptr"
     "weak ptr" "weak ptr" "weak ptr" "weak ptr"
+    "map_string_shared_ptr" "map< string, shared_ptr" "map< string, shared_ptr" "map< string, shared_ptr"
   
   classes_stereotypes 13 // uml cpp java php idl
     "class" "class" "class" "class" "valuetype"

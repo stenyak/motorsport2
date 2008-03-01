@@ -292,7 +292,7 @@ ${inlines}"
       end
 
       attribute 129253 "id"
-	protected explicit_type "string"
+	private explicit_type "string"
 	multiplicity "1"
 	cpp_decl "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -322,6 +322,7 @@ ${inlines}"
 	    classrelation_ref 128419 // <dependency>
 	  b parent class_ref 128163 // Exception
       end
+
     end
 
     class 129253 "Core"
@@ -365,7 +366,7 @@ ${inlines}"
       end
 
       operation 129381 "~Core"
-	preserve_cpp_body_indent public explicit_return_type ""
+	preserve_cpp_body_indent cpp_virtual public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${description}${inline}${virtual}${name}${(}${)}${volatile}${throw};
 "
@@ -379,7 +380,7 @@ ${inlines}"
       end
 
       operation 128320 "getWorld"
-	preserve_cpp_body_indent public explicit_return_type "shared_ptr<Group>"
+	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "shared_ptr<Group>"
 	nparams 0
 	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
 	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
@@ -463,6 +464,7 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
+	comment "/** Changes the id of this group. The new id should be unique amongst its siblings' ids. */"
       end
 
       operation 130662 "getGlobalId"
@@ -478,8 +480,36 @@ ${inlines}"
 	comment "/** \\returns a string that helps identify the object in the generated logs. */"
       end
 
+      operation 129509 "addChild"
+	preserve_cpp_body_indent cpp_virtual public explicit_return_type "void"
+	nparams 1
+	  param in name "child" type class_ref 129381 // Group
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}shared_ptr< ${t0} > ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}shared_ptr< ${t0} > ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Moves a group to the \\ref groups list of this group. The group gets its parent group changed accordingly. */"
+      end
+
+      operation 128448 "getChild"
+	preserve_cpp_body_indent const cpp_virtual public explicit_return_type "shared_ptr<Group>"
+	nparams 1
+	  param in name "id" explicit_type "string"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Returns the child group that has the provided id. */"
+      end
+
       operation 130150 "setParent"
-	preserve_cpp_body_indent public explicit_return_type "void"
+	preserve_cpp_body_indent cpp_virtual private explicit_return_type "void"
 	nparams 1
 	  param inout name "parent" type class_ref 129381 // Group
 	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}shared_ptr< ${t0} > ${p0}${)}${const}${volatile}${throw}${abstract};"
@@ -488,13 +518,13 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "/** Changes the \\ref parent. */"
+	comment "/** Changes the \\ref parent group. */"
       end
 
-      operation 129509 "addGroup"
-	preserve_cpp_body_indent public explicit_return_type "void"
+      operation 128324 "removeChild"
+	preserve_cpp_body_indent cpp_virtual public explicit_return_type "void"
 	nparams 1
-	  param in name "group" type class_ref 129381 // Group
+	  param in name "child" type class_ref 129381 // Group
 	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}shared_ptr< ${t0} > ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${description}${inline}${type} ${class}::${name}${(}shared_ptr< ${t0} > ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -506,43 +536,46 @@ ${inlines}"
 	comment "/** Moves a group to the \\ref groups list of this group. The group gets its parent group changed accordingly. */"
       end
 
-      operation 128324 "removeGroup"
-	preserve_cpp_body_indent public explicit_return_type "void"
+      operation 128704 "isChild"
+	preserve_cpp_body_indent const cpp_virtual private explicit_return_type "bool"
 	nparams 1
-	  param in name "group" type class_ref 129381 // Group
-	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}shared_ptr< ${t0} > ${p0}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${description}${inline}${type} ${class}::${name}${(}shared_ptr< ${t0} > ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
+	  param in name "id" explicit_type "string"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "/** Moves a group to the \\ref groups list of this group. The group gets its parent group changed accordingly. */"
+	comment "/** Returns true if an inmediate child is found on this group.
+\\param id the id of the child to be searched. */"
       end
 
-      classrelation 129381 // groups (<directional aggregation>)
-	relation 129381 o-->
-	  stereotype "vector_shared_ptr"
-	  a role_name "groups" multiplicity "*" protected
-	    comment "/** Children groups. For example, a car has 4 wheels and a chassis. Therefore, a \"car\" group would contain 5 groups. */"
-	    cpp default "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> > ${name}${value};
-"
-	    classrelation_ref 129381 // groups (<directional aggregation>)
-	  b parent class_ref 129381 // Group
+      operation 128832 "isChild"
+	preserve_cpp_body_indent const cpp_virtual private explicit_return_type "bool"
+	nparams 1
+	  param in name "child" type class_ref 129381 // Group
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}shared_ptr< ${t0} > ${p0}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}shared_ptr< ${t0} > ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Returns true if an inmediate child is found on this group.
+\\param child the child to be searched. */"
       end
 
-      classrelation 129509 // parent (<directional aggregation>)
-	relation 129509 o-->
-	  stereotype "weak_ptr"
-	  a role_name "parent" multiplicity "1" protected
-	    comment "/** Refers to the group that contains this. Each group can only have one parent. The root group parent is zero or null.
-\\sa addGroup
-\\sa setParent */"
-	    cpp default "    ${description}${static}${mutable}${volatile}${stereotype}<${type}> ${name}${value};
-"
-	    classrelation_ref 129509 // parent (<directional aggregation>)
-	  b parent class_ref 129381 // Group
+      operation 128576 "isAncestor"
+	preserve_cpp_body_indent const cpp_virtual private explicit_return_type "bool"
+	nparams 1
+	  param inout name "group" type class_ref 129381 // Group
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}shared_ptr< ${t0} > ${p0}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}shared_ptr< ${t0} > ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Returns true if any of the ancestors (beginning with this's parent) is the provided group.
+\\param group the group to be searched as ancestor. */"
       end
 
       operation 130022 "Group"
@@ -555,6 +588,29 @@ ${inlines}"
 	preserve_php_body_indent 
 	
 	comment "/** Default constructor, should not be used. */"
+      end
+
+      classrelation 129381 // children (<directional aggregation>)
+	relation 129381 o-->
+	  stereotype "vector_shared_ptr"
+	  a role_name "children" multiplicity "*" private
+	    comment "/** Children groups. For example, a car has 4 wheels and a chassis. Therefore, a \"car\" group would contain 5 groups. */"
+	    cpp default "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> > ${name}${value};"
+	    classrelation_ref 129381 // children (<directional aggregation>)
+	  b parent class_ref 129381 // Group
+      end
+
+      classrelation 129509 // parent (<directional aggregation>)
+	relation 129509 o-->
+	  stereotype "weak_ptr"
+	  a role_name "parent" multiplicity "1" private
+	    comment "/** Refers to the group that contains this. Each group can only have one parent. The root group parent is zero or null.
+\\sa addGroup
+\\sa setParent */"
+	    cpp default "    ${description}${static}${mutable}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 129509 // parent (<directional aggregation>)
+	  b parent class_ref 129381 // Group
       end
 
       classrelation 129154 // <realization>

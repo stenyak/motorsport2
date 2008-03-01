@@ -24,12 +24,10 @@ class Loggable {
     virtual const string getId() const;
     virtual void setId(const string & id);
 
-  protected:
+  private:
     /** A name for the object to be logged. It will help identify where logs came from. */
     string id;
 
-
-  private:
     /** Default constructor. Should not be used. */
     Loggable();
 
