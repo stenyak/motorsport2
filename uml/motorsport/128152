@@ -1,7 +1,7 @@
 format 49
 "motorsport-sim" // motorsport-sim
-  revision 5
-  modified_by 68 "stenyak"
+  revision 6
+  modified_by 77 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -124,6 +124,16 @@ ${inlines}"
 	  b parent class_ref 129253 // Core
       end
 
+      operation 128077 "getCore"
+	preserve_cpp_body_indent protected explicit_return_type "shared_ptr<Core>"
+	nparams 0
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+      end
     end
   end
 end

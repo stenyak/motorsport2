@@ -1,7 +1,7 @@
 format 49
 "motorsport"
-  revision 12
-  modified_by 8 "stenyak"
+  revision 14
+  modified_by 77 "stenyak"
   cpp_root_dir "../../usr/share/"
 
   artifact_default_description "/** \\TODO: add description */"
@@ -92,6 +92,7 @@ using namespace boost;"
       idl_decl ""
       explicit_switch_type ""
       
+      comment "/** From Boost libraries. Allows to retrieve ones own shared pointer. */"
     end
 
     class 128291 "exception"
@@ -104,6 +105,7 @@ using namespace std;"
       idl_decl ""
       explicit_switch_type ""
       
+      comment "/** From standard C classes. Base class for all custom exceptions. */"
     end
   end
 

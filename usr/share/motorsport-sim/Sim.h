@@ -15,11 +15,14 @@ class Sim {
     /** Default constructor. Instantiates a Motorsport \ref Core amongst other things.  */
     Sim();
     /** Simple destructor. */
-    ~Sim();
+    virtual ~Sim();
 
   protected:
     /** The Motorsport core used for this simulation. */
     shared_ptr<motorsport::Core> core;
+
+  public:
+    virtual shared_ptr<motorsport::Core> getCore() const;
 };
 
 } // namespace motorsport_sim

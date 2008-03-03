@@ -45,12 +45,12 @@ def build (cfgs, type, cfgName):
 cfgSim = {
     "default": {
         "name": "motorsport-sim"
-        ,"includePaths": Split(".. /usr/include/boost /usr/include/boost-1_33_1")
+        ,"includePaths": Split(".. ../../include /usr/include")
         ,"libPaths": Split("../../lib/motorsport/ ")
         ,"libs": Split("motorsportD ")
         ,"sources": Split("Sim.cpp main.cpp ../../lib/libUnitTest++.a")
         ,"headers": Split("Sim.h ")
-        ,"ccflags": "-Wall -Wextra -Wno-deprecated "
+        ,"ccflags": "-Wall -Wextra -Wno-deprecated -fprofile-arcs -ftest-coverage "
         ,"includeInstallPath": "include"
         ,"libInstallPath": "lib"
         ,"binInstallPath": "bin"
