@@ -1,7 +1,7 @@
 
-#include "motorsport/Core.h"
-#include "motorsport/Group.h"
-#include "motorsport/Exception.h"
+#include "Core.h"
+#include "Group.h"
+#include "Exception.h"
 
 namespace motorsport {
 

@@ -10,7 +10,7 @@ using namespace boost;
 using namespace std;
 #include <boost/weak_ptr.hpp>
 using namespace boost;
-#include "motorsport/Loggable.h"
+#include "Loggable.h"
 #include <boost/enable_shared_from_this.hpp>
 using namespace boost;
 

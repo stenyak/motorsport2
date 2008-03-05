@@ -2,7 +2,7 @@
   cpp_default_defs 
   cpp_h_extension "h" cpp_src_extension "cpp" java_extension "java" php_extension "php" idl_extension "idl"
   cpp_include_with_path
-  cpp_root_relative_path
+  cpp_relative_path
   cpp_javadoc_comment
 
   type_forms 15 // uml cpp java idl cpp_in cpp_out cpp_inout cpp_return

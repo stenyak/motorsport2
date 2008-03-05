@@ -1,6 +1,6 @@
 
-#include "motorsport/Group.h"
-#include "motorsport/Exception.h"
+#include "Group.h"
+#include "Exception.h"
 
 namespace motorsport {
 

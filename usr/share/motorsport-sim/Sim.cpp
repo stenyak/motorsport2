@@ -1,6 +1,6 @@
 
-#include "motorsport-sim/Sim.h"
-#include "motorsport/Core.h"
+#include "Sim.h"
+#include "../motorsport/Core.h"
 
 #include <motorsport/Group.h>
 using namespace motorsport;

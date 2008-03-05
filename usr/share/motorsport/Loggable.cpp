@@ -1,6 +1,6 @@
 
-#include "motorsport/Loggable.h"
-#include "motorsport/Exception.h"
+#include "Loggable.h"
+#include "Exception.h"
 
 namespace motorsport {
 
