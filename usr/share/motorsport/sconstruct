@@ -71,7 +71,8 @@ cfgInstall = {"includeInstallPath":"include"
              ,"libInstallPath":"lib"
              ,"binInstallPath":"bin"}
 cfgBoost = { "includePaths":"/usr/include/boost" }
-cfgUnitTest = { "sources":"../../lib/libUnitTest++.a" }
+cfgUnitTest = { "includePaths":"../../include", "sources":"../../lib/libUnitTest++.a" }
+cfgMotorsport = { "includePaths":"../../include/motorsport", "libPaths":"../../lib/motorsport","libs":"motorsportD" }
 
 ################################################################################
 # Builds
@@ -84,9 +85,9 @@ cfgMotorsportLib = {
 objMotorsportLib = build("SharedLibrary", [cfgMotorsportLib, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost])
 
 cfgTests = {
-    "name":         "-tests"
-    ,"includePaths":"../../include"
-    ,"libPaths":    "../../lib/motorsport"
+    "name":         "motorsport-tests"
     ,"sources":     "main.cpp"
     }
-objTests = build("Program", [cfgMotorsportLib, cfgTests, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost, cfgUnitTest])
+objTests = build("Program", [cfgMotorsport, cfgTests, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost, cfgUnitTest])
+
+Depends(objTests, "lib/libmotorsportD.so")
