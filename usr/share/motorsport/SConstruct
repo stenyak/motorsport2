@@ -58,7 +58,8 @@ def build(type, cfgs):
         }
     for cfg in cfgs:
         cfgAppend(r, cfg)
-    cfgBuild(r, type)
+    obj = cfgBuild(r, type)
+    return obj
 
 ################################################################################
 # Build Configurations
@@ -80,12 +81,13 @@ cfgMotorsport = {
     ,"sources":     "Core.cpp Loggable.cpp Group.cpp Exception.cpp"
     ,"headers":     "Core.h Group.h Loggable.h Exception.h"
     }
-build("SharedLibrary", [cfgMotorsport, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost])
+objMotorsport = build("SharedLibrary", [cfgMotorsport, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost])
+
 cfgTests = {
-    "name":         "motorsport-tests"
+    "name":         "-tests"
     ,"includePaths":"../../include"
     ,"libPaths":    "../../lib/motorsport"
-    ,"libs":        "motorsportD"
+    ,"libs":        ""
     ,"sources":     "main.cpp"
     }
-#build("Program", [cfgTests, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost, cfgUnitTest])
+objTests = build("Program", [cfgMotorsport, cfgTests, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost, cfgUnitTest])

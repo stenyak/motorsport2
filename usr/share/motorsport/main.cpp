@@ -1,8 +1,8 @@
 #include <string.h>
 #include <unittest++/UnitTest++.h>
-#include <motorsport/Group.h>
-#include <motorsport/Core.h>
-#include <motorsport/Exception.h>
+#include "Group.h"
+#include "Core.h"
+#include "Exception.h"
 using namespace motorsport;
 #include <boost/shared_ptr.hpp>
 using namespace boost;
