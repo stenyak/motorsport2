@@ -72,7 +72,7 @@ cfgInstall = {"includeInstallPath":"include"
              ,"binInstallPath":"bin"}
 cfgBoost = { "includePaths":"/usr/include/boost" }
 cfgUnitTest = { "includePaths":"../../include", "sources":"../../lib/libUnitTest++.a" }
-cfgMotorsport = { "includePaths":"../../include/motorsport", "libPaths":"../../lib/motorsport","libs":"motorsportD" }
+cfgMotorsport = { "libPaths":"../../lib/motorsport", "libs":"motorsportD", "includePaths":"../../include" }
 
 ################################################################################
 # Builds
