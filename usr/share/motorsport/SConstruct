@@ -76,18 +76,17 @@ cfgUnitTest = { "sources":"../../lib/libUnitTest++.a" }
 ################################################################################
 # Builds
 ################################################################################
-cfgMotorsport = {
+cfgMotorsportLib = {
     "name":         "motorsport"
     ,"sources":     "Core.cpp Loggable.cpp Group.cpp Exception.cpp"
     ,"headers":     "Core.h Group.h Loggable.h Exception.h"
     }
-objMotorsport = build("SharedLibrary", [cfgMotorsport, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost])
+objMotorsportLib = build("SharedLibrary", [cfgMotorsportLib, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost])
 
 cfgTests = {
     "name":         "-tests"
     ,"includePaths":"../../include"
     ,"libPaths":    "../../lib/motorsport"
-    ,"libs":        ""
     ,"sources":     "main.cpp"
     }
-objTests = build("Program", [cfgMotorsport, cfgTests, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost, cfgUnitTest])
+objTests = build("Program", [cfgMotorsportLib, cfgTests, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost, cfgUnitTest])
