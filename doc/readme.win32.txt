@@ -3,6 +3,7 @@ How to develop Motorsport Project under WindowsXP
 
 In order to download Motorsport, you can use Tortoise HG:
  - http://www.selenic.com/mercurial/wiki/index.cgi/TortoiseHg 
+Or also the one provided by cygwin.
 
 First, you need to install certain libs using CygWin:
  - boost-devel
