@@ -40,11 +40,3 @@ $ cd usr/share/motorsport-sim
 $ scons
 $ popd
 $ ./mklinks.sh
-
-Building TDD Test:
-$ pushd .
-$ cd usr/share/tddTest
-$ scons
-$ popd
-$ ./mklinks.sh
-
