@@ -70,9 +70,9 @@ cfgCov = { "ccflags":"-fprofile-arcs -ftest-coverage" }
 cfgInstall = {"includeInstallPath":"include"
              ,"libInstallPath":"lib"
              ,"binInstallPath":"bin"}
-cfgBoost = { "includePaths":"/usr/include/boost" }
-cfgUnitTest = { "includePaths":"../../include", "sources":"../../lib/libUnitTest++.a" }
-cfgMotorsport = { "libPaths":"../../lib/motorsport", "libs":"motorsportD", "includePaths":"../../include" }
+cfgBoost = { "includePaths":"/usr/include/boost ../../include" }
+#cfgUnitTest = { "includePaths":"../../include ../../include" }
+cfgUnitTest = { "includePaths":"../../include" , "sources":"../../lib/libUnitTest++.a" }
 
 ################################################################################
 # Builds
@@ -82,12 +82,20 @@ cfgMotorsportLib = {
     ,"sources":     "Core.cpp Loggable.cpp Group.cpp Exception.cpp"
     ,"headers":     "Core.h Group.h Loggable.h Exception.h"
     }
+
 objMotorsportLib = build("SharedLibrary", [cfgMotorsportLib, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost])
+
+# FIXME: does not work, dunno why:
+#cfgMotorsport = { "libPaths":"../../lib/motorsport", "libs":"".join(map(str, objMotorsportLib)), "includePaths":"../../include" }
+# using plain filename instead (may not work cross-platform):
+cfgMotorsport = { "libPaths":"../../lib/motorsport", "libs":"motorsportD", "includePaths":"../../include" }
 
 cfgTests = {
     "name":         "motorsport-tests"
     ,"sources":     "main.cpp"
     }
+
+# FIXME: comment this line on first run, uncomment on second:
 objTests = build("Program", [cfgMotorsport, cfgTests, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost, cfgUnitTest])
 
-Depends(objTests, "lib/libmotorsportD.so")
+#Depends(objTests, "".join(map(str,objMotorsportLib)))
