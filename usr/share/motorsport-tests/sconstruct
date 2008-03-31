@@ -70,26 +70,17 @@ cfgCov = { "ccflags":"-fprofile-arcs -ftest-coverage" }
 cfgInstall = {"includeInstallPath":"include"
              ,"libInstallPath":"lib"
              ,"binInstallPath":"bin"}
-cfgBoost = { "includePaths":"/usr/include/boost" }
-cfgUnitTest = { "sources":"../../lib/libUnitTest++.a" }
+cfgBoost = { "includePaths":"/usr/include/boost ../../include" }
+#cfgUnitTest = { "includePaths":"../../include ../../include" }
+cfgUnitTest = { "includePaths":"../../include" , "sources":"../../lib/libUnitTest++.a" }
 cfgMotorsport = { "libPaths":"../../lib/motorsport", "libs":"motorsport", "includePaths":"../../include" }
 
 ################################################################################
 # Builds
 ################################################################################
-cfgMotorsportSimLib = {
-    "name":         "motorsport-sim"
-    ,"sources":     "Sim.cpp"
-    }
-objMotorsportSimLib = build("SharedLibrary", [cfgMotorsportSimLib, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost, cfgMotorsport])
-cfgMotorsportSim = {
-    "name":         ""
+cfgTests = {
+    "name":         "motorsport-tests"
     ,"sources":     "main.cpp"
-    ,"headers":     ""
     }
-objMotorsportSim = build("Program", [cfgMotorsportSimLib, cfgMotorsportSim, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost, cfgMotorsport])
-cfgMotorsportSimTests = {
-    "name":         "-tests"
-    ,"sources":     "tests.cpp"
-    }
-objMotorsportSimTests = build("Program", [cfgMotorsportSimLib, cfgMotorsportSimTests, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost, cfgUnitTest, cfgMotorsport])
+
+objTests = build("Program", [cfgMotorsport, cfgTests, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost, cfgUnitTest])

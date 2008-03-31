@@ -25,6 +25,10 @@ namespace Time
         }
         return result;
     }
+    void sleep(Time::time theTime)
+    {
+        usleep((int)(theTime*1000000.0));
+    }
 }
 class Object
 {
@@ -125,6 +129,7 @@ class EngineThread
 
         bool isActive;
         bool isPaused;
+        int stopResult;
         Time::time period;
         Time::time virtualTime;
         int (*function)(shared_ptr<Buffer> buffer, double seconds);
@@ -149,13 +154,11 @@ void EngineThread::resume() { isPaused = false; }
 int  EngineThread::stop()
 {
     isActive = false;
-    int result = 0;
-    void *ptrResult = (void*) (&result);
+    pthread_join(thread, NULL);
 
-    pthread_join(thread, &ptrResult);
     isPaused = true;
 
-    return result;
+    return stopResult;
 }
 void EngineThread::runFunction()
 {
@@ -173,25 +176,39 @@ void* EngineThread::engineThread(void* parameter)
 
     cout << "Starting an engine at "<< (1/e->period) << "Hz (" << e->period << ")." << endl;
     Time::time wallTime = Time::now();
+    const int nDiffs = 100;
+    Time::time diffs[nDiffs];
+    for (int i=0; i<nDiffs; ++i) diffs[i] = 0;
+    //int nSlow = 0;
     while (e->isActive)
     {
-        if (e->isPaused) usleep((int)(0.1*1000000));
+        if (e->isPaused) Time::sleep(0.1);
         else
         {
             wallTime = Time::now();
+            /*
+            for (int i=0; i<nDiffs-1; i++)
+            {
+                if (diffs[i+1] < diffs[i]) ++nSlow;
+                diffs[i] = diffs[i+1];
+            }
+            if (nSlow > 0)
+            {
+                cout << "Running slower than real time"<< endl;
+            }
+            nSlow = 0;
+            */
             while ( (wallTime > e->virtualTime) && (e->isActive) && (!e->isPaused) )
             {
-                static Time::time lastDiff;
                 e->runFunction();
                 e->virtualTime += e->period;
-                lastDiff = wallTime - e->virtualTime;
             }
             flush(cout);
-            usleep( (unsigned int)(e->period * 1000000.0) );
+            Time::sleep( e->period );
         }
     }
-    int * ptrResult = new int(result);
-    pthread_exit((void*)ptrResult);
+    e->stopResult = result;
+    pthread_exit(0);
 }
 // END OF engine thread class ///////////////////////////////////////////////////
 
@@ -210,25 +227,16 @@ int main(int argc, char* argv[])
     shared_ptr<Buffer> graphicsBuffer(new Buffer());
     shared_ptr<Buffer> nullBuffer;
 
-    shared_ptr<EngineThread> graphic (new EngineThread(60, computeGraphic, physicsBuffer, graphicsBuffer));
-    shared_ptr<EngineThread> physic  (new EngineThread(100, computePhysic, physicsBuffer, nullBuffer));
-    shared_ptr<EngineThread> sound  (new EngineThread(20, computeSound, physicsBuffer, nullBuffer));
+    long double freq = 1e100;
+    shared_ptr<EngineThread> graphic (new EngineThread(freq, computeGraphic, physicsBuffer, graphicsBuffer));
+    shared_ptr<EngineThread> physic  (new EngineThread(freq, computePhysic, physicsBuffer, nullBuffer));
+    shared_ptr<EngineThread> sound  (new EngineThread(freq, computeSound, physicsBuffer, nullBuffer));
 
     physic->start();
     sound->start();
-    usleep(1*1000000);
     graphic->start();
-    usleep(2*1000000);
-    graphic->pause();
-    usleep(2*1000000);
-    graphic->resume();
-    usleep(2*1000000);
-    graphic->stop();
-    usleep(2*1000000);
-    graphic->start();
-    usleep(1*1000000);
+    Time::sleep (5);
     if ( graphic->stop() ) result = -1;
-    usleep ((unsigned int)(0.5*1000000.0));
     if ( physic->stop()  ) result = -1;
     if ( sound->stop()  ) result = -1;
 

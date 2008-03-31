@@ -44,3 +44,22 @@ mkcd deps
     cd ..
     echo "==== SCons installed ===="
 cd ..
+
+
+mkcd deps
+    echo "==== Installing Ogre ===="
+    echo " - Grabbing from cvs..."
+    echo " Note: please press enter when prompted for a password."
+    cvs -z3 -d:pserver:anonymous@cvs.ogre3d.org:/cvsroot/ogre co -P ogrenew
+    cvs -z3 -d:pserver:anonymous@cvs.ogre3d.org:/cvsroot/ogre co -P -rv1-4 ogrenew 
+    echo " - Building..."
+    cd ogrenew
+        export SCONS_LIB_DIR=`pwd`/src/engine
+        python src/script/scons.py build/scons
+        echo " - Copying files..."
+        cd build/scons
+            python setup.py install --prefix=../../../../usr
+        cd ../..
+    cd ..
+    echo "==== SCons installed ===="
+cd ..
