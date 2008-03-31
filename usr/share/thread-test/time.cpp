@@ -13,13 +13,21 @@ Time::Second Time::now()
     localtime_r(&rawtime, &rawtime2);
 
     timespec ts = getTime();
-    result += (long double)(ts.tv_sec);
-    result += (long double)(ts.tv_nsec) / (long double)(1000000000);
+    result += (Second)(ts.tv_sec);
+    result += toSecond((NSecond)(ts.tv_nsec));
     return result;
 }
 void Time::sleep(Second seconds)
 {
-    usleep((int)(seconds*1000000.0));
+    usleep((int)toUSecond(seconds));
+}
+Time::USecond Time::toUSecond(Second seconds)
+{
+    return seconds * 1e6;
+}
+Time::Second Time::toSecond(NSecond nseconds)
+{
+    return nseconds * 1e-9;
 }
 timespec Time::getTime()
 {

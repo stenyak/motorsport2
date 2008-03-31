@@ -17,12 +17,28 @@ SUITE(testTime)
         CHECK_EQUAL(0, t2);
 
         CHECK_EQUAL(t1, t2);
+
+        Time::USecond t3(1337);
+        CHECK_EQUAL(1337, t3);
     }
-    TEST(addition)
+    TEST(operations)
     {
         Time::Second t3 = 0;
         Time::Second t4 = t3 + 10;
         CHECK_EQUAL(10, t4);
+
+        Time::Second t5 = t4 * 5;
+        CHECK_EQUAL(50, t5);
+    }
+    TEST(conversions)
+    {
+        Time::Second s = 1;
+        Time::USecond us (Time::toUSecond(s));
+        CHECK_EQUAL(1000000, us);
+
+        Time::NSecond ns (5 * 1e9);
+        s = Time::toSecond(ns);
+        CHECK_CLOSE(5, s, 5 * 0.00000001);
     }
     TEST(sleep1)
     {
