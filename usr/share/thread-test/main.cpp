@@ -1,247 +1,66 @@
-#include <time.h>
-#include <vector.h>
+#include "time.h"
+using namespace motorsport;
+#include <unittest++/UnitTest++.h>
+#include <limits>
 using namespace std;
 #include <boost/shared_ptr.hpp>
 using namespace boost;
-namespace Time
+
+SUITE(testTime)
 {
-    typedef long double time;
-    time now()
+    TEST(construction)
     {
-        Time::time result = 0;
+        Time::Second t1(0);
+        CHECK_EQUAL(0, t1);
 
-        time_t rawtime;
-        ::time(&rawtime);
+        Time::Second t2 = 0;
+        CHECK_EQUAL(0, t2);
 
-        tm rawtime2;
-        localtime_r(&rawtime, &rawtime2);
-
-        timespec ts;
-        if (0 != clock_gettime(CLOCK_REALTIME, &ts)) result = 0;
-        else
-        {
-            result += (long double)(ts.tv_sec);
-            result += (long double)(ts.tv_nsec) / (long double)(1000000000);
-        }
-        return result;
+        CHECK_EQUAL(t1, t2);
     }
-    void sleep(Time::time theTime)
+    TEST(addition)
     {
-        usleep((int)(theTime*1000000.0));
+        Time::Second t3 = 0;
+        Time::Second t4 = t3 + 10;
+        CHECK_EQUAL(10, t4);
     }
-}
-class Object
-{
-    public:
-        string getId() {return id;}
-        void syncTo(shared_ptr<Object> object) { object->id = id; }
-    private:
-        string id;
-};
-// START OF buffer class ////////////////////////////////////////////////////////
-class Buffer
-{
-    public:
-        Buffer ();
-        ~Buffer();
-        void addObject    (shared_ptr<Object> object);
-        shared_ptr<Object> getObject    (shared_ptr<Object> object);
-        void removeObject (shared_ptr<Object> object);
-        void syncTo (shared_ptr<Buffer> buffer);
-    private:
-        vector< shared_ptr<Object> >::iterator getObjectIterator(shared_ptr<Object> object);
-        vector< shared_ptr<Object> >::iterator getObjectIteratorById(string id);
-        vector< shared_ptr<Object> > objects;
-};
-Buffer::Buffer() {}
-Buffer::~Buffer(){}
-void Buffer::addObject (shared_ptr<Object> object)
-{
-    if (!getObject(object))
+    TEST(sleep1)
     {
-        objects.push_back(object);
+        const Time::Second delay = 0.000005;
+        UNITTEST_TIME_CONSTRAINT(int(delay*1.01*1000.0));
+        Time::sleep(delay);
+    }
+    TEST(sleep2)
+    {
+        const Time::Second delay = 1;
+        UNITTEST_TIME_CONSTRAINT(int(delay*1.01*1000.0));
+        Time::sleep(delay);
+    }
+    TEST(nowConstruction)
+    {
+        Time::Second t1 (Time::now());
+        CHECK(t1 != 0);
+        Time::Second t2 = Time::now();
+        CHECK(t2 != 0);
+    }
+    TEST(nowCorrectness)
+    {
+        Time::Second delay = 0.5;
+        Time::Second initial = Time::now();
+        Time::sleep(delay);
+        Time::Second final = Time::now();
+
+        Time::Second expected = initial + delay;
+
+        CHECK_CLOSE(expected, final, 0.01);
+    }
+    TEST(nowAccuracy)
+    {
+        CHECK(sizeof(Time::Second) > 8);
+        CHECK((2038-1970)*365*24*60*60 < numeric_limits<Time::Second>::max());
     }
 }
-shared_ptr<Object> Buffer::getObject (shared_ptr<Object> object)
+int main (int, char*[])
 {
-    shared_ptr<Object> result;
-
-    vector< shared_ptr<Object> >::iterator it = getObjectIterator(object);
-    if (it != objects.end())
-        result = *it;
-
-    return result;
+    return UnitTest::RunAllTests();
 }
-void Buffer::removeObject (shared_ptr<Object> object)
-{
-    //TODO
-    //if (getObject(object))
-        //objects.
-    object->getId();
-}
-void Buffer::syncTo (shared_ptr<Buffer> buffer)
-{
-    if (!buffer) return;
-    vector< shared_ptr<Object> >::iterator bIt;
-    for (bIt = buffer->objects.begin(); bIt != buffer->objects.end(); bIt++)
-    {
-        vector< shared_ptr<Object> >::iterator it;
-        it = getObjectIteratorById( (*bIt)->getId() );
-        if (it != objects.end())
-            if (*it)
-                (*it)->syncTo(*bIt);
-    }
-}
-vector< shared_ptr<Object> >::iterator Buffer::getObjectIterator(shared_ptr<Object> object)
-{
-    vector< shared_ptr<Object> >::iterator result = objects.end();
-
-    vector< shared_ptr<Object> >::iterator it;
-    for (it = objects.begin(); it != objects.end(); it++)
-        if (*it == object) result = it;
-
-    return result;
-}
-vector< shared_ptr<Object> >::iterator Buffer::getObjectIteratorById(string id)
-{
-    vector< shared_ptr<Object> >::iterator result = objects.end();
-
-    vector< shared_ptr<Object> >::iterator it;
-    for (it = objects.begin(); it != objects.end(); it++)
-        if ((*it)->getId() == id) result = it;
-
-    return result;
-}
-// END OF buffer clas ///////////////////////////////////////////////////////////
-
-// START OF engine thread class /////////////////////////////////////////////////
-class EngineThread
-{
-    public:
-        void start();
-        void pause();
-        void resume();
-        int stop();
-        EngineThread (long double frequency, int (*function)(shared_ptr<Buffer> buffer, double seconds), shared_ptr<Buffer> buffer, shared_ptr<Buffer> doubleBuffer);
-        ~EngineThread ();
-    private:
-        void runFunction();
-
-        bool isActive;
-        bool isPaused;
-        int stopResult;
-        Time::time period;
-        Time::time virtualTime;
-        int (*function)(shared_ptr<Buffer> buffer, double seconds);
-        shared_ptr<Buffer> buffer;
-        shared_ptr<Buffer> doubleBuffer;
-
-        pthread_t thread;
-        static void* engineThread (void* parameter);
-};
-EngineThread::EngineThread(long double frequency, int (*function)(shared_ptr<Buffer> buffer, double seconds), shared_ptr<Buffer> buffer, shared_ptr<Buffer> doubleBuffer)
-: isActive(true), isPaused(true), period((long double)(1.0)/frequency), virtualTime(Time::now()), function(function), buffer(buffer), doubleBuffer(doubleBuffer)
-{
-    pthread_create (&thread, NULL, engineThread, (void*)this);
-}
-EngineThread::~EngineThread()
-{
-    stop();
-}
-void EngineThread::start()  { virtualTime = Time::now(); resume(); }
-void EngineThread::pause()  { isPaused = true;  }
-void EngineThread::resume() { isPaused = false; }
-int  EngineThread::stop()
-{
-    isActive = false;
-    pthread_join(thread, NULL);
-
-    isPaused = true;
-
-    return stopResult;
-}
-void EngineThread::runFunction()
-{
-    if (doubleBuffer) function(buffer, period);
-    else
-    {
-        buffer->syncTo(doubleBuffer);
-        function(doubleBuffer, period);
-    }
-}
-void* EngineThread::engineThread(void* parameter)
-{
-    int result = 0;
-    EngineThread * e = (EngineThread*) parameter;
-
-    cout << "Starting an engine at "<< (1/e->period) << "Hz (" << e->period << ")." << endl;
-    Time::time wallTime = Time::now();
-    const int nDiffs = 100;
-    Time::time diffs[nDiffs];
-    for (int i=0; i<nDiffs; ++i) diffs[i] = 0;
-    //int nSlow = 0;
-    while (e->isActive)
-    {
-        if (e->isPaused) Time::sleep(0.1);
-        else
-        {
-            wallTime = Time::now();
-            /*
-            for (int i=0; i<nDiffs-1; i++)
-            {
-                if (diffs[i+1] < diffs[i]) ++nSlow;
-                diffs[i] = diffs[i+1];
-            }
-            if (nSlow > 0)
-            {
-                cout << "Running slower than real time"<< endl;
-            }
-            nSlow = 0;
-            */
-            while ( (wallTime > e->virtualTime) && (e->isActive) && (!e->isPaused) )
-            {
-                e->runFunction();
-                e->virtualTime += e->period;
-            }
-            flush(cout);
-            Time::sleep( e->period );
-        }
-    }
-    e->stopResult = result;
-    pthread_exit(0);
-}
-// END OF engine thread class ///////////////////////////////////////////////////
-
-#include <iostream.h>
-using namespace std;
-int computePhysic(shared_ptr<Buffer>, double seconds){cout<<"."; seconds=0; return 0;}
-int computeGraphic(shared_ptr<Buffer>, double seconds){cout<<"G"; seconds=0; return 0;}
-int computeSound(shared_ptr<Buffer>, double seconds){cout<<"m"; seconds=0; return 0;}
-int main(int argc, char* argv[])
-{
-    int result = argc* **argv *0;
-    cout.precision(70);
-    cout.setf(ios::fixed,ios::floatfield);
-
-    shared_ptr<Buffer> physicsBuffer (new Buffer());
-    shared_ptr<Buffer> graphicsBuffer(new Buffer());
-    shared_ptr<Buffer> nullBuffer;
-
-    long double freq = 1e100;
-    shared_ptr<EngineThread> graphic (new EngineThread(freq, computeGraphic, physicsBuffer, graphicsBuffer));
-    shared_ptr<EngineThread> physic  (new EngineThread(freq, computePhysic, physicsBuffer, nullBuffer));
-    shared_ptr<EngineThread> sound  (new EngineThread(freq, computeSound, physicsBuffer, nullBuffer));
-
-    physic->start();
-    sound->start();
-    graphic->start();
-    Time::sleep (5);
-    if ( graphic->stop() ) result = -1;
-    if ( physic->stop()  ) result = -1;
-    if ( sound->stop()  ) result = -1;
-
-
-    cout << endl;
-    return result;
-}
-

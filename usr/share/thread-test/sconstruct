@@ -65,11 +65,12 @@ def build(type, cfgs):
 # Build Configurations
 ################################################################################
 cfgDebug = { "ccflags":"-g" }
-cfgWarns = { "ccflags":"-Wall -Wextra -Wno-deprecated" }
+cfgWarns = { "ccflags":"-pedantic -Wall -Wextra -Wno-deprecated" }
 cfgCov = { "ccflags":"-fprofile-arcs -ftest-coverage" }
 cfgInstall = {"includeInstallPath":"include"
              ,"libInstallPath":"lib"
              ,"binInstallPath":"bin"}
+cfgUnitTest = { "includePaths":"../../include" , "sources":"../../lib/libUnitTest++.a" }
 cfgBoost = { "includePaths":"/usr/include/boost ../../include" }
 cfgPthread = { "libs":"pthread rt" }
 cfgTime = { "libs":"rt" }
@@ -79,8 +80,9 @@ cfgTime = { "libs":"rt" }
 ################################################################################
 cfgThreadTest = {
     "name":         "thread-test"
-    ,"sources":     "main.cpp"
+    ,"sources":     "main.cpp time.cpp"
+    ,"includes":    "time.h"
     }
 
-objTests = build("Program", [cfgThreadTest, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost, cfgPthread, cfgTime])
+objTests = build("Program", [cfgThreadTest, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost, cfgPthread, cfgTime, cfgUnitTest])
 
