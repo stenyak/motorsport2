@@ -1,4 +1,6 @@
 #include "time.h"
+#include "threadable.h"
+#include "physics.h"
 using namespace motorsport;
 #include <unittest++/UnitTest++.h>
 #include <limits>
@@ -85,6 +87,17 @@ SUITE(testTime)
     {
         CHECK(sizeof(Time::Second) > 8);
         CHECK((2038-1970)*365*24*60*60 < numeric_limits<Time::Second>::max());
+    }
+}
+SUITE(testThreadable)
+{
+    TEST(derivation)
+    {
+        shared_ptr<Physics> p (new Physics);
+        CHECK(boost::dynamic_pointer_cast<Threadable>(p));
+    }
+    TEST(threading)
+    {
     }
 }
 int main (int, char*[])
