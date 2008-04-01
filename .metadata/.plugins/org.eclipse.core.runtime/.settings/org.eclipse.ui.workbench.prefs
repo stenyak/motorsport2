@@ -1,9 +1,0 @@
-#Sat Nov 10 03:12:19 CET 2007
-PLUGINS_NOT_ACTIVATED_ON_STARTUP=
-resourcetypes=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<editors version\="3.1">\r\n<info extension\="doxyfile" name\="*">\r\n<editor id\="eclox.ui.editor.Editor"/>\r\n<defaultEditor id\="eclox.ui.editor.Editor"/>\r\n</info>\r\n<info extension\="html" name\="*">\r\n<editor id\="org.eclipse.ui.browser.editorSupport"/>\r\n</info>\r\n<info extension\="htm" name\="*">\r\n<editor id\="org.eclipse.ui.browser.editorSupport"/>\r\n</info>\r\n<info extension\="" name\="doxyfile">\r\n<editor id\="eclox.ui.editor.Editor"/>\r\n<defaultEditor id\="eclox.ui.editor.Editor"/>\r\n</info>\r\n<info extension\="shtml" name\="*">\r\n<editor id\="org.eclipse.ui.browser.editorSupport"/>\r\n</info>\r\n</editors>
-RUN_IN_BACKGROUND=true
-eclipse.preferences.version=1
-editors=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<editors>\r\n<descriptor class\="eclox.ui.editor.Editor" id\="eclox.ui.editor.Editor" image\="icons/doxyfile.gif" internal\="true" label\="Doxyfile Editor" openMode\="1" open_in_place\="false" plugin\="org.gna.eclox.ui"/>\r\n<descriptor id\="org.eclipse.ui.browser.editorSupport" image\="$nl$/icons/obj16/internal_browser.gif" internal\="false" label\="Web Browser" launcher\="org.eclipse.ui.internal.browser.BrowserLauncher" openMode\="4" open_in_place\="false" plugin\="org.eclipse.ui.browser"/>\r\n</editors>
-org.eclipse.ui.commands=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<org.eclipse.ui.commands/>
-ENABLED_DECORATORS=org.eclipse.team.cvs.ui.decorator\:false,org.eclipse.ui.LinkedResourceDecorator\:true,eclox.core.decorator\:true,
-ColorsAndFontsPreferencePage.selectedElement=Torg.eclipse.cdt.ui.presentation
