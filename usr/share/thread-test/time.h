@@ -6,10 +6,12 @@ class Time
 {
     public:
         typedef long double Second;
+        typedef long double MSecond;
         typedef long double USecond;
         typedef long double NSecond;
         static Second now();
         static void sleep(Second seconds);
+        static MSecond toMSecond(Second seconds);
         static USecond toUSecond(Second seconds);
         static Second toSecond(NSecond nseconds);
     private:

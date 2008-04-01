@@ -21,6 +21,10 @@ void Time::sleep(Second seconds)
 {
     usleep((int)toUSecond(seconds));
 }
+Time::MSecond Time::toMSecond(Second seconds)
+{
+    return seconds * 1e3;
+}
 Time::USecond Time::toUSecond(Second seconds)
 {
     return seconds * 1e6;

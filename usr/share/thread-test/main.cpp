@@ -20,6 +20,12 @@ SUITE(testTime)
 
         Time::USecond t3(1337);
         CHECK_EQUAL(1337, t3);
+
+        Time::NSecond t4(31337);
+        CHECK_EQUAL(31337, t4);
+
+        Time::MSecond t5(313373);
+        CHECK_EQUAL(313373, t5);
     }
     TEST(operations)
     {
@@ -36,20 +42,25 @@ SUITE(testTime)
         Time::USecond us (Time::toUSecond(s));
         CHECK_EQUAL(1000000, us);
 
+        Time::MSecond ms (Time::toMSecond(s));
+        CHECK_EQUAL(1000, ms);
+
         Time::NSecond ns (5 * 1e9);
         s = Time::toSecond(ns);
         CHECK_CLOSE(5, s, 5 * 0.00000001);
     }
     TEST(sleep1)
     {
-        const Time::Second delay = 0.000005;
-        UNITTEST_TIME_CONSTRAINT(int(delay*1.01*1000.0));
+        const Time::Second delay = 0.005;
+        const float margin = 1+0.01;
+        UNITTEST_TIME_CONSTRAINT((int)Time::toMSecond(delay*margin));
         Time::sleep(delay);
     }
     TEST(sleep2)
     {
         const Time::Second delay = 1;
-        UNITTEST_TIME_CONSTRAINT(int(delay*1.01*1000.0));
+        const float margin = 1+0.01;
+        UNITTEST_TIME_CONSTRAINT((int)Time::toMSecond(delay*margin));
         Time::sleep(delay);
     }
     TEST(nowConstruction)
