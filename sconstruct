@@ -13,7 +13,8 @@ def cfgAppend(cfg, suffix):
     for key in cfg:
         try:
             separator = " "
-            if key == "name" or cfg[key] == "":
+            if cfg[key] == "" or key == "name":
+            #if cfg[key] == "" or key == "name" or key == "includeInstallPath" or key == "libInstallPath" or key == "binInstallPath":
                 separator = ""
             #join strings, append lists
             if type(cfg[key]) == type(""):
@@ -28,18 +29,18 @@ def cfgAppend(cfg, suffix):
 def cfgBuild(cfg, type):
     env = Environment(CCFLAGS = cfg["ccflags"], LINKFLAGS = cfg["ccflags"], CPPPATH=Split(cfg["includePaths"]), LIBPATH=Split(cfg["libPaths"]), LIBS=Split(cfg["libs"]), STATIC_AND_SHARED_OBJECTS_ARE_THE_SAME=1)
     obj = 0;
-    prefix = ARGUMENTS.get('prefix', ".")
+    prefix = ARGUMENTS.get('prefix', "usr")
     if type == "StaticLibrary" or type == "SharedLibrary":
         if type == "StaticLibrary":
             obj = env.StaticLibrary(target=cfg["name"], source=Split(cfg["sources"]))
         if type == "SharedLibrary":
             obj = env.SharedLibrary(target=cfg["name"], source=Split(cfg["sources"]))
-        env.Install(os.path.join(prefix,cfg["libInstallPath"]), obj)
+        env.Install(os.path.join(prefix, "lib",cfg["name"]), obj)
         for header in (Split(cfg["headers"])):
-            env.Install(os.path.join(prefix,cfg["includeInstallPath"]), header)
+            env.Install(os.path.join(prefix, "include", cfg["name"]), header)
     if type == "Program":
         obj = env.Program (target=cfg["name"], source=Split(cfg["sources"]))
-        env.Install(os.path.join(prefix,cfg["binInstallPath"]), obj)
+        env.Install(os.path.join(prefix, "bin"), obj)
     return obj
 
 # appends and builds
@@ -52,9 +53,6 @@ def build(type, cfgs):
         ,"sources":             ""
         ,"headers":             ""
         ,"ccflags":             ""
-        ,"includeInstallPath":  ""
-        ,"libInstallPath":      ""
-        ,"binInstallPath":      ""
         }
     for cfg in cfgs:
         cfgAppend(r, cfg)
@@ -67,20 +65,47 @@ def build(type, cfgs):
 cfgDebug = { "ccflags":"-g" }
 cfgWarns = { "ccflags":"-Wall -Wextra -Wno-deprecated" }
 cfgCov = { "ccflags":"-fprofile-arcs -ftest-coverage" }
-cfgInstall = {"includeInstallPath":"include"
-             ,"libInstallPath":"lib"
-             ,"binInstallPath":"bin"}
-cfgBoost = { "includePaths":"/usr/include/boost ../../include" }
+cfgBoost = { "includePaths":"/usr/include/boost usr/include" }
+cfgUnitTest = { "includePaths":"usr/include" , "sources":"usr/lib/libUnitTest++.a" }
 #cfgUnitTest = { "includePaths":"../../include ../../include" }
-cfgUnitTest = { "includePaths":"../../include" , "sources":"../../lib/libUnitTest++.a" }
-cfgMotorsport = { "libPaths":"../../lib/motorsport", "libs":"motorsport", "includePaths":"../../include" }
+cfgMotorsport = { "libPaths":"usr/lib/motorsport", "libs":"motorsport", "includePaths":"usr/include" }
 
+
+# merges source file paths
+def cfgSet(cfg):
+    key["sources"] = prepend("usr/share/" + key["name"], key["sources"])
+    key["headers"] = prepend("usr/share/" + key["name"], key["sources"])
 ################################################################################
 # Builds
 ################################################################################
+cfgMotorsportLib = {
+    "name":         "motorsport"
+    ,"sources":     "usr/share/motorsport/Core.cpp usr/share/motorsport/Loggable.cpp usr/share/motorsport/Group.cpp usr/share/motorsport/Exception.cpp"
+    ,"headers":     "usr/share/motorsport/Core.h usr/share/motorsport/Group.h usr/share/motorsport/Loggable.h usr/share/motorsport/Exception.h"
+    }
+objMotorsportLib = build("SharedLibrary", [cfgMotorsportLib, cfgDebug, cfgWarns, cfgCov, cfgBoost])
+# Motorsport-tests
 cfgTests = {
     "name":         "motorsport-tests"
-    ,"sources":     "main.cpp"
+    ,"sources":     "usr/share/motorsport-tests/main.cpp"
     }
-
-objTests = build("Program", [cfgMotorsport, cfgTests, cfgDebug, cfgWarns, cfgCov, cfgInstall, cfgBoost, cfgUnitTest])
+objTests = build("Program", [cfgMotorsport, cfgTests, cfgDebug, cfgWarns, cfgCov, cfgBoost, cfgUnitTest])
+# Motorsport-sim-lib
+cfgMotorsportSimLib = {
+    "name":         "motorsport-sim"
+    ,"sources":     "usr/share/motorsport-sim/Sim.cpp"
+    }
+objMotorsportSimLib = build("SharedLibrary", [cfgMotorsportSimLib, cfgDebug, cfgWarns, cfgCov, cfgBoost, cfgMotorsport])
+# Motorsport-sim
+cfgMotorsportSim = {
+    "name":         ""
+    ,"sources":     "usr/share/motorsport-sim/main.cpp"
+    ,"headers":     ""
+    }
+objMotorsportSim = build("Program", [cfgMotorsportSimLib, cfgMotorsportSim, cfgDebug, cfgWarns, cfgCov, cfgBoost, cfgMotorsport])
+# Motorsport-sim-tests
+cfgMotorsportSimTests = {
+    "name":         "-tests"
+    ,"sources":     "usr/share/motorsport-sim/tests.cpp"
+    }
+objMotorsportSimTests = build("Program", [cfgMotorsportSimLib, cfgMotorsportSimTests, cfgDebug, cfgWarns, cfgCov, cfgBoost, cfgUnitTest, cfgMotorsport])
