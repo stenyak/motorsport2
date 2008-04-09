@@ -65,6 +65,13 @@ SUITE(testTime)
         UNITTEST_TIME_CONSTRAINT((int)Time::toMSecond(delay*margin));
         Time::sleep(delay);
     }
+    TEST(sleep3)
+    {
+        const Time::Second delay = 0.0005;
+        const float margin = 1+0.01;
+        UNITTEST_TIME_CONSTRAINT((int)Time::toMSecond(delay*margin));
+        Time::sleep(delay);
+    }
     TEST(nowConstruction)
     {
         Time::Second t1 (Time::now());
