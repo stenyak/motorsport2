@@ -2,6 +2,7 @@
 # Build System
 ################################################################################
 import os
+BuildDir('build', "usr")
 
 # debug printout of a config
 def cfgPrint(cfg, prefix="    "):
@@ -53,8 +54,12 @@ def build(type, cfgs):
         ,"headers":             ""
         ,"ccflags":             ""
         }
+    n = 0
     for cfg in cfgs:
+        n = n+1
         cfgAppend(r, cfg)
+        if n == 1:
+            cfgSet(r)
     obj = cfgBuild(r, type)
     return obj
 
@@ -75,37 +80,29 @@ def cfgSet(cfg):
 # Build Configurations
 ################################################################################
 cfgDebug = { "ccflags":"-g" }
-cfgWarns = { "ccflags":"-Wall -Wextra -Wno-deprecated" }
+cfgWarns = { "ccflags":"-Wall -Wextra -Wno-deprecated -ansi -pedantic" }
 cfgCov = { "ccflags":"-fprofile-arcs -ftest-coverage" }
-depBoost = { "includePaths":"/usr/include/boost usr/include" }
-depUnitTest = { "includePaths":"usr/include" , "sources":"usr/lib/libUnitTest++.a" }
+depBoost = { "includePaths":"usr/include" }
+depUnitTest = { "includePaths":"usr/include" , "libPaths":"usr/lib", "libs":"UnitTest++" }
 #depUnitTest = { "includePaths":"usr/include" }
+depMotorsport = { "libPaths":"usr/lib/motorsport", "libs":"motorsport", "includePaths":"usr/include/motorsport" }
+depMotorsportSim = {"libPaths":"usr/lib/motorsport-sim","libs":"motorsport-sim", "includePaths":"usr/include/motorsport-sim" }
 
 ################################################################################
 # Builds
 ################################################################################
-cfgMotorsport = { "name": "motorsport"
-    ,"sources":     "Core.cpp Loggable.cpp Group.cpp Exception.cpp"
-    ,"headers":     "Core.h Group.h Loggable.h Exception.h"
-    }
-cfgSet(cfgMotorsport)
+cfgMotorsport = { "name": "motorsport" ,"sources": "Core.cpp Loggable.cpp Group.cpp Exception.cpp" ,"headers": "Core.h Group.h Loggable.h Exception.h" }
 objMotorsport = build("SharedLibrary", [cfgMotorsport, cfgDebug, cfgWarns, cfgCov, depBoost])
-depMotorsport = { "libPaths":"usr/lib/motorsport", "libs":"motorsport", "includePaths":"usr/include/motorsport" }
 
-cfgTests = { "name": "motorsport-tests" ,"sources": "main.cpp" }
-cfgSet(cfgTests)
-objTests = build("Program", [depMotorsport, cfgTests, cfgDebug, cfgWarns, cfgCov, depBoost, depUnitTest])
+cfgMotorsportTests = { "name": "motorsport-tests" ,"sources": "main.cpp" }
+objTests = build("Program", [cfgMotorsportTests, cfgDebug, cfgWarns, cfgCov, depMotorsport, depBoost, depUnitTest])
 
 
-cfgMotorsportSimLib = { "name": "motorsport-sim" ,"sources": "Sim.cpp" ,"headers": "Sim.h" }
-cfgSet(cfgMotorsportSimLib)
-objMotorsportSimLib = build("StaticLibrary", [cfgMotorsportSimLib, cfgDebug, cfgWarns, cfgCov, depBoost, depMotorsport])
-cfgMotorsportSimLibDep = {"libPaths":"usr/lib/motorsport-sim","libs":"".join(map(str, objMotorsportSimLib)), "includePaths":"usr/include/motorsport-sim" }
+cfgDepMotorsportSim = { "name": "motorsport-sim" ,"sources": "Sim.cpp" ,"headers": "Sim.h" }
+objDepMotorsportSim = build("StaticLibrary", [cfgDepMotorsportSim, cfgDebug, cfgWarns, cfgCov, depBoost, depMotorsport])
 
 cfgMotorsportSim = { "name": "motorsport-sim" ,"sources": "main.cpp" }
-cfgSet(cfgMotorsportSim)
-objMotorsportSim = build("Program", [cfgMotorsportSim, cfgDebug, cfgWarns, cfgCov, depBoost, depMotorsport, cfgMotorsportSimLibDep])
+objMotorsportSim = build("Program", [cfgMotorsportSim, cfgDebug, cfgWarns, cfgCov, depBoost, depMotorsport, depMotorsportSim])
 
 cfgMotorsportSimTests = { "name": "motorsport-sim-tests" ,"sources": "tests.cpp" }
-cfgSet(cfgMotorsportSimTests)
-objMotorsportSimTests = build("Program", [cfgMotorsportSimTests, cfgDebug, cfgWarns, cfgCov, depBoost, depUnitTest, depMotorsport, cfgMotorsportSimLibDep])
+objMotorsportSimTests = build("Program", [cfgMotorsportSimTests, cfgDebug, cfgWarns, cfgCov, depBoost, depUnitTest, depMotorsport, depMotorsportSim])
