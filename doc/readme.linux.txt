@@ -15,21 +15,7 @@ Development flow:
  - For changing anything different than method bodies, use BoUML and its C++
  code generator. The BoUML project is located at uml/motorsport.
  - For method bodies, edit usr/share/*/*.cpp files with your usual editor.
- - Motorsport Simulator depends on Motorsport (core).
- - Once the projects are built, you can run usr/bin/* in order to execute
-   them. They use an ugly hack in order to be usable without installing to
-   /usr or /usr/local.
+ - Once the projects are built, you can use run.sh in order to execute them.
 
-Building Motorsport:
-$ pushd .
-$ cd usr/share/motorsport
+Building all projects at once:
 $ scons
-$ popd
-$ ./mklinks.sh
-
-Building Motorsport Simulator:
-$ pushd .
-$ cd usr/share/motorsport-sim
-$ scons
-$ popd
-$ ./mklinks.sh
