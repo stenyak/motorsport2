@@ -1,4 +1,8 @@
-#include "time.h"
+#include <boost/date_time/posix_time/posix_time.hpp>
+using namespace boost::posix_time;
+#include <boost/thread/thread.hpp>
+using namespace boost;
+
 #include "threadable.h"
 #include "physics.h"
 using namespace motorsport;
@@ -10,101 +14,91 @@ using namespace boost;
 
 SUITE(testTime)
 {
-    TEST(construction)
-    {
-        Time::Second t1(0);
-        CHECK_EQUAL(0, t1);
-
-        Time::Second t2 = 0;
-        CHECK_EQUAL(0, t2);
-
-        CHECK_EQUAL(t1, t2);
-
-        Time::USecond t3(1337);
-        CHECK_EQUAL(1337, t3);
-
-        Time::NSecond t4(31337);
-        CHECK_EQUAL(31337, t4);
-
-        Time::MSecond t5(313373);
-        CHECK_EQUAL(313373, t5);
-    }
     TEST(operations)
     {
-        Time::Second t3 = 0;
-        Time::Second t4 = t3 + 10;
-        CHECK_EQUAL(10, t4);
+        using namespace boost::gregorian;
 
-        Time::Second t5 = t4 * 5;
-        CHECK_EQUAL(50, t5);
+        //set initial date
+        ptime t1(date(2002,2,10), time_duration(1,2,0));
+
+        //set initial date + 10 seconds
+        ptime t2(date(2002,2,10), time_duration(1,2,10));
+        //add 10 seconds to initial date
+        time_duration td1(0,0,10);
+        ptime t3(t1+td1);
+
+        //check both are the same
+        CHECK_EQUAL(t2, t3);
+
+
+        //multiplay offset by 5 (50seconds)
+        ptime t4(t1+td1*5);
+        ptime t5(date(2002,2,10), time_duration(1,2,50));
+        CHECK_EQUAL(t4, t5);
     }
     TEST(conversions)
     {
-        Time::Second s = 1;
-        Time::USecond us (Time::toUSecond(s));
-        CHECK_EQUAL(1000000, us);
+        //unit of comparison: 1 second
+        time_duration td(0,0,1);
 
-        Time::MSecond ms (Time::toMSecond(s));
-        CHECK_EQUAL(1000, ms);
+        time_duration td1 = seconds(1);
+        CHECK_EQUAL(td, td1);
 
-        Time::NSecond ns (5 * 1e9);
-        s = Time::toSecond(ns);
-        CHECK_CLOSE(5, s, 5 * 0.00000001);
+        time_duration td2 = milliseconds(1000);
+        CHECK_EQUAL(td, td2);
+
+        time_duration td3 = microseconds(1000000);
+        CHECK_EQUAL(td, td3);
+
     }
     TEST(sleep1)
     {
-        const Time::Second delay = 0.005;
-        const float margin = 1+0.01;
-        UNITTEST_TIME_CONSTRAINT((int)Time::toMSecond(delay*margin));
-        Time::sleep(delay);
+        boost::thread make_thread();
+        int ms = 50;
+        float margin = 1.02;
+        time_duration td = milliseconds(ms);
+        UNITTEST_TIME_CONSTRAINT(ms*margin);
+        boost::this_thread::sleep(td);
     }
     TEST(sleep2)
     {
-        const Time::Second delay = 1;
-        const float margin = 1+0.01;
-        UNITTEST_TIME_CONSTRAINT((int)Time::toMSecond(delay*margin));
-        Time::sleep(delay);
-    }
-    TEST(sleep3)
-    {
-        const Time::Second delay = 0.0005;
-        const float margin = 1+0.01;
-        UNITTEST_TIME_CONSTRAINT((int)Time::toMSecond(delay*margin));
-        Time::sleep(delay);
-    }
-    TEST(nowConstruction)
-    {
-        Time::Second t1 (Time::now());
-        CHECK(t1 != 0);
-        Time::Second t2 = Time::now();
-        CHECK(t2 != 0);
+        boost::thread make_thread();
+        int ms = 500;
+        float margin = 1.01;
+        time_duration td = milliseconds(ms);
+        UNITTEST_TIME_CONSTRAINT(ms*margin);
+        boost::this_thread::sleep(td);
     }
     TEST(nowCorrectness)
     {
-        Time::Second delay = 0.5;
-        Time::Second initial = Time::now();
-        Time::sleep(delay);
-        Time::Second final = Time::now();
+        boost::thread make_thread();
+        int ms = 50;
+        time_duration td = milliseconds(ms);
+        time_duration tdmargin = milliseconds(ms*0.02);
 
-        Time::Second expected = initial + delay;
+        ptime t1(microsec_clock::local_time());
+        boost::this_thread::sleep(td);
+        ptime t2(microsec_clock::local_time());
 
-        CHECK_CLOSE(expected, final, 0.01);
-    }
-    TEST(nowAccuracy)
-    {
-        CHECK(sizeof(Time::Second) > 8);
-        CHECK((2038-1970)*365*24*60*60 < numeric_limits<Time::Second>::max());
+        CHECK(t1 != t2);
+
+        ptime t3(t1+td);
+        CHECK_CLOSE(t3, t2, tdmargin);
     }
 }
 SUITE(testThreadable)
 {
     TEST(derivation)
     {
+    /*
         shared_ptr<Physics> p (new Physics);
         CHECK(boost::dynamic_pointer_cast<Threadable>(p));
+    */
     }
     TEST(threading)
     {
+    /*
+    */
     }
 }
 int main (int, char*[])

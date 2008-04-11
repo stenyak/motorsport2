@@ -5,7 +5,7 @@ using namespace boost;
 #include <motorsport/Core.h>
 #include <motorsport/Exception.h>
 using namespace motorsport;
-#include "Sim.h"
+#include <motorsport-sim/Sim.h>
 using namespace motorsport_sim;
 
 SUITE(testSim)
