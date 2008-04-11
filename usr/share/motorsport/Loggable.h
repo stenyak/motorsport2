@@ -15,11 +15,11 @@ class Loggable {
     /** Loggable constructor.
     \param string a \ref name that helps identify logs origin. */
     Loggable(const string & id);
+
+  public:
     /** Simple destructor. */
     virtual ~Loggable() {};
 
-
-  public:
     /** \returns a string that helps identify the object in the generated logs. */
     virtual const string getId() const;
     /** Sets the \ref id to the desired string value. */

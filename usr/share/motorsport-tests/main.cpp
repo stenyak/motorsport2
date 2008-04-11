@@ -3,6 +3,7 @@
 #include <motorsport/Group.h>
 #include <motorsport/Core.h>
 #include <motorsport/Exception.h>
+#include <motorsport/Physics.h>
 using namespace motorsport;
 #include <boost/shared_ptr.hpp>
 #include <boost/thread/thread.hpp>
@@ -190,18 +191,32 @@ SUITE(testTime)
 }
 SUITE(testThreadable)
 {
-    TEST(derivation)
+    TEST(construction)
     {
-    /*
-        shared_ptr<Physics> p (new Physics);
-        CHECK(boost::dynamic_pointer_cast<Threadable>(p));
-        */
+        shared_ptr<Physics> physics (new Physics(100.0));
+        CHECK(boost::dynamic_pointer_cast<Threadable>(physics));
+        CHECK_EQUAL(100, physics->getFrequency());
     }
+    TEST(modification)
+    {
+        shared_ptr<Physics> p (new Physics(100.0));
+        CHECK_EQUAL(100, p->getFrequency());
+
+        p->setFrequency(200);
+        CHECK_EQUAL(200, p->getFrequency());
+        p->setFrequency(10000);
+        CHECK_EQUAL(10000, p->getFrequency());
+        CHECK_THROW(p->setFrequency(0), Exception);
+        CHECK_EQUAL(10000, p->getFrequency());
+        CHECK_THROW(p->setFrequency(-100), Exception);
+        CHECK_EQUAL(10000, p->getFrequency());
+    }
+    /*
     TEST(threading)
     {
-    /*
-    */
+        shared_ptr<Physics> p (new Physics);
     }
+    */
 }
 int main (int, char*[])
 {

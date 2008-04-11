@@ -1,7 +1,7 @@
 format 49
 "motorsport" // motorsport
-  revision 13
-  modified_by 101 "stenyak"
+  revision 14
+  modified_by 85 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -126,6 +126,51 @@ ${namespace_end}"
       end
     end
 
+    artifact 128085 "Physics"
+      stereotype "source"
+      cpp_h "/** Copyright (C) 2008 Motorsport Project contributors (see license.txt) */
+#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 128085 // Physics
+      end
+    end
+
+    artifact 128213 "Threadable"
+      stereotype "source"
+      cpp_h "/** Copyright (C) 2008 Motorsport Project contributors (see license.txt) */
+#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 128213 // Threadable
+      end
+    end
   end
 
   classview 128152 "model"
@@ -145,6 +190,135 @@ ${namespace_end}"
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default
     associated_deployment_view deploymentview_ref 128024 // deployment
+    class 128213 "Threadable"
+      abstract visibility package 
+      cpp_decl "${description}
+${template}class ${name}${inherit} {
+${members}};
+${inlines}"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 128213 "Threadable"
+	preserve_cpp_body_indent cpp_virtual protected explicit_return_type ""
+	nparams 1
+	  param in name "frequency" explicit_type "float"
+	cpp_decl "    ${description}${inline}${name}${(}${t0} ${p0}${)}${volatile}${throw};"
+	cpp_def "${description}${inline}${class}::${name}${(}${t0} ${p0}${)}${volatile}${throw}: frequency(frequency) {
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+      end
+
+      operation 128725 "setFrequency"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 1
+	  param in name "frequency" explicit_type "float"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+      end
+
+      operation 128341 "getFrequency"
+	preserve_cpp_body_indent const public explicit_return_type "float"
+	nparams 0
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+      end
+
+      attribute 128085 "frequency"
+	private explicit_type "float"
+	multiplicity "1"
+	cpp_decl "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};"
+	java_decl ""
+	php_decl ""
+	idl_decl ""
+	get_oper operation_ref 128469 // get_frequency
+	set_oper operation_ref 128597 // set_frequency
+      end
+
+      operation 128085 "Threadable"
+	abstract preserve_cpp_body_indent cpp_virtual private explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+      end
+
+      operation 128981 "~Threadable"
+	preserve_cpp_body_indent cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${description}${inline}${virtual}${name}${(}${)}${volatile}${throw};"
+	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+      end
+
+      classrelation 128213 // <dependency>
+	relation 128213 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 128213 // <dependency>
+	  b parent class_ref 128163 // Exception
+      end
+    end
+
+    class 128085 "Physics"
+      visibility package 
+      cpp_decl "${description}
+${template}class ${name}${inherit} {
+${members}};
+${inlines}"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128085 // <realization>
+	relation 128085 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128085 // <realization>
+	  b parent class_ref 128213 // Threadable
+      end
+
+      operation 128853 "Physics"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 1
+	  param in name "frequency" explicit_type "float"
+	cpp_decl "    ${description}${inline}${name}${(}${t0} ${p0}${)}${volatile}${throw};"
+	cpp_def "${description}${inline}${class}::${name}${(}${t0} ${p0}${)}${volatile}${throw}: Threadable(frequency) {
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+      end
+
+      operation 129109 "~Physics"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${description}${inline}${virtual}${name}${(}${)}${volatile}${throw};"
+	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+      end
+    end
+
     class 128163 "Exception"
       visibility public 
       cpp_decl "${description}
@@ -258,7 +432,7 @@ ${inlines}"
       end
 
       operation 129510 "~Loggable"
-	abstract preserve_cpp_body_indent cpp_virtual protected explicit_return_type ""
+	preserve_cpp_body_indent cpp_virtual public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${description}${inline}${virtual}${name}${(}${)}${volatile}${throw} {};
 "
@@ -306,12 +480,10 @@ ${inlines}"
       end
 
       operation 129382 "Loggable"
-	preserve_cpp_body_indent private explicit_return_type ""
+	abstract preserve_cpp_body_indent cpp_virtual private explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};
 "
-	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
@@ -414,7 +586,7 @@ ${inlines}"
     end
 
     class 129381 "Group"
-      visibility package 
+      abstract visibility package 
       nactuals 1
       actual class class_ref 128035 // enable_shared_from_this
         rank 0 value class_ref 129381 // Group
@@ -580,11 +752,9 @@ ${inlines}"
       end
 
       operation 130022 "Group"
-	preserve_cpp_body_indent private explicit_return_type ""
+	abstract preserve_cpp_body_indent cpp_virtual private explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};"
-	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw}: Loggable(\"\") {
-  ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	

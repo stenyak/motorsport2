@@ -145,11 +145,5 @@ bool Group::isAncestor(shared_ptr< Group > group) const {
     return result;
   // Bouml preserved body end 0001F640
 }
-/** Default constructor, should not be used. */
-Group::Group(): Loggable("") {
-  // Bouml preserved body begin 0001FBE6
-    throw Exception("Tried to create a Group with default constructor. This shouldn't have happened. Please report this as a bug.");
-  // Bouml preserved body end 0001FBE6
-}
 
 } // namespace motorsport

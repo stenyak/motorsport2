@@ -79,9 +79,9 @@ def cfgSet(cfg):
 ################################################################################
 # Build Configurations
 ################################################################################
-cfgDebug = { "ccflags":"-g" }
+cfgDebug = { "ccflags":"-g -O0" }
 cfgWarns = { "ccflags":"-Wall -Wno-deprecated -ansi -pedantic" }
-cfgCov = { "ccflags":"-fprofile-arcs -ftest-coverage" }
+cfgCov = { "ccflags":"--coverage" }
 depBoostShared = { "ccflags":"-isystem usr/include/boost-1_35", "includePaths":"usr/include", "includePaths":"usr/include/boost-1_35", "libPaths":"usr/lib" }
 depBoostDate = { "ccflags":"-isystem usr/include/boost-1_35", "libs":"boost_date_time", "includePaths":"usr/include/boost-1_35", "libPaths":"usr/lib" }
 depBoostThread = { "ccflags":"-isystem usr/include/boost-1_35", "libs":"boost_thread-gcc41-mt", "includePaths":"usr/include/boost-1_35", "libPaths":"usr/lib" }
@@ -94,7 +94,7 @@ depMotorsportSim = {"libPaths":"usr/lib/motorsport-sim","libs":"motorsport-sim",
 ################################################################################
 # Builds
 ################################################################################
-cfgMotorsport = { "name": "motorsport" ,"sources": "Core.cpp Loggable.cpp Group.cpp Exception.cpp" ,"headers": "Core.h Group.h Loggable.h Exception.h" }
+cfgMotorsport = { "name": "motorsport" ,"sources": "Core.cpp Loggable.cpp Group.cpp Exception.cpp Physics.cpp Threadable.cpp" ,"headers": "Core.h Group.h Loggable.h Exception.h Physics.h Threadable.h" }
 objMotorsport = build("SharedLibrary", [cfgMotorsport, cfgDebug, cfgWarns, cfgCov, depBoostShared])
 
 cfgMotorsportTests = { "name": "motorsport-tests" ,"sources": "main.cpp" }

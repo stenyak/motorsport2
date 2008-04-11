@@ -27,11 +27,5 @@ void Loggable::setId(const string & id) {
     this->id = id;
   // Bouml preserved body end 0001F4A3
 }
-/** Default constructor. Should not be used. */
-Loggable::Loggable() {
-  // Bouml preserved body begin 0001F966
-    throw Exception("Must not use default Loggable() constructor.");
-  // Bouml preserved body end 0001F966
-}
 
 } // namespace motorsport
