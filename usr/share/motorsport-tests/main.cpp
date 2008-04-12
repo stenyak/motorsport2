@@ -157,7 +157,7 @@ SUITE(testTime)
     {
         boost::thread make_thread();
         int ms = 50;
-        float margin = 1.02;
+        float margin = 1.05;
         time_duration td = milliseconds(ms);
         UNITTEST_TIME_CONSTRAINT((int)(ms*margin));
         boost::this_thread::sleep(td);
@@ -211,12 +211,48 @@ SUITE(testThreadable)
         CHECK_THROW(p->setFrequency(-100), Exception);
         CHECK_EQUAL(10000, p->getFrequency());
     }
-    /*
     TEST(threading)
     {
-        shared_ptr<Physics> p (new Physics);
+        shared_ptr<Physics> p (new Physics(100.0));
+        //thread is not created, initiated in non-paused mode
+        CHECK_EQUAL(false, p->isPaused());
+        CHECK_EQUAL(false, p->isCreated());
+
+        CHECK_THROW(p->resume(), Exception); //can't resume if thread is not created
+        CHECK_EQUAL(false, p->isPaused()); //still not paused
+
+        p->start(); //creates thread
+        CHECK_EQUAL(true, p->isCreated());
+        CHECK_EQUAL(false, p->isPaused());
+        CHECK_THROW(p->start(), Exception); //can't create if thread is already created
+        CHECK_EQUAL(true, p->isCreated());
+        CHECK_EQUAL(false, p->isPaused());
+
+        p->pause(); //pauses thread loop
+        CHECK_EQUAL(true, p->isPaused());
+        CHECK_THROW(p->pause(), Exception); //can't pause if thread is not created
+        CHECK_EQUAL(true, p->isPaused());
+
+        p->resume(); //continues thread loop
+        CHECK_EQUAL(false, p->isPaused());
+        CHECK_THROW(p->resume(), Exception); //can't resume if thread is not paused
+        CHECK_EQUAL(false, p->isPaused());
+
+        p->stop(); //deletes thread
+        CHECK_EQUAL(true, p->isPaused());
+        CHECK_EQUAL(false, p->isCreated());
+        CHECK_THROW(p->stop(), Exception); //can't delete if thread is not started
+        CHECK_EQUAL(true, p->isPaused());
+        CHECK_EQUAL(false, p->isCreated());
+        
+        p->start();
+        p->pause();
+        p->stop();
+
+        //TODO: Physics destructor; // deletes thread
+        //TODO: check things get run.
+        //TODO: check threads stop and shit.
     }
-    */
 }
 int main (int, char*[])
 {

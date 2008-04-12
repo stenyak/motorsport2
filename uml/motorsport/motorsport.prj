@@ -1,7 +1,7 @@
 format 49
 "motorsport"
-  revision 17
-  modified_by 85 "stenyak"
+  revision 18
+  modified_by 106 "stenyak"
   cpp_root_dir "../../usr/share/"
 
   artifact_default_description "/** \\TODO: add description */"
@@ -106,6 +106,31 @@ using namespace std;"
       explicit_switch_type ""
       
       comment "/** From standard C classes. Base class for all custom exceptions. */"
+    end
+
+    class 128341 "thread"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <boost/${name}.hpp>
+using namespace boost;"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From Boost libraries. Allows to handle threads. */"
+    end
+
+    class 128106 "bind"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <boost/${name}.hpp>
+using namespace boost;"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
     end
   end
 

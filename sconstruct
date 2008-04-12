@@ -82,9 +82,9 @@ def cfgSet(cfg):
 cfgDebug = { "ccflags":"-g -O0" }
 cfgWarns = { "ccflags":"-Wall -Wno-deprecated -ansi -pedantic" }
 cfgCov = { "ccflags":"--coverage" }
-depBoostShared = { "ccflags":"-isystem usr/include/boost-1_35", "includePaths":"usr/include", "includePaths":"usr/include/boost-1_35", "libPaths":"usr/lib" }
+depBoostShared = { "ccflags":"-isystem usr/include/boost-1_35", "includePaths":"usr/include usr/include/boost-1_35" }
 depBoostDate = { "ccflags":"-isystem usr/include/boost-1_35", "libs":"boost_date_time", "includePaths":"usr/include/boost-1_35", "libPaths":"usr/lib" }
-depBoostThread = { "ccflags":"-isystem usr/include/boost-1_35", "libs":"boost_thread-gcc41-mt", "includePaths":"usr/include/boost-1_35", "libPaths":"usr/lib" }
+depBoostThread = { "ccflags":"-isystem usr/include/boost-1_35", "libs":"boost_thread-gcc41-mt-1_35", "includePaths":"usr/include/boost-1_35", "libPaths":"usr/lib" }
 
 depUnitTest = { "ccflags":"-isystem usr/include/unittest++", "includePaths":"usr/include" , "libPaths":"usr/lib", "libs":"UnitTest++" }
 #depUnitTest = { "includePaths":"usr/include" }
@@ -105,10 +105,10 @@ cfgDepMotorsportSim = { "name": "motorsport-sim" ,"sources": "Sim.cpp" ,"headers
 objDepMotorsportSim = build("StaticLibrary", [cfgDepMotorsportSim, cfgDebug, cfgWarns, cfgCov, depBoostShared, depMotorsport])
 
 cfgMotorsportSim = { "name": "motorsport-sim" ,"sources": "main.cpp" }
-objMotorsportSim = build("Program", [cfgMotorsportSim, cfgDebug, cfgWarns, cfgCov, depBoostShared, depMotorsport, depMotorsportSim])
+objMotorsportSim = build("Program", [cfgMotorsportSim, cfgDebug, cfgWarns, cfgCov, depBoostShared, depBoostThread, depMotorsport, depMotorsportSim])
 
 cfgMotorsportSimTests = { "name": "motorsport-sim-tests" ,"sources": "tests.cpp" }
-objMotorsportSimTests = build("Program", [cfgMotorsportSimTests, cfgDebug, cfgWarns, cfgCov, depBoostShared, depUnitTest, depMotorsport, depMotorsportSim])
+objMotorsportSimTests = build("Program", [cfgMotorsportSimTests, cfgDebug, cfgWarns, cfgCov, depBoostShared, depBoostThread, depUnitTest, depMotorsport, depMotorsportSim])
 
 cfgThreadTest = { "name": "thread-test" ,"sources": "main.cpp" }
 objThreadTest = build("Program", [cfgThreadTest, cfgDebug, cfgWarns, cfgCov, depBoostShared, depUnitTest ])
