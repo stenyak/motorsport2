@@ -35,13 +35,16 @@ class Threadable {
     void pause();
     /** Stops and deletes the thread. The thread should be already \ref isCreated created.*/
     void stop();
-    /** Regular destructor. */
+    /** Regular destructor. Calls \ref stop in order to terminate the thread. */
     virtual ~Threadable();
 
   protected:
-    /** Basic thread constructor.
+    /** Basic threadable constructor. No thread will be spawned until \ref create is used.
     \param frequency the rate at which the thread will try to loop (in Hz). */
     Threadable(float frequency);
+    /** Functor method, contains the actual code of the thread. Should be implemented by all derived classes. The method must implement two things:
+    1: Check for \ref hasToStop regularly. As soon as it's true, the functor method must exit.
+    2: Check for isPaused(). If it's true, the functor method should stop doing things, until it becomes false again. Sleeps should be used while waiting. */
     virtual void operator()() = 0;
 
   private:

@@ -74,12 +74,13 @@ void Threadable::stop() {
     hasToStop = false;
   // Bouml preserved body end 0001F9D5
 }
-/** Regular destructor. */
+/** Regular destructor. Calls \ref stop in order to terminate the thread. */
 Threadable::~Threadable() {
   // Bouml preserved body begin 0001F7D5
+    stop();
   // Bouml preserved body end 0001F7D5
 }
-/** Basic thread constructor.
+/** Basic threadable constructor. No thread will be spawned until \ref create is used.
 \param frequency the rate at which the thread will try to loop (in Hz). */
 Threadable::Threadable(float frequency): frequency(frequency), hasToStop(false) {
   // Bouml preserved body begin 0001F4D5
