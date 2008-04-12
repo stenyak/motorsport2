@@ -5,6 +5,9 @@ In order to download Motorsport, you can use Tortoise HG:
  - http://www.selenic.com/mercurial/wiki/index.cgi/TortoiseHg 
 Or also the one provided by cygwin.
 
+WARNING: all instructions below are out of date. Cygwin is deprecated,
+instructions for Mingw will be coming soon.
+
 First, you need to install certain libs using CygWin:
  - boost-devel
  - gcc/g++

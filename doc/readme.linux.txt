@@ -2,7 +2,7 @@ How to develop Motorsport Project under GNU/Linux
 =================================================
 
 First, you need to install certain libs using your distros package manager.
- - boost
+ - boost-1.35 (thread, shared_ptr, bind, date_time)
  - unittest++ (*)
 
 * Note:  If your distro (such as Gentoo) doesn't provide unittest++, we
@@ -19,3 +19,9 @@ Development flow:
 
 Building all projects at once:
 $ scons
+
+Building all projects at once, and testing/debugging once of them:
+$ build*.sh
+
+Cleaning up all files:
+$ ./clean.sh
