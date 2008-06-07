@@ -8,8 +8,6 @@ using namespace boost;
 using namespace boost;
 #include <boost/thread/thread.hpp>
 using namespace boost;
-#include <boost/enable_shared_from_this.hpp>
-using namespace boost;
 #include <boost/bind.hpp>
 using namespace boost;
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -20,7 +18,7 @@ namespace motorsport { class Exception; }
 namespace motorsport {
 
 /** Allows a class to be runnable in a separate thread. */
-class Threadable : virtual public enable_shared_from_this<Threadable> {
+class Threadable {
   public:
     /** Changes the thread frequency.
     \param frequency the desired new frequency, in Hz. */

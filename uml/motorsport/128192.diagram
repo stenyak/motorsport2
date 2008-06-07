@@ -38,10 +38,6 @@ relationcanvas 128341 relation_ref 128085 // <realization>
   from ref 128085 z 1999 to ref 128213
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
-relationcanvas 128362 relation_ref 128490 // <realization>
-  from ref 128213 z 1999 label "<X->Threadable>" xyz 248 172 3000 to ref 129344
-  no_role_a no_role_b
-  no_multiplicity_a no_multiplicity_b
 relationcanvas 128894 relation_ref 128291 // <realization>
   from ref 128766 z 1999 to ref 128638
   no_role_a no_role_b

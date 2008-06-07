@@ -192,9 +192,6 @@ ${namespace_end}"
     associated_deployment_view deploymentview_ref 128024 // deployment
     class 128213 "Threadable"
       abstract visibility package 
-      nactuals 1
-      actual class class_ref 128035 // enable_shared_from_this
-        rank 0 value class_ref 128213 // Threadable
       cpp_decl "${description}
 ${template}class ${name}${inherit} {
 ${members}};
@@ -422,14 +419,6 @@ ${inlines}"
 	    cpp default "    ${description}${static}${mutable}${volatile}${stereotype}<${type}> ${name}${value};"
 	    classrelation_ref 128597 // bthread (<directional aggregation>)
 	  b parent class_ref 128341 // thread
-      end
-
-      classrelation 128490 // <realization>
-	relation 128490 -_-|>
-	  a public
-	    cpp virtual default "${type}"
-	    classrelation_ref 128490 // <realization>
-	  b parent class_ref 128035 // enable_shared_from_this
       end
 
       classrelation 128213 // <dependency>
