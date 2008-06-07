@@ -6,11 +6,7 @@
 #include <motorsport/Physics.h>
 using namespace motorsport;
 #include <boost/shared_ptr.hpp>
-#include <boost/thread/thread.hpp>
 using namespace boost;
-#include <boost/date_time/posix_time/posix_time.hpp>
-using namespace boost::posix_time;
-
 
 SUITE(testCore)
 {
@@ -22,6 +18,8 @@ SUITE(testCore)
         shared_ptr<Core> c2 (new Core());
         c2->getWorld();
         CHECK_EQUAL(c2->getWorld()->getId(), "default world");
+
+        Group gg2();
 
         shared_ptr<Group>g2 (new Group ("test01"));
         shared_ptr<Core> c3(new Core(g2));
@@ -52,6 +50,7 @@ SUITE(testGroup)
         CHECK_THROW(Group("/t"), Exception);
         CHECK_THROW(Group("t/"), Exception);
         CHECK_THROW(Group("t/t"),Exception);
+        CHECK_THROW(Group("t/t/t"),Exception);
 
         shared_ptr<Group> g4(new Group("test02"));
         CHECK_EQUAL("test02", g4->getId());
@@ -193,65 +192,67 @@ SUITE(testThreadable)
 {
     TEST(construction)
     {
-        shared_ptr<Physics> physics (new Physics(100.0));
-        CHECK(boost::dynamic_pointer_cast<Threadable>(physics));
-        CHECK_EQUAL(100, physics->getFrequency());
+        shared_ptr<Physics> p0 (new Physics(102.0));
+        CHECK(boost::dynamic_pointer_cast<Threadable>(p0));
+        CHECK_EQUAL(102, p0->getFrequency());
     }
     TEST(modification)
     {
-        shared_ptr<Physics> p (new Physics(100.0));
-        CHECK_EQUAL(100, p->getFrequency());
+        shared_ptr<Physics> p1 (new Physics(101.0));
+        CHECK_EQUAL(101, p1->getFrequency());
 
-        p->setFrequency(200);
-        CHECK_EQUAL(200, p->getFrequency());
-        p->setFrequency(10000);
-        CHECK_EQUAL(10000, p->getFrequency());
-        CHECK_THROW(p->setFrequency(0), Exception);
-        CHECK_EQUAL(10000, p->getFrequency());
-        CHECK_THROW(p->setFrequency(-100), Exception);
-        CHECK_EQUAL(10000, p->getFrequency());
+        p1->setFrequency(201);
+        CHECK_EQUAL(201, p1->getFrequency());
+        p1->setFrequency(10001);
+        CHECK_EQUAL(10001, p1->getFrequency());
+        CHECK_THROW(p1->setFrequency(0), Exception);
+        CHECK_EQUAL(10001, p1->getFrequency());
+        CHECK_THROW(p1->setFrequency(-100), Exception);
+        CHECK_EQUAL(10001, p1->getFrequency());
     }
     TEST(threading)
     {
-        shared_ptr<Physics> p (new Physics(100.0));
+        {
+            shared_ptr<Physics> p01 (new Physics(103.0));
+        }
+        {
+            shared_ptr<Physics> p2 (new Physics(200.0));
+            p2->start();
+            p2.reset();
+        }
+        shared_ptr<Physics> p3 (new Physics(100.0));
         //thread is not created, initiated in non-paused mode
-        CHECK_EQUAL(false, p->isPaused());
-        CHECK_EQUAL(false, p->isCreated());
+        CHECK_EQUAL(false, p3->isPaused());
 
-        CHECK_THROW(p->resume(), Exception); //can't resume if thread is not created
-        CHECK_EQUAL(false, p->isPaused()); //still not paused
+        CHECK_THROW(p3->resume(), Exception); //can't resume if thread is not created
+        CHECK_EQUAL(false, p3->isPaused()); //still not paused
 
-        p->start(); //creates thread
-        CHECK_EQUAL(true, p->isCreated());
-        CHECK_EQUAL(false, p->isPaused());
-        CHECK_THROW(p->start(), Exception); //can't create if thread is already created
-        CHECK_EQUAL(true, p->isCreated());
-        CHECK_EQUAL(false, p->isPaused());
+        p3->start(); //creates thread
+        CHECK_EQUAL(false, p3->isPaused());
+        CHECK_THROW(p3->start(), Exception); //can't create if thread is already created
+        CHECK_EQUAL(false, p3->isPaused());
 
-        p->pause(); //pauses thread loop
-        CHECK_EQUAL(true, p->isPaused());
-        CHECK_THROW(p->pause(), Exception); //can't pause if thread is not created
-        CHECK_EQUAL(true, p->isPaused());
+        p3->pause(); //pauses thread loop
+        CHECK_EQUAL(true, p3->isPaused());
+        CHECK_THROW(p3->pause(), Exception); //can't pause if thread is not created
+        CHECK_EQUAL(true, p3->isPaused());
 
-        p->resume(); //continues thread loop
-        CHECK_EQUAL(false, p->isPaused());
-        CHECK_THROW(p->resume(), Exception); //can't resume if thread is not paused
-        CHECK_EQUAL(false, p->isPaused());
+        p3->resume(); //continues thread loop
+        CHECK_EQUAL(false, p3->isPaused());
+        CHECK_THROW(p3->resume(), Exception); //can't resume if thread is not paused
+        CHECK_EQUAL(false, p3->isPaused());
 
-        p->stop(); //deletes thread
-        CHECK_EQUAL(true, p->isPaused());
-        CHECK_EQUAL(false, p->isCreated());
-        CHECK_THROW(p->stop(), Exception); //can't delete if thread is not started
-        CHECK_EQUAL(true, p->isPaused());
-        CHECK_EQUAL(false, p->isCreated());
+        p3->stop(); //deletes thread
+        CHECK_EQUAL(true, p3->isPaused());
+        CHECK_THROW(p3->stop(), Exception); //can't delete if thread is not started
+        CHECK_EQUAL(true, p3->isPaused());
         
-        p->start();
-        p->pause();
-        p->stop();
-
-        //TODO: Physics destructor; // deletes thread
-        //TODO: check things get run.
-        //TODO: check threads stop and shit.
+        p3->start();
+        p3->pause();
+        p3->stop();
+        p3->start();
+        p3.reset();
+        //TODO: check loops get executed at right freq.
     }
 }
 int main (int, char*[])

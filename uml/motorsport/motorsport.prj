@@ -1,7 +1,7 @@
 format 49
 "motorsport"
-  revision 18
-  modified_by 106 "stenyak"
+  revision 19
+  modified_by 69 "stenyak"
   cpp_root_dir "../../usr/share/"
 
   artifact_default_description "/** \\TODO: add description */"
@@ -111,7 +111,7 @@ using namespace std;"
     class 128341 "thread"
       visibility package 
       cpp_external cpp_decl "${name}
-#include <boost/${name}.hpp>
+#include <boost/${name}/${name}.hpp>
 using namespace boost;"
       java_decl ""
       php_decl ""
@@ -131,6 +131,45 @@ using namespace boost;"
       idl_decl ""
       explicit_switch_type ""
       
+    end
+
+    class 128234 "mutex"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <boost/thread/mutex.hpp>
+using namespace boost;"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From Boost libraries.*/"
+    end
+
+    class 128362 "scoped_lock"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <boost/thread/mutex.hpp>
+using namespace boost;"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From Boost libraries.*/"
+    end
+
+    class 128618 "posix_time"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <boost/date_time/${name}/${name}.hpp>
+using namespace boost::${name};"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From Boost libraries. Allows to handle threads. */"
     end
   end
 

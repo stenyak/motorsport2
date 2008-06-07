@@ -26,30 +26,38 @@ bool Threadable::isPaused() const {
     return paused;
   // Bouml preserved body end 0001FAD5
 }
-/** \return true if this class has already spawned a thread.
-\return false if no thread has been created yet. */
-bool Threadable::isCreated() const {
-  // Bouml preserved body begin 0001FB55
-    return bthread;
-  // Bouml preserved body end 0001FB55
+/** \return true if the thread should stop.
+\return false if the thread should keep running (looping). */
+bool Threadable::hasToStop() const {
+  // Bouml preserved body begin 0001F445
+    return shouldStop;
+  // Bouml preserved body end 0001F445
 }
 /** Creates a thread and starts running it. No thread should be \ref isCreated created already. The loop is run with the \ref operator() functor method of the class.*/
 void Threadable::start() {
   // Bouml preserved body begin 0001F955
-    if (isCreated())
-        throw Exception("Can't create new thread if it's already created.");
+    {
+        mutex::scoped_lock l(mutBthread);
+        if (bthread)
+            throw Exception("Can't create new thread if it's already created.");
+
+        bthread.reset(new thread(bind(&Threadable::startLoop, this)));
+        while (!loopStarted)
+            ; //empty
+    }
     paused = false;
-    bthread.reset(new thread(bind(&Threadable::operator(), this)));
   // Bouml preserved body end 0001F955
 }
 /** Resumes the execution of the thread. The thread should be \ref isPaused paused and \ref isCreated created already.*/
 void Threadable::resume() {
   // Bouml preserved body begin 0001FA55
-    if (!isCreated())
-        throw Exception("Can't resume if thread is not created.");
+    {
+        mutex::scoped_lock l(mutBthread);
+        if (!bthread)
+            throw Exception("Can't resume if thread is not created.");
+    }
     if (!isPaused())
         throw Exception("Can't resume if thread is not paused.");
-    //TODO: protect pause from multi threads
     paused = false;
   // Bouml preserved body end 0001FA55
 }
@@ -64,27 +72,60 @@ void Threadable::pause() {
 /** Stops and deletes the thread. The thread should be already \ref isCreated created.*/
 void Threadable::stop() {
   // Bouml preserved body begin 0001F9D5
-    if (!isCreated())
-        throw Exception("Can't stop if thread is not created.");
     if (!isPaused())
         pause();
-    hasToStop = true;
-    bthread->join();
-    bthread.reset();
-    hasToStop = false;
+    {
+        mutex::scoped_lock l(mutBthread);
+        if (!bthread)
+            throw Exception("Can't stop if thread is not created.");
+        else
+        shouldStop = true;
+        bthread->join();
+        shouldStop = false;
+        bthread.reset();
+        loopStarted = true;
+    }
+    //TODO: shouldStop mutex
+    //TODO: add all pause and etc. mutex
   // Bouml preserved body end 0001F9D5
 }
 /** Regular destructor. Calls \ref stop in order to terminate the thread. */
 Threadable::~Threadable() {
   // Bouml preserved body begin 0001F7D5
-    stop();
+    safeStop();
   // Bouml preserved body end 0001F7D5
+}
+/** Stops and deletes the thread. The thread doesn't need to be already \ref isCreated created.*/
+void Threadable::safeStop() {
+  // Bouml preserved body begin 0001F4C5
+  // TODO: somehow refactor this with stop(), knowing the mutex can't be taken 2 times.
+    if (!isPaused())
+        pause();
+    {
+        mutex::scoped_lock l(mutBthread);
+        if (bthread)
+        {
+            shouldStop = true;
+            bthread->join();
+            shouldStop = false;
+            bthread.reset();
+        }
+        loopStarted = false;
+    }
+  // Bouml preserved body end 0001F4C5
 }
 /** Basic threadable constructor. No thread will be spawned until \ref create is used.
 \param frequency the rate at which the thread will try to loop (in Hz). */
-Threadable::Threadable(float frequency): frequency(frequency), hasToStop(false) {
+Threadable::Threadable(float frequency): frequency(frequency), shouldStop(false), paused(false), loopStarted(false) {
   // Bouml preserved body begin 0001F4D5
   // Bouml preserved body end 0001F4D5
+}
+/** Executes the \ref operator() functor method of the class, then sets "loopStarted" to true.*/
+void Threadable::startLoop() {
+  // Bouml preserved body begin 0001F545
+    loopStarted = true;
+    bind(&Threadable::operator(), this)();
+  // Bouml preserved body end 0001F545
 }
 
 } // namespace motorsport

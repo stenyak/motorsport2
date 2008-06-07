@@ -12,9 +12,8 @@ class Physics : public Threadable {
     Physics(float frequency);
     virtual ~Physics();
 
-  private:
-    virtual void operator()();
-    Physics();
+  protected:
+    void operator()();
 };
 
 } // namespace motorsport

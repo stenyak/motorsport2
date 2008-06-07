@@ -18,8 +18,7 @@ class Loggable {
 
   public:
     /** Simple destructor. */
-    virtual ~Loggable() {};
-
+    virtual ~Loggable();
     /** \returns a string that helps identify the object in the generated logs. */
     virtual const string getId() const;
     /** Sets the \ref id to the desired string value. */
@@ -28,9 +27,6 @@ class Loggable {
   private:
     /** An identifier name for the object to be logged. It will help identify where logs came from. */
     string id;
-
-    /** Default constructor. Should not be used. */
-    Loggable();
 
 };
 

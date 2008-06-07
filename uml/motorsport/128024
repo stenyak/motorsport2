@@ -1,7 +1,7 @@
 format 49
 "motorsport" // motorsport
-  revision 15
-  modified_by 106 "stenyak"
+  revision 16
+  modified_by 69 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -192,6 +192,9 @@ ${namespace_end}"
     associated_deployment_view deploymentview_ref 128024 // deployment
     class 128213 "Threadable"
       abstract visibility package 
+      nactuals 1
+      actual class class_ref 128035 // enable_shared_from_this
+        rank 0 value class_ref 128213 // Threadable
       cpp_decl "${description}
 ${template}class ${name}${inherit} {
 ${members}};
@@ -201,6 +204,7 @@ ${inlines}"
       idl_decl ""
       explicit_switch_type ""
       
+      associated_diagram classdiagram_ref 128024 // aggregations
       comment "/** Allows a class to be runnable in a separate thread. */"
       operation 128725 "setFrequency"
 	preserve_cpp_body_indent public explicit_return_type "void"
@@ -241,7 +245,7 @@ ${inlines}"
 \\return false if the thread is running (looping). */"
       end
 
-      operation 129877 "isCreated"
+      operation 128069 "hasToStop"
 	preserve_cpp_body_indent const public explicit_return_type "bool"
 	nparams 0
 	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
@@ -250,8 +254,8 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "/** \\return true if this class has already spawned a thread.
-\\return false if no thread has been created yet. */"
+	comment "/** \\return true if the thread should stop.
+\\return false if the thread should keep running (looping). */"
       end
 
       operation 129365 "start"
@@ -314,12 +318,24 @@ ${inlines}"
 	comment "/** Regular destructor. Calls \\ref stop in order to terminate the thread. */"
       end
 
+      operation 128197 "safeStop"
+	preserve_cpp_body_indent protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Stops and deletes the thread. The thread doesn't need to be already \\ref isCreated created.*/"
+      end
+
       operation 128213 "Threadable"
 	preserve_cpp_body_indent cpp_virtual protected explicit_return_type ""
 	nparams 1
 	  param in name "frequency" explicit_type "float"
 	cpp_decl "    ${description}${inline}${name}${(}${t0} ${p0}${)}${volatile}${throw};"
-	cpp_def "${description}${inline}${class}::${name}${(}${t0} ${p0}${)}${volatile}${throw}: frequency(frequency), hasToStop(false) {
+	cpp_def "${description}${inline}${class}::${name}${(}${t0} ${p0}${)}${volatile}${throw}: frequency(frequency), shouldStop(false), paused(false), loopStarted(false) {
   ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
@@ -340,14 +356,16 @@ ${inlines}"
 2: Check for isPaused(). If it's true, the functor method should stop doing things, until it becomes false again. Sleeps should be used while waiting. */"
       end
 
-      operation 128085 "Threadable"
-	preserve_cpp_body_indent private explicit_return_type ""
+      operation 128325 "startLoop"
+	preserve_cpp_body_indent private explicit_return_type "void"
 	nparams 0
-	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "/** Default constructor, should not be used. */"
+	comment "/** Executes the \\ref operator() functor method of the class, then sets \"loopStarted\" to true.*/"
       end
 
       attribute 128085 "frequency"
@@ -360,13 +378,13 @@ ${inlines}"
 	comment "/** The frequency (in Hz) at which the thread will attempt to run its main loop.*/"
       end
 
-      attribute 128213 "hasToStop"
+      attribute 128213 "shouldStop"
 	private explicit_type "bool"
 	cpp_decl "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};"
 	java_decl ""
 	php_decl ""
 	idl_decl ""
-	comment "/** False if the currently running thread should be stopped and deleted. */"
+	comment "/** False if the currently running thread should be stopped and deleted. Accessed by derived classes using \\ref hasToStop method. */"
       end
 
       attribute 128341 "paused"
@@ -378,6 +396,24 @@ ${inlines}"
 	comment "/** True if the currently running thread should be paused. */"
       end
 
+      attribute 128069 "loopStarted"
+	private explicit_type "bool"
+	cpp_decl "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};"
+	java_decl ""
+	php_decl ""
+	idl_decl ""
+	comment "/** True if the thread loop has already started. */"
+      end
+
+      classrelation 128234 // mutBthread (<directional composition>)
+	relation 128234 *-->
+	  a role_name "mutBthread" multiplicity "1" private
+	    comment "/** A recursive mutex, which should be used to lock the \\ref bthread thread while trying to construct/destruct it, and while accessing the pause/resume/isPaused methods. */"
+	    cpp default "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};"
+	    classrelation_ref 128234 // mutBthread (<directional composition>)
+	  b parent class_ref 128234 // mutex
+      end
+
       classrelation 128597 // bthread (<directional aggregation>)
 	relation 128597 o-->
 	  stereotype "shared_ptr"
@@ -386,6 +422,14 @@ ${inlines}"
 	    cpp default "    ${description}${static}${mutable}${volatile}${stereotype}<${type}> ${name}${value};"
 	    classrelation_ref 128597 // bthread (<directional aggregation>)
 	  b parent class_ref 128341 // thread
+      end
+
+      classrelation 128490 // <realization>
+	relation 128490 -_-|>
+	  a public
+	    cpp virtual default "${type}"
+	    classrelation_ref 128490 // <realization>
+	  b parent class_ref 128035 // enable_shared_from_this
       end
 
       classrelation 128213 // <dependency>
@@ -402,6 +446,22 @@ ${inlines}"
 	    cpp default "#include in source"
 	    classrelation_ref 128106 // <dependency>
 	  b parent class_ref 128106 // bind
+      end
+
+      classrelation 128618 // <dependency>
+	relation 128618 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 128618 // <dependency>
+	  b parent class_ref 128362 // scoped_lock
+      end
+
+      classrelation 128746 // <dependency>
+	relation 128746 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 128746 // <dependency>
+	  b parent class_ref 128618 // posix_time
       end
     end
 
@@ -440,21 +500,10 @@ ${inlines}"
       end
 
       operation 128106 "operator()"
-	preserve_cpp_body_indent cpp_virtual private explicit_return_type "void"
+	preserve_cpp_body_indent protected explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
 	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}"
-	preserve_java_body_indent 
-	preserve_php_body_indent 
-	
-      end
-
-      operation 128234 "Physics"
-	preserve_cpp_body_indent private explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};"
-	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw}: Threadable(100) {
   ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
@@ -468,6 +517,7 @@ ${inlines}"
 	    classrelation_ref 128085 // <realization>
 	  b parent class_ref 128213 // Threadable
       end
+
     end
 
     class 128163 "Exception"
@@ -585,8 +635,9 @@ ${inlines}"
       operation 129510 "~Loggable"
 	preserve_cpp_body_indent cpp_virtual public explicit_return_type ""
 	nparams 0
-	cpp_decl "    ${description}${inline}${virtual}${name}${(}${)}${volatile}${throw} {};
-"
+	cpp_decl "    ${description}${inline}${virtual}${name}${(}${)}${volatile}${throw};"
+	cpp_def "${description}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
@@ -628,17 +679,6 @@ ${inlines}"
 	php_decl ""
 	idl_decl ""
 	comment "/** An identifier name for the object to be logged. It will help identify where logs came from. */"
-      end
-
-      operation 129382 "Loggable"
-	abstract preserve_cpp_body_indent cpp_virtual private explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};
-"
-	preserve_java_body_indent 
-	preserve_php_body_indent 
-	
-	comment "/** Default constructor. Should not be used. */"
       end
 
       classrelation 128419 // <dependency>
@@ -900,16 +940,6 @@ ${inlines}"
 	
 	comment "/** Returns true if any of the ancestors (beginning with this's parent) is the provided group.
 \\param group the group to be searched as ancestor. */"
-      end
-
-      operation 130022 "Group"
-	abstract preserve_cpp_body_indent cpp_virtual private explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${description}${inline}${name}${(}${)}${volatile}${throw};"
-	preserve_java_body_indent 
-	preserve_php_body_indent 
-	
-	comment "/** Default constructor, should not be used. */"
       end
 
       classrelation 129381 // children (<directional aggregation>)

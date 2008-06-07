@@ -79,9 +79,9 @@ def cfgSet(cfg):
 ################################################################################
 # Build Configurations
 ################################################################################
-cfgDebug = { "ccflags":"-g -O0" }
+cfgDebug = { "ccflags":"-g -O0 -ggdb3" }
 cfgWarns = { "ccflags":"-Wall -Wno-deprecated -ansi -pedantic" }
-cfgCov = { "ccflags":"--coverage" }
+cfgCov = { "ccflags":"--coverage -fprofile-arcs -ftest-coverage" }
 depBoostShared = { "ccflags":"-isystem usr/include/boost-1_35", "includePaths":"usr/include usr/include/boost-1_35" }
 depBoostDate = { "ccflags":"-isystem usr/include/boost-1_35", "libs":"boost_date_time", "includePaths":"usr/include/boost-1_35", "libPaths":"usr/lib" }
 depBoostThread = { "ccflags":"-isystem usr/include/boost-1_35", "libs":"boost_thread-gcc41-mt-1_35", "includePaths":"usr/include/boost-1_35", "libPaths":"usr/lib" }

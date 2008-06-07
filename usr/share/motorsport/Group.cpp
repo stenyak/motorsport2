@@ -37,7 +37,7 @@ const string Group::getGlobalId() const {
     result += "/";
     result += Loggable::getId();
 
-    return result;
+    return (const string)result;
   // Bouml preserved body end 0001FE66
 }
 

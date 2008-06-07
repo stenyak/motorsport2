@@ -11,6 +11,11 @@ Loggable::Loggable(const string & id) {
   setId(id);
   // Bouml preserved body end 0001FA66
 }
+/** Simple destructor. */
+Loggable::~Loggable() {
+  // Bouml preserved body begin 0001F9E6
+  // Bouml preserved body end 0001F9E6
+}
 /** \returns a string that helps identify the object in the generated logs. */
 const string Loggable::getId() const {
   // Bouml preserved body begin 0001F8E6

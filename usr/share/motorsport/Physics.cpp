@@ -13,11 +13,21 @@ Physics::~Physics() {
 }
 void Physics::operator()() {
   // Bouml preserved body begin 0001F46A
+    int count = 0;
+    int paused= 0;
+    while (!hasToStop())
+    {
+        if (isPaused())
+        {
+            ++paused;
+        }
+        else
+        {
+            ++count;
+        }
+    }
+    std::cout<<"<< Finished a loop at "<<getFrequency()<< " Hz. Stepped "<< count<< " times. Paused "<< paused<< " times."<< std::endl;
   // Bouml preserved body end 0001F46A
-}
-Physics::Physics(): Threadable(100) {
-  // Bouml preserved body begin 0001F4EA
-  // Bouml preserved body end 0001F4EA
 }
 
 } // namespace motorsport

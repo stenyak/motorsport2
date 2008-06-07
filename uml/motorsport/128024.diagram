@@ -12,6 +12,10 @@ classcanvas 128102 class_ref 129254 // Sim
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
   xyz 175 519 2005
   end
+classcanvas 128106 class_ref 128234 // mutex
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 578 0 3005
+  end
 classcanvas 128213 class_ref 128213 // Threadable
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
   xyz 304 252 2010
@@ -38,8 +42,12 @@ relationcanvas 128068 relation_ref 128068 // <directional aggregation>
   from ref 128102 z 2004 stereotype "<<shared_ptr>>" xyz 51 528 3000 to ref 128101
   role_a_pos 101 544 3000 no_role_b
   multiplicity_a_pos 83 546 3000 no_multiplicity_b
-relationcanvas 128725 relation_ref 128597 // <aggregation>
-  from ref 128341 z 2004 stereotype "<<shared_ptr>>" xyz 688 87 3000 to ref 128469
+relationcanvas 128234 relation_ref 128234 // <directional composition>
+  from ref 128341 z 2004 to ref 128106
+  role_a_pos 632 51 3000 no_role_b
+  multiplicity_a_pos 638 51 3000 no_multiplicity_b
+relationcanvas 128725 relation_ref 128597 // <directional aggregation>
+  from ref 128341 z 2004 stereotype "<<shared_ptr>>" xyz 723 75 3000 to ref 128469
   role_a_pos 758 51 3000 no_role_b
   multiplicity_a_pos 729 51 3000 no_multiplicity_b
 relationcanvas 128869 relation_ref 129253 // <directional aggregation>
