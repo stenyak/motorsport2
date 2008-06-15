@@ -22,7 +22,6 @@ set scrolloff=4
 set shiftwidth=4
 set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.info,.aux,.log,.dvi,.bbl,.out,.o,.lo
 set viminfo='20,\"500
-set window=55
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -43,7 +42,7 @@ badd +76 usr/share/thread-test/sconstruct
 badd +1 usr/share/thread-test/time.h
 badd +24 usr/include/unittest++/Checks.h
 badd +5 usr/share/motorsport-sim/Sim.cpp
-badd +593 usr/share/motorsport-sim-tests/tests.cpp
+badd +45 usr/share/motorsport-sim-tests/tests.cpp
 badd +171 usr/include/boost-1_35/boost/integer_traits.hpp
 badd +18 usr/include/boost-1_35/boost/thread/pthread/timespec.hpp
 badd +59 usr/include/boost-1_35/boost/thread/xtime.hpp
@@ -56,13 +55,15 @@ badd +119 usr/include/OgreCollada.h
 badd +13 usr/share/motorsport/Core.cpp
 badd +21 usr/share/motorsport-sim-tests/ExampleApplication.h
 badd +1 usr/share/motorsport-sim-tests/ExampleFrameListener.h
-badd +25 run.sh
+badd +5 run.sh
 badd +34 SkyDome.h
 badd +23 resources.cfg
 badd +1 motorsport-sim-tests:\ /home/stenyak/dev/motorsport/deps/ogre-trunk/../../usr/include/OGRE/OgreSingleton.h
 badd +1 bui
+badd +0 usr/share/motorsport-sim/Graphics.cpp
+badd +0 usr/share/motorsport/Threadable.cpp
 silent! argdel *
-edit usr/share/motorsport-sim-tests/tests.cpp
+edit usr/share/motorsport-sim/Graphics.cpp
 set splitbelow splitright
 wincmd _ | wincmd |
 split
@@ -80,13 +81,13 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 43 + 28) / 56)
+exe '1resize ' . ((&lines * 18 + 18) / 36)
 exe 'vert 1resize ' . ((&columns * 87 + 87) / 175)
-exe '2resize ' . ((&lines * 43 + 28) / 56)
+exe '2resize ' . ((&lines * 18 + 18) / 36)
 exe 'vert 2resize ' . ((&columns * 87 + 87) / 175)
-exe '3resize ' . ((&lines * 10 + 28) / 56)
+exe '3resize ' . ((&lines * 15 + 18) / 36)
 exe 'vert 3resize ' . ((&columns * 87 + 87) / 175)
-exe '4resize ' . ((&lines * 10 + 28) / 56)
+exe '4resize ' . ((&lines * 15 + 18) / 36)
 exe 'vert 4resize ' . ((&columns * 87 + 87) / 175)
 argglobal
 setlocal keymap=
@@ -183,11 +184,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 476 - ((35 * winheight(0) + 21) / 43)
+let s:l = 79 - ((5 * winheight(0) + 9) / 18)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-476
+79
 normal! 04l
 lcd ~/dev/motorsport
 wincmd w
@@ -287,16 +288,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 464 - ((21 * winheight(0) + 21) / 43)
+let s:l = 29 - ((9 * winheight(0) + 9) / 18)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-464
-normal! 08l
+29
+normal! 053l
 lcd ~/dev/motorsport
 wincmd w
 argglobal
-edit ~/dev/motorsport/usr/share/motorsport-sim-tests/tests.cpp
+edit ~/dev/motorsport/usr/share/motorsport/Threadable.cpp
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -391,126 +392,126 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 30 - ((1 * winheight(0) + 5) / 10)
+let s:l = 45 - ((8 * winheight(0) + 7) / 15)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-30
+45
+normal! 0
+lcd ~/dev/motorsport
+wincmd w
+argglobal
+edit ~/dev/motorsport/usr/include/OgreCollada.h
+setlocal keymap=
+setlocal noarabic
+setlocal noautoindent
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i
+setlocal completefunc=
+setlocal nocopyindent
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'cpp'
+setlocal filetype=cpp
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=0
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal nomodeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+setlocal nonumber
+set numberwidth=3
+setlocal numberwidth=3
+setlocal omnifunc=ccomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'cpp'
+setlocal syntax=cpp
+endif
+setlocal tabstop=8
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 81 - ((5 * winheight(0) + 7) / 15)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+81
 normal! 01l
 lcd ~/dev/motorsport
 wincmd w
-argglobal
-edit ~/dev/motorsport/usr/share/motorsport-sim-tests/tests.cpp
-setlocal keymap=
-setlocal noarabic
-setlocal noautoindent
-setlocal nobinary
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal nocindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
-setlocal commentstring=/*%s*/
-setlocal complete=.,w,b,u,t,i
-setlocal completefunc=
-setlocal nocopyindent
-setlocal nocursorcolumn
-setlocal nocursorline
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal expandtab
-if &filetype != 'cpp'
-setlocal filetype=cpp
-endif
-setlocal foldcolumn=0
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-setlocal foldmethod=manual
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=croql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal grepprg=
-setlocal iminsert=0
-setlocal imsearch=0
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal nolist
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
-setlocal nomodeline
-setlocal modifiable
-setlocal nrformats=octal,hex
-setlocal nonumber
-set numberwidth=3
-setlocal numberwidth=3
-setlocal omnifunc=ccomplete#Complete
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=4
-setlocal noshortname
-setlocal nosmartindent
-setlocal softtabstop=0
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=
-setlocal suffixesadd=
-setlocal swapfile
-setlocal synmaxcol=3000
-if &syntax != 'cpp'
-setlocal syntax=cpp
-endif
-setlocal tabstop=8
-setlocal tags=
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-silent! normal! zE
-let s:l = 318 - ((5 * winheight(0) + 5) / 10)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-318
-normal! 08l
-lcd ~/dev/motorsport
-wincmd w
 2wincmd w
-exe '1resize ' . ((&lines * 43 + 28) / 56)
+exe '1resize ' . ((&lines * 18 + 18) / 36)
 exe 'vert 1resize ' . ((&columns * 87 + 87) / 175)
-exe '2resize ' . ((&lines * 43 + 28) / 56)
+exe '2resize ' . ((&lines * 18 + 18) / 36)
 exe 'vert 2resize ' . ((&columns * 87 + 87) / 175)
-exe '3resize ' . ((&lines * 10 + 28) / 56)
+exe '3resize ' . ((&lines * 15 + 18) / 36)
 exe 'vert 3resize ' . ((&columns * 87 + 87) / 175)
-exe '4resize ' . ((&lines * 10 + 28) / 56)
+exe '4resize ' . ((&lines * 15 + 18) / 36)
 exe 'vert 4resize ' . ((&columns * 87 + 87) / 175)
 tabnext 1
 if exists('s:wipebuf')
