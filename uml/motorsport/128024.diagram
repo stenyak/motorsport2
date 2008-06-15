@@ -1,74 +1,110 @@
 format 49
 
+classcanvas 128043 class_ref 128043 // ExampleFrameListener
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 372 813 2000
+  end
 classcanvas 128085 class_ref 128085 // Physics
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 330 330 2005
+  xyz 240 359 2005
   end
 classcanvas 128101 class_ref 129253 // Core
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 161 110 2005
+  xyz 166 115 2005
   end
 classcanvas 128102 class_ref 129254 // Sim
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 175 519 2005
+  xyz 180 523 2005
   end
 classcanvas 128106 class_ref 128234 // mutex
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 578 0 3005
+  xyz 674 -4 3005
   end
 classcanvas 128213 class_ref 128213 // Threadable
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 304 252 2010
+  xyz 358 113 2010
   end
 packagecanvas 128280 
   package_ref 128024 // motorsport
     xyzwh 21 21 2000 811 449
+classcanvas 128324 class_ref 128068 // SceneManager
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 349 751 2000
+  end
 classcanvas 128341 class_ref 128213 // Threadable
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 677 133 2005
+  xyz 704 120 2005
   end
 packagecanvas 128408 
   package_ref 128152 // motorsport-sim
     xyzwh 27 486 2000 793 190
 classcanvas 128469 class_ref 128341 // thread
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 719 0 2005
+  xyz 749 1 2005
   end
 classcanvas 128485 class_ref 129381 // Group
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 530 155 2005
+  xyz 537 167 2005
+  end
+classcanvas 128580 class_ref 128196 // RenderWindow
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 577 752 2000
+  end
+classcanvas 129732 class_ref 128069 // Graphics
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 477 568 3005
+  end
+classcanvas 130244 class_ref 128324 // Root
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 487 754 2000
   end
 relationcanvas 128068 relation_ref 128068 // <directional aggregation>
-  from ref 128102 z 2004 stereotype "<<shared_ptr>>" xyz 51 528 3000 to ref 128101
-  role_a_pos 101 544 3000 no_role_b
-  multiplicity_a_pos 83 546 3000 no_multiplicity_b
+  from ref 128102 z 2004 stereotype "<<shared_ptr>>" xyz 59 529 3000 to ref 128101
+  role_a_pos 102 545 3000 no_role_b
+  multiplicity_a_pos 83 547 3000 no_multiplicity_b
+relationcanvas 128171 relation_ref 128171 // <directional composition>
+  from ref 129732 z 1999 to ref 128043
+  role_a_pos 474 791 3000 no_role_b
+  multiplicity_a_pos 446 791 3000 no_multiplicity_b
 relationcanvas 128234 relation_ref 128234 // <directional composition>
   from ref 128341 z 2004 to ref 128106
-  role_a_pos 632 51 3000 no_role_b
-  multiplicity_a_pos 638 51 3000 no_multiplicity_b
+  role_a_pos 631 49 3000 no_role_b
+  multiplicity_a_pos 616 48 3000 no_multiplicity_b
 relationcanvas 128725 relation_ref 128597 // <directional aggregation>
-  from ref 128341 z 2004 stereotype "<<shared_ptr>>" xyz 723 75 3000 to ref 128469
-  role_a_pos 758 51 3000 no_role_b
-  multiplicity_a_pos 729 51 3000 no_multiplicity_b
+  from ref 128341 z 2004 stereotype "<<shared_ptr>>" xyz 734 79 3000 to ref 128469
+  role_a_pos 777 53 3000 no_role_b
+  multiplicity_a_pos 759 53 3000 no_multiplicity_b
 relationcanvas 128869 relation_ref 129253 // <directional aggregation>
   decenter_end 101
-  from ref 128101 z 2004 stereotype "<<shared_ptr>>" xyz 247 130 3000 to ref 128485
-  role_a_pos 290 151 3000 no_role_b
-  multiplicity_a_pos 271 152 3000 no_multiplicity_b
+  from ref 128101 z 2004 stereotype "<<shared_ptr>>" xyz 255 131 3000 to ref 128485
+  role_a_pos 292 152 3000 no_role_b
+  multiplicity_a_pos 271 153 3000 no_multiplicity_b
 relationcanvas 128997 relation_ref 129381 // <directional aggregation>
   decenter_begin 78
   decenter_end 231
-  from ref 128485 z 2004 stereotype "<<vector_shared_ptr>>" xyz 408 91 3000 to point 536 125
+  from ref 128485 z 2004 stereotype "<<vector_shared_ptr>>" xyz 419 92 3000 to point 536 125
   line 129125 z 2004 to point 554 125
   line 129253 z 2004 to ref 128485
-  role_a_pos 448 110 3000 no_role_b
-  multiplicity_a_pos 438 109 3000 no_multiplicity_b
+  role_a_pos 490 110 3000 no_role_b
+  multiplicity_a_pos 481 110 3000 no_multiplicity_b
 relationcanvas 129381 relation_ref 129509 // <directional aggregation>
   decenter_begin 721
   decenter_end 921
-  from ref 128485 z 2004 stereotype "<<weak_ptr>>" xyz 629 91 3000 to point 610 126
+  from ref 128485 z 2004 stereotype "<<weak_ptr>>" xyz 581 89 3000 to point 610 126
   line 129509 z 2004 to point 633 126
   line 129637 z 2004 to ref 128485
-  role_a_pos 667 109 3000 no_role_b
-  multiplicity_a_pos 649 109 3000 no_multiplicity_b
+  role_a_pos 611 108 3000 no_role_b
+  multiplicity_a_pos 594 110 3000 no_multiplicity_b
+relationcanvas 129860 relation_ref 129476 // <directional composition>
+  from ref 129732 z 1999 to ref 128324
+  role_a_pos 357 722 3000 no_role_b
+  multiplicity_a_pos 342 722 3000 no_multiplicity_b
+relationcanvas 130116 relation_ref 129604 // <directional composition>
+  from ref 129732 z 1999 to ref 128580
+  role_a_pos 623 730 3000 no_role_b
+  multiplicity_a_pos 595 730 3000 no_multiplicity_b
+relationcanvas 130372 relation_ref 129732 // <directional composition>
+  from ref 129732 z 1999 to ref 130244
+  role_a_pos 514 729 3000 no_role_b
+  multiplicity_a_pos 499 731 3000 no_multiplicity_b
 end

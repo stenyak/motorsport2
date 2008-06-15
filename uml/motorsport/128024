@@ -1,7 +1,7 @@
 format 49
 "motorsport" // motorsport
-  revision 16
-  modified_by 69 "stenyak"
+  revision 18
+  modified_by 4 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -190,6 +190,99 @@ ${namespace_end}"
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default
     associated_deployment_view deploymentview_ref 128024 // deployment
+    class 128035 "enable_shared_from_this"
+      visibility package 
+      nformals 1
+      formal name "X" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_external cpp_decl "${name}
+#include <boost/${name}.hpp>
+using namespace boost;"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From Boost libraries. Allows to retrieve ones own shared pointer. */"
+    end
+
+    class 128106 "bind"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <boost/${name}.hpp>
+using namespace boost;"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 128234 "mutex"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <boost/thread/mutex.hpp>
+using namespace boost;"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From Boost libraries.*/"
+    end
+
+    class 128362 "scoped_lock"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <boost/thread/mutex.hpp>
+using namespace boost;"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From Boost libraries.*/"
+    end
+
+    class 128618 "posix_time"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <boost/date_time/${name}/${name}.hpp>
+using namespace boost::${name};"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From Boost libraries. Allows to handle threads. */"
+    end
+
+    class 128341 "thread"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <boost/${name}/${name}.hpp>
+using namespace boost;"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From Boost libraries. Allows to handle threads. */"
+    end
+
+    class 128291 "exception"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <${name}>
+using namespace std;"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From standard C classes. Base class for all custom exceptions. */"
+    end
+
     class 128213 "Threadable"
       abstract visibility package 
       cpp_decl "${description}
@@ -342,7 +435,7 @@ ${inlines}"
       end
 
       operation 130005 "operator()"
-	abstract preserve_cpp_body_indent cpp_virtual protected explicit_return_type "void"
+	abstract preserve_cpp_body_indent cpp_virtual public explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
 	preserve_java_body_indent 
@@ -507,7 +600,6 @@ ${inlines}"
 	    classrelation_ref 128085 // <realization>
 	  b parent class_ref 128213 // Threadable
       end
-
     end
 
     class 128163 "Exception"

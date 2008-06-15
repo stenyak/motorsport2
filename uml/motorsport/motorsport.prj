@@ -1,7 +1,7 @@
 format 49
 "motorsport"
-  revision 20
-  modified_by 14 "stenyak"
+  revision 22
+  modified_by 43 "stenyak"
   cpp_root_dir "../../usr/share/"
 
   artifact_default_description "/** \\TODO: add description */"
@@ -37,8 +37,8 @@ format 49
   show_infonote yes drawing_language uml
   
   class_color yellow duration_color transparent continuation_color gray note_color blue fragment_color transparent subject_color transparent usecase_color yellow package_color lightgray component_color green artifact_color green deploymentnode_color gray state_color yellow stateaction_color transparent activity_color transparent activityregion_color transparent activityaction_color transparent parameterpin_color white 
-  font_size 10
-  diagram_format A4
+  font_size 8
+  diagram_format A2-Landscape
 
   mark_for_import
   
@@ -77,99 +77,6 @@ format 49
       draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
       comment "Shows what classes are derived or implement other classes."
       size A4
-    end
-
-    class 128035 "enable_shared_from_this"
-      visibility package 
-      nformals 1
-      formal name "X" type "class" explicit_default_value ""
-        explicit_extends ""
-      cpp_external cpp_decl "${name}
-#include <boost/${name}.hpp>
-using namespace boost;"
-      java_decl ""
-      php_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      comment "/** From Boost libraries. Allows to retrieve ones own shared pointer. */"
-    end
-
-    class 128291 "exception"
-      visibility package 
-      cpp_external cpp_decl "${name}
-#include <${name}>
-using namespace std;"
-      java_decl ""
-      php_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      comment "/** From standard C classes. Base class for all custom exceptions. */"
-    end
-
-    class 128341 "thread"
-      visibility package 
-      cpp_external cpp_decl "${name}
-#include <boost/${name}/${name}.hpp>
-using namespace boost;"
-      java_decl ""
-      php_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      comment "/** From Boost libraries. Allows to handle threads. */"
-    end
-
-    class 128106 "bind"
-      visibility package 
-      cpp_external cpp_decl "${name}
-#include <boost/${name}.hpp>
-using namespace boost;"
-      java_decl ""
-      php_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-    end
-
-    class 128234 "mutex"
-      visibility package 
-      cpp_external cpp_decl "${name}
-#include <boost/thread/mutex.hpp>
-using namespace boost;"
-      java_decl ""
-      php_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      comment "/** From Boost libraries.*/"
-    end
-
-    class 128362 "scoped_lock"
-      visibility package 
-      cpp_external cpp_decl "${name}
-#include <boost/thread/mutex.hpp>
-using namespace boost;"
-      java_decl ""
-      php_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      comment "/** From Boost libraries.*/"
-    end
-
-    class 128618 "posix_time"
-      visibility package 
-      cpp_external cpp_decl "${name}
-#include <boost/date_time/${name}/${name}.hpp>
-using namespace boost::${name};"
-      java_decl ""
-      php_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      comment "/** From Boost libraries. Allows to handle threads. */"
     end
   end
 
