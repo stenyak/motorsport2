@@ -212,14 +212,10 @@ SUITE(testThreadable)
     }
     TEST(threading)
     {
-        {
-            shared_ptr<Physics> p01 (new Physics(103.0));
-        }
-        {
-            shared_ptr<Physics> p2 (new Physics(200.0));
-            p2->start();
-            p2.reset();
-        }
+        shared_ptr<Physics> p2 (new Physics(200.0));
+        p2->start();
+        p2.reset();
+
         shared_ptr<Physics> p3 (new Physics(100.0));
         //thread is not created, initiated in non-paused mode
         CHECK_EQUAL(false, p3->isPaused());
@@ -251,7 +247,6 @@ SUITE(testThreadable)
         p3->pause();
         p3->stop();
         p3->start();
-        p3.reset();
         //TODO: check loops get executed at right freq.
     }
 }

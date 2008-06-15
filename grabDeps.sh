@@ -1,4 +1,7 @@
 #!/bin/bash
+
+cpus=$(cat /proc/cpuinfo  |grep processor |wc -l)
+
 function mkcd {
     if [ ! -d $1 ]
     then
@@ -14,7 +17,7 @@ mkcd deps
     svn co https://unittest-cpp.svn.sourceforge.net/svnroot/unittest-cpp unittest-cpp
     echo " - Building..."
     cd unittest-cpp/UnitTest++
-        make
+        make -j $cpus
     cd ../..
     echo " - Copying libraries..."
     mkdir -p ../usr/lib
@@ -47,19 +50,52 @@ cd ..
 
 
 mkcd deps
-    echo "==== Installing Ogre ===="
+    echo "==== Installing FreeImage ===="
     echo " - Grabbing from cvs..."
-    echo " Note: please press enter when prompted for a password."
-    cvs -z3 -d:pserver:anonymous@cvs.ogre3d.org:/cvsroot/ogre co -P ogrenew
-    cvs -z3 -d:pserver:anonymous@cvs.ogre3d.org:/cvsroot/ogre co -P -rv1-4 ogrenew 
+    echo "Press enter to continue (empty password)."
+cvs -d:pserver:anonymous@freeimage.cvs.sourceforge.net:/cvsroot/freeimage login
+cvs -z3 -d:pserver:anonymous@freeimage.cvs.sourceforge.net:/cvsroot/freeimage co -P freeImage
     echo " - Building..."
-    cd ogrenew
-        export SCONS_LIB_DIR=`pwd`/src/engine
-        python src/script/scons.py build/scons
+    cd freeimage
+        # specify custom prefix by hand:
+        t=$(tempfile)
+        cat Makefile.gnu |sed "s/\/usr/\/\.\.\/\.\.\/usr/g;s/-.\ root//g" > $t; cp $t Makefile.gnu
+        rm $t
+        make -j $cpus
         echo " - Copying files..."
-        cd build/scons
-            python setup.py install --prefix=../../../../usr
-        cd ../..
+        make install
     cd ..
-    echo "==== SCons installed ===="
+    echo "==== FreeImage installed ===="
+cd ..
+
+mkcd deps
+    echo "==== Installing Ogre ===="
+    echo " - Grabbing from svn..."
+    svn co https://svn.ogre3d.org/svnroot/ogre/trunk ogre
+    echo " - Building..."
+    cd ogre
+        ./bootstrap
+        ./configure --prefix=$PWD/../../usr
+        make -j $cpus
+        echo " - Copying files..."
+        make install
+    cd ..
+    echo "==== Ogre installed ===="
+cd ..
+
+mkcd deps
+    echo "==== Installing OgreCollada ===="
+    echo " - Grabbing from svn..."
+    svn co https://ogrecollada.svn.sourceforge.net/svnroot/ogrecollada/trunk ogrecollada
+    echo " - Building..."
+    cd ogrecollada
+        cd premake
+            PKG_CONFIG_PATH="$PWD/../../../usr/lib/pkgconfig" premake --target gnu
+            PKG_CONFIG_PATH="$PWD/../../../usr/lib/pkgconfig" make -j $cpus
+        cd ..
+        echo " - Copying files..."
+        cp bin/release/lib* ../../usr/lib
+        cp OgreCollada/OgreCollada/include/*.h ../../usr/include
+    cd ..
+    echo "==== OgreCollada installed ===="
 cd ..

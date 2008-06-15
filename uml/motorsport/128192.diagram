@@ -2,18 +2,22 @@ format 49
 
 packagecanvas 128064 
   package_ref 128024 // motorsport
-    xyzwh 10 101 1994 794 571
+    xyzwh 14 106 1994 794 571
 classcanvas 128085 class_ref 128085 // Physics
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 26 481 2000
+  xyz 172 569 2000
   end
 classcanvas 128192 class_ref 129381 // Group
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 349 379 3005
+  xyz 404 345 3005
+  end
+classcanvas 128197 class_ref 128069 // Graphics
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 328 723 2005
   end
 classcanvas 128213 class_ref 128213 // Threadable
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 178 296 2000
+  xyz 233 145 2000
   end
 classcanvas 128638 class_ref 128291 // exception
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -21,19 +25,23 @@ classcanvas 128638 class_ref 128291 // exception
   end
 classcanvas 128766 class_ref 128163 // Exception
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 606 151 2000
+  xyz 610 156 2000
   end
 classcanvas 129088 class_ref 129637 // Loggable
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 534 378 3010
+  xyz 562 344 3010
   end
 classcanvas 129344 class_ref 128035 // enable_shared_from_this
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 249 26 2005
+  xyz 365 46 2005
   end
 packagecanvas 131710 
   package_ref 128152 // motorsport-sim
-    xyzwh 18 684 2000 810 242
+    xyzwh 12 690 2000 810 242
+relationcanvas 128325 relation_ref 128197 // <realization>
+  from ref 128197 z 1999 to ref 128213
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
 relationcanvas 128341 relation_ref 128085 // <realization>
   from ref 128085 z 1999 to ref 128213
   no_role_a no_role_b
@@ -47,7 +55,7 @@ relationcanvas 129216 relation_ref 129154 // <realization>
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 relationcanvas 129472 relation_ref 128163 // <realization>
-  from ref 128192 z 1999 label "<X->Group>" xyz 328 214 3000 to ref 129344
+  from ref 128192 z 1999 label "<X->Group>" xyz 421 207 3000 to ref 129344
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 end

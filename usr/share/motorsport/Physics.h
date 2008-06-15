@@ -6,7 +6,7 @@
 
 namespace motorsport {
 
-
+/** Implementation of physics engine. */
 class Physics : public Threadable {
   public:
     Physics(float frequency);

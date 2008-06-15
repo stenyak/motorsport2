@@ -86,6 +86,10 @@ depBoostShared = { "ccflags":"-isystem usr/include/boost-1_35", "includePaths":"
 depBoostDate = { "ccflags":"-isystem usr/include/boost-1_35", "libs":"boost_date_time", "includePaths":"usr/include/boost-1_35", "libPaths":"usr/lib" }
 depBoostThread = { "ccflags":"-isystem usr/include/boost-1_35", "libs":"boost_thread-gcc41-mt-1_35", "includePaths":"usr/include/boost-1_35", "libPaths":"usr/lib" }
 
+depOgre = { "ccflags":"-fmessage-length=0 -fexceptions -fident -isystem usr/include/OGRE", "libs":"OgreMain", "includePaths":"usr/include/OGRE", "libPaths":"usr/lib" }
+depOgreCollada = { "libs":"OgreCollada FCollada", "includePaths":"usr/include", "libPaths":"usr/lib" }
+depMotorsport = { "libPaths":"usr/lib/motorsport", "libs":"motorsport", "includePaths":"usr/include" }
+depOIS = { "libs":"OIS" }
 depUnitTest = { "ccflags":"-isystem usr/include/unittest++", "includePaths":"usr/include" , "libPaths":"usr/lib", "libs":"UnitTest++" }
 #depUnitTest = { "includePaths":"usr/include" }
 depMotorsport = { "libPaths":"usr/lib/motorsport", "libs":"motorsport", "includePaths":"usr/include" }
@@ -101,14 +105,14 @@ cfgMotorsportTests = { "name": "motorsport-tests" ,"sources": "main.cpp" }
 objTests = build("Program", [cfgMotorsportTests, cfgDebug, cfgWarns, cfgCov, depMotorsport, depBoostShared, depBoostDate, depBoostThread, depUnitTest])
 
 
-cfgDepMotorsportSim = { "name": "motorsport-sim" ,"sources": "Sim.cpp" ,"headers": "Sim.h" }
+cfgDepMotorsportSim = { "name": "motorsport-sim" ,"sources": "Sim.cpp Graphics.cpp" ,"headers": "Sim.h Graphics.h" }
 objDepMotorsportSim = build("StaticLibrary", [cfgDepMotorsportSim, cfgDebug, cfgWarns, cfgCov, depBoostShared, depMotorsport])
 
 cfgMotorsportSim = { "name": "motorsport-sim" ,"sources": "main.cpp" }
-objMotorsportSim = build("Program", [cfgMotorsportSim, cfgDebug, cfgWarns, cfgCov, depBoostShared, depBoostThread, depMotorsport, depMotorsportSim])
+objMotorsportSim = build("Program", [cfgMotorsportSim, cfgDebug, cfgWarns, cfgCov, depBoostShared, depBoostThread, depMotorsport, depMotorsportSim, depOgre, depOgreCollada])
 
 cfgMotorsportSimTests = { "name": "motorsport-sim-tests" ,"sources": "tests.cpp" }
-objMotorsportSimTests = build("Program", [cfgMotorsportSimTests, cfgDebug, cfgWarns, cfgCov, depBoostShared, depBoostThread, depUnitTest, depMotorsport, depMotorsportSim])
+objMotorsportSimTests = build("Program", [cfgMotorsportSimTests, cfgDebug, cfgWarns, cfgCov, depBoostShared, depBoostThread, depUnitTest, depMotorsport, depMotorsportSim, depOgre, depOIS, depOgreCollada])
 
 cfgThreadTest = { "name": "thread-test" ,"sources": "main.cpp" }
 objThreadTest = build("Program", [cfgThreadTest, cfgDebug, cfgWarns, cfgCov, depBoostShared, depUnitTest ])
