@@ -1,9 +1,9 @@
 
 #include "Core.h"
 #include "Group.h"
+#include "Threadable.h"
 #include "Exception.h"
 #include "Os.h"
-#include "Threadable.h"
 
 namespace motorsport {
 

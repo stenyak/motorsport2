@@ -1,7 +1,7 @@
 format 49
 "motorsport" // motorsport
-  revision 20
-  modified_by 85 "stenyak"
+  revision 21
+  modified_by 75 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -253,6 +253,7 @@ using namespace boost;"
       idl_decl ""
       explicit_switch_type ""
       
+      comment "/** From Boost libraries.*/"
     end
 
     class 128234 "mutex"
@@ -606,6 +607,7 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
+	comment "/** Simple constructor. */"
       end
 
       operation 129109 "~Physics"
@@ -617,6 +619,7 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
+	comment "/** Simple destructor. */"
       end
 
       operation 128106 "operator()"
@@ -628,6 +631,7 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
+	comment "/** Physics loop method. */"
       end
 
       classrelation 128085 // <realization>
@@ -886,6 +890,16 @@ ${inlines}"
 	  b parent class_ref 129381 // Group
       end
 
+      classrelation 129877 // engines (<directional aggregation>)
+	relation 129877 o-->
+	  stereotype "vector_shared_ptr"
+	  a role_name "engines" multiplicity "*" protected
+	    comment "/** Stores references to all the engines of the simulation. Engines are run at their proposed frequency by the Core. TODO: complete description. */"
+	    cpp default "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> > ${name}${value};"
+	    classrelation_ref 129877 // engines (<directional aggregation>)
+	  b parent class_ref 128213 // Threadable
+      end
+
       classrelation 128064 // <dependency>
 	relation 128064 -_->
 	  a default
@@ -900,15 +914,6 @@ ${inlines}"
 	    cpp default "#include in source"
 	    classrelation_ref 129749 // <dependency>
 	  b parent class_ref 128121 // Os
-      end
-
-      classrelation 129877 // engines (<directional aggregation>)
-	relation 129877 o-->
-	  stereotype "vector_shared_ptr"
-	  a role_name "engines" multiplicity "*" protected
-	    cpp default "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> > ${name}${value};"
-	    classrelation_ref 129877 // engines (<directional aggregation>)
-	  b parent class_ref 128213 // Threadable
       end
     end
 
@@ -1137,6 +1142,7 @@ ${inlines}"
       idl_decl ""
       explicit_switch_type ""
       
+      comment "/** Handles all OS specific issues. Also, it guesses the current operating system, and defines MOTORSPORT_OS_PLATFORM accordingly. */"
       operation 131285 "getResourcePath"
 	class_operation preserve_cpp_body_indent public explicit_return_type "string"
 	nparams 0

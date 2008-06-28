@@ -4,6 +4,7 @@
 
 namespace motorsport_sim {
 
+/** Simple constructor. */
 Graphics::Graphics(float frequency): Threadable(frequency), mFrameListener(0), mRoot(0), mWindow(0) {
   // Bouml preserved body begin 0001F5C5
     String pluginsPath;
@@ -68,12 +69,14 @@ Graphics::Graphics(float frequency): Threadable(frequency), mFrameListener(0), m
     }
   // Bouml preserved body end 0001F5C5
 }
+/** Simple destructor. */
 Graphics::~Graphics() {
   // Bouml preserved body begin 0001F645
     if (mFrameListener) delete mFrameListener;
     if (mRoot) delete mRoot;
   // Bouml preserved body end 0001F645
 }
+/** Loads the desired file with pathname relative to Motorsport data directory. */
 void Graphics::loadCollada(string filename) {
   // Bouml preserved body begin 0001F42B
     filename = motorsport::Os::getSharePath() + "data/" + filename;
@@ -82,6 +85,7 @@ void Graphics::loadCollada(string filename) {
     DestroyImpExp(pImpExp);
   // Bouml preserved body end 0001F42B
 }
+/** Loop method, renders things to screen. */
 void Graphics::operator()() {
   // Bouml preserved body begin 0001F6C5
     mRoot->startRendering();

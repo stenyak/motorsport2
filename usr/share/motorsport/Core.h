@@ -8,9 +8,9 @@ using namespace boost;
 using namespace std;
 
 namespace motorsport { class Group; } 
+namespace motorsport { class Threadable; } 
 namespace motorsport { class Exception; } 
 namespace motorsport { class Os; } 
-namespace motorsport { class Threadable; } 
 
 namespace motorsport {
 
@@ -34,6 +34,7 @@ class Core {
     /** Root group of the simulated world. */
     shared_ptr<Group> world;
 
+    /** Stores references to all the engines of the simulation. Engines are run at their proposed frequency by the Core. TODO: complete description. */
     vector<shared_ptr<Threadable> > engines;
 };
 

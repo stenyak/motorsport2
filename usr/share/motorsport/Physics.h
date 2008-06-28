@@ -9,10 +9,13 @@ namespace motorsport {
 /** Implementation of physics engine. */
 class Physics : public Threadable {
   public:
+    /** Simple constructor. */
     Physics(float frequency);
+    /** Simple destructor. */
     virtual ~Physics();
 
   protected:
+    /** Physics loop method. */
     void operator()();
 };
 

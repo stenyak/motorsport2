@@ -22,7 +22,7 @@ using namespace std;
 
 namespace motorsport {
 
-
+/** Handles all OS specific issues. Also, it guesses the current operating system, and defines MOTORSPORT_OS_PLATFORM accordingly. */
 class Os {
   public:
     /** Provides a nice cross platform solution for locating the data files. On windows files are searched for in the current working directory, on OS X however you must provide the full path, the helper function getSharePath does this for us. */

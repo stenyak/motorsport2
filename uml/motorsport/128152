@@ -1,7 +1,7 @@
 format 49
 "motorsport-sim" // motorsport-sim
-  revision 13
-  modified_by 85 "stenyak"
+  revision 14
+  modified_by 75 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -188,6 +188,7 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
+	comment "/** Simple constructor. */"
       end
 
       operation 128581 "~Graphics"
@@ -199,6 +200,7 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
+	comment "/** Simple destructor. */"
       end
 
       operation 128043 "loadCollada"
@@ -211,6 +213,7 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
+	comment "/** Loads the desired file with pathname relative to Motorsport data directory. */"
       end
 
       operation 128709 "operator()"
@@ -222,14 +225,7 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-      end
-
-      classrelation 128197 // <realization>
-	relation 128197 -_-|>
-	  a public
-	    cpp default "${type}"
-	    classrelation_ref 128197 // <realization>
-	  b parent class_ref 128213 // Threadable
+	comment "/** Loop method, renders things to screen. */"
       end
 
       classrelation 128171 // mFrameListener (<directional composition>)
@@ -262,6 +258,14 @@ ${inlines}"
 	    cpp default "    ${description}${static}${mutable}${volatile}${const}${type}* ${name}${value};"
 	    classrelation_ref 129604 // mWindow (<directional composition>)
 	  b parent class_ref 128196 // RenderWindow
+      end
+
+      classrelation 128197 // <realization>
+	relation 128197 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128197 // <realization>
+	  b parent class_ref 128213 // Threadable
       end
 
       classrelation 128299 // <dependency>
