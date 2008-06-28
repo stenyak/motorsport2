@@ -16,3 +16,4 @@ history\.index$
 \.gcov$
 \.gcda$
 \.gcno$
+\.log$

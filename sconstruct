@@ -98,7 +98,7 @@ depMotorsportSim = {"libPaths":"usr/lib/motorsport-sim","libs":"motorsport-sim",
 ################################################################################
 # Builds
 ################################################################################
-cfgMotorsport = { "name": "motorsport" ,"sources": "Core.cpp Loggable.cpp Group.cpp Exception.cpp Physics.cpp Threadable.cpp" ,"headers": "Core.h Group.h Loggable.h Exception.h Physics.h Threadable.h" }
+cfgMotorsport = { "name": "motorsport" ,"sources": "Os.cpp Core.cpp Loggable.cpp Group.cpp Exception.cpp Physics.cpp Threadable.cpp" ,"headers": "Os.h Core.h Group.h Loggable.h Exception.h Physics.h Threadable.h" }
 objMotorsport = build("SharedLibrary", [cfgMotorsport, cfgDebug, cfgWarns, cfgCov, depBoostShared])
 
 cfgMotorsportTests = { "name": "motorsport-tests" ,"sources": "main.cpp" }

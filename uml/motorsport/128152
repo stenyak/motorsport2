@@ -1,7 +1,7 @@
 format 49
 "motorsport-sim" // motorsport-sim
-  revision 12
-  modified_by 37 "stenyak"
+  revision 13
+  modified_by 85 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -270,6 +270,14 @@ ${inlines}"
 	    cpp default "#include in source"
 	    classrelation_ref 128299 // <dependency>
 	  b parent class_ref 128171 // ImpExp
+      end
+
+      classrelation 130133 // <dependency>
+	relation 130005 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 130133 // <dependency>
+	  b parent class_ref 128121 // Os
       end
     end
 

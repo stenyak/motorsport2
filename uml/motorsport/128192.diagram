@@ -55,7 +55,7 @@ relationcanvas 129216 relation_ref 129154 // <realization>
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 relationcanvas 129472 relation_ref 128163 // <realization>
-  from ref 128192 z 1999 label "<X->Group>" xyz 428 208 3000 to ref 129344
+  from ref 128192 z 1999 label "<X->Group>" xyz 428 212 3000 to ref 129344
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 end

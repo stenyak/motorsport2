@@ -12,6 +12,8 @@ using namespace Ogre;
 #include <OgreCollada.h>
 using namespace OgreCollada;
 
+namespace motorsport { class Os; } 
+
 namespace motorsport_sim {
 
 /** Implementation of graphics engine. Takes care of displaying the virtual world on screen. */

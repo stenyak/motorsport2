@@ -1,7 +1,7 @@
 format 49
 "motorsport" // motorsport
-  revision 18
-  modified_by 4 "stenyak"
+  revision 20
+  modified_by 85 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -38,7 +38,6 @@ format 49
       cpp_h "/** Copyright (C) 2008 Motorsport Project contributors (see license.txt) */
 #ifndef ${NAMESPACE}_${NAME}_H
 #define ${NAMESPACE}_${NAME}_H
-
 ${comment}
 ${includes}
 ${declarations}
@@ -169,6 +168,44 @@ ${members}
 ${namespace_end}"
       associated_classes
 	class_ref 128213 // Threadable
+      end
+    end
+
+    artifact 128249 "Os"
+      stereotype "source"
+      cpp_h "/** Copyright (C) 2008 Motorsport Project contributors (see license.txt) */
+#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+#define MOTORSPORT_OS_WIN32 1
+#define MOTORSPORT_OS_LINUX 2
+#define MOTORSPORT_OS_APPLE 3
+
+#if defined( __WIN32__ ) || defined( _WIN32 )
+    #define MOTORSPORT_OS MOTORSPORT_OS_WIN32
+#elif defined( __APPLE_CC__)
+    #define MOTORSPORT_OS MOTORSPORT_OS_APPLE
+#else
+    #define MOTORSPORT_OS MOTORSPORT_OS_LINUX
+#endif
+
+#if MOTORSPORT_OS == MOTORSPORT_OS_APPLE
+    #include <CoreFoundation/CoreFoundation.h>
+#endif
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 128121 // Os
       end
     end
   end
@@ -856,6 +893,23 @@ ${inlines}"
 	    classrelation_ref 128064 // <dependency>
 	  b parent class_ref 128163 // Exception
       end
+
+      classrelation 129749 // <dependency>
+	relation 129749 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 129749 // <dependency>
+	  b parent class_ref 128121 // Os
+      end
+
+      classrelation 129877 // engines (<directional aggregation>)
+	relation 129877 o-->
+	  stereotype "vector_shared_ptr"
+	  a role_name "engines" multiplicity "*" protected
+	    cpp default "    ${description}${static}${mutable}${volatile}${const}${stereotype}<${type}> > ${name}${value};"
+	    classrelation_ref 129877 // engines (<directional aggregation>)
+	  b parent class_ref 128213 // Threadable
+      end
     end
 
     class 129381 "Group"
@@ -1069,6 +1123,42 @@ ${inlines}"
 	    cpp default "#include in source"
 	    classrelation_ref 128547 // <dependency>
 	  b parent class_ref 128163 // Exception
+      end
+    end
+
+    class 128121 "Os"
+      visibility package 
+      cpp_decl "${description}
+${template}class ${name}${inherit} {
+${members}};
+${inlines}"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 131285 "getResourcePath"
+	class_operation preserve_cpp_body_indent public explicit_return_type "string"
+	nparams 0
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Provides a nice cross platform solution for locating the data files. On windows files are searched for in the current working directory, on OS X however you must provide the full path, the helper function getSharePath does this for us. */"
+      end
+
+      operation 131157 "getSharePath"
+	class_operation preserve_cpp_body_indent public explicit_return_type "string"
+	nparams 0
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Locates the path to our application */"
       end
     end
   end

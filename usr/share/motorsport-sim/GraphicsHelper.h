@@ -284,38 +284,3 @@ class ExampleFrameListener: public FrameListener, public WindowEventListener
         SceneManager* mSceneMgr;
 };
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
-#include <CoreFoundation/CoreFoundation.h>
-#endif
-
-// This function will locate the path to our application on OS X, unlike windows you can not rely on the curent working directory for locating your configuration files and resources.
-std::string getSharePath()
-{
-    std::string result = "usr/share/motorsport-sim-tests";
-#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
-    char path[1024];
-    CFBundleRef mainBundle = CFBundleGetMainBundle();
-    assert(mainBundle);
-    CFURLRef mainBundleURL = CFBundleCopyBundleURL(mainBundle);
-    assert(mainBundleURL);
-    CFStringRef cfStringRef = CFURLCopyFileSystemPath( mainBundleURL, kCFURLPOSIXPathStyle);
-    assert(cfStringRef);
-    CFStringGetCString(cfStringRef, path, 1024, kCFStringEncodingASCII);
-    CFRelease(mainBundleURL);
-    CFRelease(cfStringRef);
-    result = std::string(path);
-#endif
-    return result + "/";
-}
-std::string getResourcePath()
-{
-    std::string result = ".";
-    // Provide a nice cross platform solution for locating the configuration files. On windows files are searched for in the current working directory, on OS X however you must provide the full path, the helper function getSharePath does this for us.
-#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
-    result = getSharePath() + "Contents/Resources";
-#else
-    result = getSharePath();
-#endif
-    return result + "/";
-}
-

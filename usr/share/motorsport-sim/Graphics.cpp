@@ -1,5 +1,6 @@
 
 #include "Graphics.h"
+#include "../motorsport/Os.h"
 
 namespace motorsport_sim {
 
@@ -8,12 +9,12 @@ Graphics::Graphics(float frequency): Threadable(frequency), mFrameListener(0), m
     String pluginsPath;
     // only use plugins.cfg if not static
 #ifndef OGRE_STATIC_LIB
-    pluginsPath = ExampleFrameListener::getResourcePath() + "cfg/plugins.cfg";
+    pluginsPath = motorsport::Os::getResourcePath() + "cfg/plugins.cfg";
 #endif
-    mRoot = new Root(pluginsPath, ExampleFrameListener::getResourcePath() + "cfg/ogre.cfg", ExampleFrameListener::getResourcePath() + "logs/Ogre.log");
+    mRoot = new Root(pluginsPath, motorsport::Os::getResourcePath() + "cfg/ogre.cfg", motorsport::Os::getResourcePath() + "logs/Ogre.log");
     // Load resource paths from config file
     ConfigFile cf;
-    cf.load(ExampleFrameListener::getResourcePath() + "cfg/resources.cfg");
+    cf.load(motorsport::Os::getResourcePath() + "cfg/resources.cfg");
     // Go through all sections & settings in the file
     ConfigFile::SectionIterator seci = cf.getSectionIterator();
     String secName, typeName, archName;
@@ -26,7 +27,7 @@ Graphics::Graphics(float frequency): Threadable(frequency), mFrameListener(0), m
         {
             typeName = i->first;
             archName = i->second;
-            ResourceGroupManager::getSingleton().addResourceLocation( String(ExampleFrameListener::getSharePath() + archName), typeName, secName);
+            ResourceGroupManager::getSingleton().addResourceLocation( String(motorsport::Os::getSharePath() + archName), typeName, secName);
         }
     }
     // Show the configuration dialog and initialise the system. You can skip this and use root.restoreConfig() to load configuration settings if you were sure there are valid ones saved in ogre.cfg
@@ -75,7 +76,7 @@ Graphics::~Graphics() {
 }
 void Graphics::loadCollada(string filename) {
   // Bouml preserved body begin 0001F42B
-    filename = ExampleFrameListener::getSharePath() + "data/" + filename;
+    filename = motorsport::Os::getSharePath() + "data/" + filename;
     ImpExp* pImpExp = CreateImpExp(mRoot, mSceneMgr);
     pImpExp->importCollada(filename.c_str());
     DestroyImpExp(pImpExp);

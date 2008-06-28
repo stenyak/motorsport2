@@ -2,12 +2,15 @@
 #ifndef MOTORSPORT_CORE_H
 #define MOTORSPORT_CORE_H
 
-
 #include <boost/shared_ptr.hpp>
 using namespace boost;
+#include <vector>
+using namespace std;
 
 namespace motorsport { class Group; } 
 namespace motorsport { class Exception; } 
+namespace motorsport { class Os; } 
+namespace motorsport { class Threadable; } 
 
 namespace motorsport {
 
@@ -31,6 +34,7 @@ class Core {
     /** Root group of the simulated world. */
     shared_ptr<Group> world;
 
+    vector<shared_ptr<Threadable> > engines;
 };
 
 } // namespace motorsport
