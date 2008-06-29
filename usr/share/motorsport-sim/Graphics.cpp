@@ -7,15 +7,19 @@ namespace motorsport_sim {
 /** Simple constructor. */
 Graphics::Graphics(float frequency): Threadable(frequency), mFrameListener(0), mRoot(0), mWindow(0) {
   // Bouml preserved body begin 0001F5C5
-    String pluginsPath;
+    std::string pluginsPath = "";
     // only use plugins.cfg if not static
-#ifndef OGRE_STATIC_LIB
-    pluginsPath = motorsport::Os::getResourcePath() + "cfg/plugins.cfg";
-#endif
-    mRoot = new Root(pluginsPath, motorsport::Os::getResourcePath() + "cfg/ogre.cfg", motorsport::Os::getResourcePath() + "logs/Ogre.log");
+    #ifndef OGRE_STATIC_LIB
+        pluginsPath = motorsport::Os::getResourcePath() + "cfg/plugins.cfg";
+    #endif
+    std::string cfgPath = motorsport::Os::getResourcePath() + "cfg/ogre.cfg";
+    std::string logPath = motorsport::Os::getResourcePath() + "logs/ogre.cfg";
+    mRoot = new Root(pluginsPath, cfgPath, logPath);
+    //Ogre::LogManager::getSingleton().getDefaultLog()->setDebugOutputEnabled(false);
     // Load resource paths from config file
+    std::string resourcesPath = motorsport::Os::getResourcePath()+"cfg/resources.cfg";
     ConfigFile cf;
-    cf.load(motorsport::Os::getResourcePath() + "cfg/resources.cfg");
+    cf.load(resourcesPath);
     // Go through all sections & settings in the file
     ConfigFile::SectionIterator seci = cf.getSectionIterator();
     String secName, typeName, archName;
