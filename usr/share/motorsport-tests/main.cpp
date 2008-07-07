@@ -4,6 +4,7 @@
 #include <motorsport/Core.h>
 #include <motorsport/Exception.h>
 #include <motorsport/Physics.h>
+#include <motorsport/Os.h>
 using namespace motorsport;
 #include <boost/shared_ptr.hpp>
 using namespace boost;
@@ -248,6 +249,15 @@ SUITE(testThreadable)
         p3->stop();
         p3->start();
         //TODO: check loops get executed at right freq.
+    }
+}
+SUITE(testOs)
+{
+    TEST(paths)
+    {
+        CHECK_EQUAL("usr/share/motorsport-sim-tests/cfg/",motorsport::Os::getCfgPath());
+        CHECK_EQUAL("usr/share/motorsport-sim-tests/logs/",motorsport::Os::getLogsPath());
+        CHECK_EQUAL("usr/share/motorsport-sim-tests/data/",motorsport::Os::getDataPath());
     }
 }
 int main (int, char*[])
