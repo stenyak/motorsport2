@@ -10,14 +10,14 @@ Graphics::Graphics(float frequency): Threadable(frequency), mFrameListener(0), m
     std::string pluginsPath = "";
     // only use plugins.cfg if not static
     #ifndef OGRE_STATIC_LIB
-        pluginsPath = motorsport::Os::getCfgPath() + "plugins.cfg";
+        pluginsPath = motorsport::Os::getCfgPath("plugins.cfg");
     #endif
-    std::string cfgPath = motorsport::Os::getCfgPath() + "ogre.cfg";
-    std::string logPath = motorsport::Os::getLogsPath() + "ogre.log";
+    std::string cfgPath = motorsport::Os::getCfgPath("ogre.cfg");
+    std::string logPath = motorsport::Os::getLogsPath("ogre.log");
     mRoot = new Root(pluginsPath, cfgPath, logPath);
     //Ogre::LogManager::getSingleton().getDefaultLog()->setDebugOutputEnabled(false);
     // Load resource paths from config file
-    std::string resourcesPath = motorsport::Os::getCfgPath()+"resources.cfg";
+    std::string resourcesPath = motorsport::Os::getCfgPath("resources.cfg");
     ConfigFile cf;
     cf.load(resourcesPath);
     // Go through all sections & settings in the file
@@ -32,7 +32,7 @@ Graphics::Graphics(float frequency): Threadable(frequency), mFrameListener(0), m
         {
             typeName = i->first;
             archName = i->second;
-            ResourceGroupManager::getSingleton().addResourceLocation( String(motorsport::Os::getDataPath() + archName), typeName, secName);
+            ResourceGroupManager::getSingleton().addResourceLocation( String(motorsport::Os::getDataPath(archName)), typeName, secName);
         }
     }
     // Show the configuration dialog and initialise the system. You can skip this and use root.restoreConfig() to load configuration settings if you were sure there are valid ones saved in ogre.cfg
@@ -83,7 +83,7 @@ Graphics::~Graphics() {
 /** Loads the desired file with pathname relative to Motorsport data directory. */
 void Graphics::loadCollada(string filename) {
   // Bouml preserved body begin 0001F42B
-    filename = motorsport::Os::getDataPath() + filename;
+    filename = motorsport::Os::getDataPath(filename);
     ImpExp* pImpExp = CreateImpExp(mRoot, mSceneMgr);
     pImpExp->setResourceGroupName(filename);
     pImpExp->importCollada(filename.c_str());

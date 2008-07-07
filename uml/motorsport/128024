@@ -321,6 +321,18 @@ using namespace std;"
       comment "/** From standard C classes. Base class for all custom exceptions. */"
     end
 
+    class 128071 "operations"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <boost/filesystem/${name}.hpp>"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From Boost libraries. Allows to handle filesystem operations.*/"
+    end
+
     class 128213 "Threadable"
       abstract visibility package 
       cpp_decl "${description}
@@ -1132,7 +1144,7 @@ ${inlines}"
     end
 
     class 128121 "Os"
-      visibility package 
+      abstract visibility package 
       cpp_decl "${description}
 ${template}class ${name}${inherit} {
 ${members}};
@@ -1145,50 +1157,86 @@ ${inlines}"
       comment "/** Handles all OS specific issues. Also, it guesses the current operating system, and defines MOTORSPORT_OS_PLATFORM accordingly. */"
       operation 131157 "getSharePath"
 	class_operation preserve_cpp_body_indent private explicit_return_type "string"
-	nparams 0
-	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
-	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	nparams 1
+	  param inout name "filepath" explicit_type "string"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "/** Locates the path to our application */"
+	comment "/** Locates the path to our application resources directory (share in unix systems). */"
       end
 
       operation 128071 "getDataPath"
 	class_operation preserve_cpp_body_indent public explicit_return_type "string"
-	nparams 0
-	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
-	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	nparams 1
+	  param inout name "filepath" explicit_type "string"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "/** Returns the relative path to the data directory. */"
+	comment "/** Returns the relative path to the specified data file. The file must exist. */"
       end
 
       operation 128199 "getCfgPath"
 	class_operation preserve_cpp_body_indent public explicit_return_type "string"
-	nparams 0
-	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
-	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	nparams 1
+	  param inout name "filepath" explicit_type "string"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "/** Returns the relative path to the configuration directory. */"
+	comment "/** Returns the relative path to the specified configuration file. The file must exist. */"
       end
 
       operation 128327 "getLogsPath"
 	class_operation preserve_cpp_body_indent public explicit_return_type "string"
-	nparams 0
-	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
-	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	nparams 1
+	  param inout name "filepath" explicit_type "string"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "/** Returns the relative path to the logs directory. */"
+	comment "/** Returns the relative path to the specified log filename. The file must exist.*/"
+      end
+
+      operation 128455 "isFileReadable"
+	class_operation preserve_cpp_body_indent public explicit_return_type "bool"
+	nparams 1
+	  param inout name "filepath" explicit_type "string"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Checks if the file is readable.
+\\param filepath the path and name, either absolute or relative, of the file that is to be checked for readability.
+\\returns true if file can be read.
+\\returns false if file can not be read. */"
+      end
+
+      classrelation 128071 // <dependency>
+	relation 128071 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 128071 // <dependency>
+	  b parent class_ref 128071 // operations
+      end
+
+      classrelation 128199 // <dependency>
+	relation 128199 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 128199 // <dependency>
+	  b parent class_ref 128163 // Exception
       end
     end
   end

@@ -255,9 +255,20 @@ SUITE(testOs)
 {
     TEST(paths)
     {
-        CHECK_EQUAL("usr/share/motorsport-sim-tests/cfg/",motorsport::Os::getCfgPath());
-        CHECK_EQUAL("usr/share/motorsport-sim-tests/logs/",motorsport::Os::getLogsPath());
-        CHECK_EQUAL("usr/share/motorsport-sim-tests/data/",motorsport::Os::getDataPath());
+        CHECK_EQUAL(true, motorsport::Os::isFileReadable("run.sh"));
+        CHECK_EQUAL(false, motorsport::Os::isFileReadable("wontexist.sh"));
+
+        CHECK_THROW(motorsport::Os::getCfgPath(""),Exception);
+        CHECK_THROW(motorsport::Os::getCfgPath("wontexist"),Exception);
+        CHECK_EQUAL("usr/share/motorsport-sim-tests/cfg/.hgempty",motorsport::Os::getCfgPath(".hgempty"));
+
+        CHECK_THROW(motorsport::Os::getLogsPath(""),Exception);
+        CHECK_THROW(motorsport::Os::getLogsPath("wontexist"),Exception);
+        CHECK_EQUAL("usr/share/motorsport-sim-tests/logs/.hgempty",motorsport::Os::getLogsPath(".hgempty"));
+
+        CHECK_THROW(motorsport::Os::getDataPath(""),Exception);
+        CHECK_THROW(motorsport::Os::getDataPath("wontexist"),Exception);
+        CHECK_EQUAL("usr/share/motorsport-sim-tests/data/.hgempty",motorsport::Os::getDataPath(".hgempty"));
     }
 }
 int main (int, char*[])

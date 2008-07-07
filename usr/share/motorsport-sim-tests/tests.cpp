@@ -24,7 +24,6 @@ SUITE(testSim)
     {
         shared_ptr<Graphics> g1 (new Graphics(40.0));
         // At this point, there should be a window on the screen.
-        //CHECK_THROW(g1->loadCollada("doesntExist.dae"), Exception); //file doesn't exist
         g1->loadCollada("beyron.dae");
         //g1->loadCollada("Messerschmitt KR200.dae");
         //g1->loadCollada("bristol/bristol test.dae");

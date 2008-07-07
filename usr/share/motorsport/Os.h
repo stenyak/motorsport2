@@ -19,22 +19,30 @@
 
 #include <string>
 using namespace std;
+#include <boost/filesystem/operations.hpp>
+
+namespace motorsport { class Exception; } 
 
 namespace motorsport {
 
 /** Handles all OS specific issues. Also, it guesses the current operating system, and defines MOTORSPORT_OS_PLATFORM accordingly. */
 class Os {
   private:
-    /** Locates the path to our application */
-    static string getSharePath();
+    /** Locates the path to our application resources directory (share in unix systems). */
+    static string getSharePath(const string & filepath);
 
   public:
-    /** Returns the relative path to the data directory. */
-    static string getDataPath();
-    /** Returns the relative path to the configuration directory. */
-    static string getCfgPath();
-    /** Returns the relative path to the logs directory. */
-    static string getLogsPath();
+    /** Returns the relative path to the specified data file. The file must exist. */
+    static string getDataPath(const string & filepath);
+    /** Returns the relative path to the specified configuration file. The file must exist. */
+    static string getCfgPath(const string & filepath);
+    /** Returns the relative path to the specified log filename. The file must exist.*/
+    static string getLogsPath(const string & filepath);
+    /** Checks if the file is readable.
+    \param filepath the path and name, either absolute or relative, of the file that is to be checked for readability.
+    \returns true if file can be read.
+    \returns false if file can not be read. */
+    static bool isFileReadable(const string & filepath);
 };
 
 } // namespace motorsport
