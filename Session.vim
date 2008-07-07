@@ -21,7 +21,9 @@ set nomodeline
 set scrolloff=4
 set shiftwidth=4
 set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.info,.aux,.log,.dvi,.bbl,.out,.o,.lo
+set tabstop=4
 set viminfo='20,\"500
+set window=42
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -32,11 +34,11 @@ endif
 set shortmess=aoO
 badd +256 usr/share/motorsport-tests/main.cpp
 badd +59 usr/share/motorsport/Group.cpp
-badd +1 buildMosp.sh
+badd +3 buildMosp.sh
 badd +1 buildThread.sh
 badd +13 usr/share/thread-test/main.cpp
 badd +68 usr/share/thread-test/thread.cpp
-badd +90 sconstruct
+badd +101 sconstruct
 badd +5 usr/share/thread-test/time.cpp
 badd +76 usr/share/thread-test/sconstruct
 badd +1 usr/share/thread-test/time.h
@@ -51,17 +53,22 @@ badd +51 usr/include/boost-1_35/boost/date_time/posix_time/posix_time_io.hpp
 badd +80 usr/include/boost-1_35/boost/date_time/time.hpp
 badd +260 usr/include/boost-1_35/boost/thread/pthread/thread.hpp
 badd +68 grabDeps.sh
-badd +119 usr/include/OgreCollada.h
-badd +13 usr/share/motorsport/Core.cpp
+badd +81 usr/include/OgreCollada.h
+badd +39 usr/share/motorsport/Core.cpp
 badd +21 usr/share/motorsport-sim-tests/ExampleApplication.h
 badd +1 usr/share/motorsport-sim-tests/ExampleFrameListener.h
-badd +5 run.sh
+badd +13 run.sh
 badd +34 SkyDome.h
 badd +23 resources.cfg
 badd +1 motorsport-sim-tests:\ /home/stenyak/dev/motorsport/deps/ogre-trunk/../../usr/include/OGRE/OgreSingleton.h
 badd +1 bui
-badd +0 usr/share/motorsport-sim/Graphics.cpp
-badd +0 usr/share/motorsport/Threadable.cpp
+badd +18 usr/share/motorsport-sim/Graphics.cpp
+badd +45 usr/share/motorsport/Threadable.cpp
+badd +8 usr/share/motorsport-sim/GraphicsHelper.h
+badd +30 usr/share/motorsport/Core.h
+badd +72 usr/share/motorsport/Threadable.h
+badd +26 usr/share/motorsport/Os.cpp
+badd +29 usr/share/motorsport/Os.h
 silent! argdel *
 edit usr/share/motorsport-sim/Graphics.cpp
 set splitbelow splitright
@@ -81,14 +88,14 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 18 + 18) / 36)
-exe 'vert 1resize ' . ((&columns * 87 + 87) / 175)
-exe '2resize ' . ((&lines * 18 + 18) / 36)
-exe 'vert 2resize ' . ((&columns * 87 + 87) / 175)
-exe '3resize ' . ((&lines * 15 + 18) / 36)
-exe 'vert 3resize ' . ((&columns * 87 + 87) / 175)
-exe '4resize ' . ((&lines * 15 + 18) / 36)
-exe 'vert 4resize ' . ((&columns * 87 + 87) / 175)
+exe '1resize ' . ((&lines * 21 + 21) / 43)
+exe 'vert 1resize ' . ((&columns * 86 + 87) / 175)
+exe '2resize ' . ((&lines * 21 + 21) / 43)
+exe 'vert 2resize ' . ((&columns * 88 + 87) / 175)
+exe '3resize ' . ((&lines * 19 + 21) / 43)
+exe 'vert 3resize ' . ((&columns * 86 + 87) / 175)
+exe '4resize ' . ((&lines * 19 + 21) / 43)
+exe 'vert 4resize ' . ((&columns * 88 + 87) / 175)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -175,7 +182,7 @@ setlocal synmaxcol=3000
 if &syntax != 'cpp'
 setlocal syntax=cpp
 endif
-setlocal tabstop=8
+setlocal tabstop=4
 setlocal tags=
 setlocal textwidth=0
 setlocal thesaurus=
@@ -184,12 +191,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 79 - ((5 * winheight(0) + 9) / 18)
+let s:l = 87 - ((11 * winheight(0) + 10) / 21)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-79
-normal! 04l
+87
+normal! 0
 lcd ~/dev/motorsport
 wincmd w
 argglobal
@@ -288,16 +295,16 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 29 - ((9 * winheight(0) + 9) / 18)
+let s:l = 13 - ((4 * winheight(0) + 10) / 21)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-29
-normal! 053l
+13
+normal! 0
 lcd ~/dev/motorsport
 wincmd w
 argglobal
-edit ~/dev/motorsport/usr/share/motorsport/Threadable.cpp
+edit ~/dev/motorsport/usr/share/motorsport-sim/Graphics.cpp
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -383,7 +390,7 @@ setlocal synmaxcol=3000
 if &syntax != 'cpp'
 setlocal syntax=cpp
 endif
-setlocal tabstop=8
+setlocal tabstop=4
 setlocal tags=
 setlocal textwidth=0
 setlocal thesaurus=
@@ -392,12 +399,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 45 - ((8 * winheight(0) + 7) / 15)
+let s:l = 18 - ((9 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-45
-normal! 0
+18
+normal! 05l
 lcd ~/dev/motorsport
 wincmd w
 argglobal
@@ -496,7 +503,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 81 - ((5 * winheight(0) + 7) / 15)
+let s:l = 81 - ((7 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -504,15 +511,15 @@ normal! zt
 normal! 01l
 lcd ~/dev/motorsport
 wincmd w
-2wincmd w
-exe '1resize ' . ((&lines * 18 + 18) / 36)
-exe 'vert 1resize ' . ((&columns * 87 + 87) / 175)
-exe '2resize ' . ((&lines * 18 + 18) / 36)
-exe 'vert 2resize ' . ((&columns * 87 + 87) / 175)
-exe '3resize ' . ((&lines * 15 + 18) / 36)
-exe 'vert 3resize ' . ((&columns * 87 + 87) / 175)
-exe '4resize ' . ((&lines * 15 + 18) / 36)
-exe 'vert 4resize ' . ((&columns * 87 + 87) / 175)
+4wincmd w
+exe '1resize ' . ((&lines * 21 + 21) / 43)
+exe 'vert 1resize ' . ((&columns * 86 + 87) / 175)
+exe '2resize ' . ((&lines * 21 + 21) / 43)
+exe 'vert 2resize ' . ((&columns * 88 + 87) / 175)
+exe '3resize ' . ((&lines * 19 + 21) / 43)
+exe 'vert 3resize ' . ((&columns * 86 + 87) / 175)
+exe '4resize ' . ((&lines * 19 + 21) / 43)
+exe 'vert 4resize ' . ((&columns * 88 + 87) / 175)
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

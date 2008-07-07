@@ -26,6 +26,7 @@ SUITE(testSim)
         // At this point, there should be a window on the screen.
         //CHECK_THROW(g1->loadCollada("doesntExist.dae"), Exception); //file doesn't exist
         g1->loadCollada("beyron.dae");
+        //g1->loadCollada("Messerschmitt KR200.dae");
         //g1->loadCollada("bristol/bristol test.dae");
         //g1->loadCollada("LancerEX/Mitsubishi Lancer Evo X.dae");
         //g1->loadCollada("FF430/FF430.dae");

@@ -13,7 +13,7 @@ Graphics::Graphics(float frequency): Threadable(frequency), mFrameListener(0), m
         pluginsPath = motorsport::Os::getResourcePath() + "cfg/plugins.cfg";
     #endif
     std::string cfgPath = motorsport::Os::getResourcePath() + "cfg/ogre.cfg";
-    std::string logPath = motorsport::Os::getResourcePath() + "logs/ogre.cfg";
+    std::string logPath = motorsport::Os::getResourcePath() + "logs/ogre.log";
     mRoot = new Root(pluginsPath, cfgPath, logPath);
     //Ogre::LogManager::getSingleton().getDefaultLog()->setDebugOutputEnabled(false);
     // Load resource paths from config file
@@ -85,8 +85,17 @@ void Graphics::loadCollada(string filename) {
   // Bouml preserved body begin 0001F42B
     filename = motorsport::Os::getSharePath() + "data/" + filename;
     ImpExp* pImpExp = CreateImpExp(mRoot, mSceneMgr);
+    pImpExp->setResourceGroupName(filename);
     pImpExp->importCollada(filename.c_str());
     DestroyImpExp(pImpExp);
+
+    /*/
+    pImpExp = CreateImpExp(mRoot, mSceneMgr);
+    filename = motorsport::Os::getSharePath() + "data/Messerschmitt KR200.dae";
+    pImpExp->setResourceGroupName(filename);
+    pImpExp->importCollada(filename.c_str());
+    DestroyImpExp(pImpExp);
+    //*/
   // Bouml preserved body end 0001F42B
 }
 /** Loop method, renders things to screen. */
