@@ -14,7 +14,7 @@ Physics::~Physics() {
   // Bouml preserved body end 0001F855
 }
 /** Physics loop method. */
-void Physics::operator()() {
+void Physics::main() {
   // Bouml preserved body begin 0001F46A
     int count = 0;
     int paused= 0;

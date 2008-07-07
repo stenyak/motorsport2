@@ -407,7 +407,7 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "/** Creates a thread and starts running it. No thread should be \\ref isCreated created already. The loop is run with the \\ref operator() functor method of the class.*/"
+	comment "/** Creates a thread and starts running it. No thread should be \\ref isCreated created already. The loop is run with the \\ref main method of the class.*/"
       end
 
       operation 129621 "resume"
@@ -484,14 +484,14 @@ ${inlines}"
 \\param frequency the rate at which the thread will try to loop (in Hz). */"
       end
 
-      operation 130005 "operator()"
+      operation 130005 "main"
 	abstract preserve_cpp_body_indent cpp_virtual public explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "/** Functor method, contains the actual code of the thread. Should be implemented by all derived classes. The method must implement two things:
+	comment "/** Main thread method, contains the actual code of the thread. Should be implemented by all derived classes. The method must implement two things:
 1: Check for \\ref hasToStop regularly. As soon as it's true, the functor method must exit.
 2: Check for isPaused(). If it's true, the functor method should stop doing things, until it becomes false again. Sleeps should be used while waiting. */"
       end
@@ -505,7 +505,7 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "/** Executes the \\ref operator() functor method of the class, then sets \"loopStarted\" to true.*/"
+	comment "/** Executes the \\ref main method of the class, then sets \"loopStarted\" to true.*/"
       end
 
       attribute 128085 "frequency"
@@ -634,7 +634,7 @@ ${inlines}"
 	comment "/** Simple destructor. */"
       end
 
-      operation 128106 "operator()"
+      operation 128106 "main"
 	preserve_cpp_body_indent protected explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"

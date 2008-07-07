@@ -31,7 +31,7 @@ class Threadable {
     /** \return true if the thread should stop.
     \return false if the thread should keep running (looping). */
     bool hasToStop() const;
-    /** Creates a thread and starts running it. No thread should be \ref isCreated created already. The loop is run with the \ref operator() functor method of the class.*/
+    /** Creates a thread and starts running it. No thread should be \ref isCreated created already. The loop is run with the \ref main method of the class.*/
     void start();
     /** Resumes the execution of the thread. The thread should be \ref isPaused paused and \ref isCreated created already.*/
     void resume();
@@ -50,13 +50,13 @@ class Threadable {
     Threadable(float frequency);
 
   public:
-    /** Functor method, contains the actual code of the thread. Should be implemented by all derived classes. The method must implement two things:
+    /** Main thread method, contains the actual code of the thread. Should be implemented by all derived classes. The method must implement two things:
     1: Check for \ref hasToStop regularly. As soon as it's true, the functor method must exit.
     2: Check for isPaused(). If it's true, the functor method should stop doing things, until it becomes false again. Sleeps should be used while waiting. */
-    virtual void operator()() = 0;
+    virtual void main() = 0;
 
   private:
-    /** Executes the \ref operator() functor method of the class, then sets "loopStarted" to true.*/
+    /** Executes the \ref main method of the class, then sets "loopStarted" to true.*/
     void startLoop();
     /** The frequency (in Hz) at which the thread will attempt to run its main loop.*/
     float frequency;

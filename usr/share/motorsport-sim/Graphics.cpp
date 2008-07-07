@@ -99,7 +99,7 @@ void Graphics::loadCollada(string filename) {
   // Bouml preserved body end 0001F42B
 }
 /** Loop method, renders things to screen. */
-void Graphics::operator()() {
+void Graphics::main() {
   // Bouml preserved body begin 0001F6C5
     mRoot->startRendering();
     // frame by frame...

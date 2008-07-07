@@ -26,7 +26,7 @@ class Graphics : public motorsport::Threadable {
     /** Loads the desired file with pathname relative to Motorsport data directory. */
     void loadCollada(string filename);
     /** Loop method, renders things to screen. */
-    void operator()();
+    void main();
 
   private:
     ExampleFrameListener* mFrameListener;

@@ -35,8 +35,8 @@ SUITE(testSim)
         //FIXME: should be able to use start()
         //g1->start();
         //boost::this_thread::sleep(seconds(10));
-        //FIXME: make operator() protected once i fix start() crash in nvidia drivers
-        (*g1)();
+        //FIXME: make main protected once i fix start() crash in nvidia drivers
+        g1->main();
         CHECK_EQUAL(false, g1->isPaused());
     }
 }

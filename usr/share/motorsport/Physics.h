@@ -16,7 +16,7 @@ class Physics : public Threadable {
 
   protected:
     /** Physics loop method. */
-    void operator()();
+    void main();
 };
 
 } // namespace motorsport

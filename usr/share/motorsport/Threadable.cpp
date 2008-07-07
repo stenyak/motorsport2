@@ -33,7 +33,7 @@ bool Threadable::hasToStop() const {
     return shouldStop;
   // Bouml preserved body end 0001F445
 }
-/** Creates a thread and starts running it. No thread should be \ref isCreated created already. The loop is run with the \ref operator() functor method of the class.*/
+/** Creates a thread and starts running it. No thread should be \ref isCreated created already. The loop is run with the \ref main method of the class.*/
 void Threadable::start() {
   // Bouml preserved body begin 0001F955
     {
@@ -120,11 +120,11 @@ Threadable::Threadable(float frequency): frequency(frequency), shouldStop(false)
   // Bouml preserved body begin 0001F4D5
   // Bouml preserved body end 0001F4D5
 }
-/** Executes the \ref operator() functor method of the class, then sets "loopStarted" to true.*/
+/** Executes the \ref main method of the class, then sets "loopStarted" to true.*/
 void Threadable::startLoop() {
   // Bouml preserved body begin 0001F545
     loopStarted = true;
-    bind(&Threadable::operator(), this)();
+    bind(&Threadable::main, this)();
   // Bouml preserved body end 0001F545
 }
 
