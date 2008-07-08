@@ -104,7 +104,7 @@ function ogrecollada
         cd ogrecollada
             cd premake
                 PKG_CONFIG_PATH="$PWD/../../../usr/lib/pkgconfig" premake --verbose --target gnu
-                PKG_CONFIG_PATH="$PWD/../../../usr/lib/pkgconfig" make #-j $cpus
+                PKG_CONFIG_PATH="$PWD/../../../usr/lib/pkgconfig" make -j $cpus
             cd ..
             echo " - Copying files..."
             cp bin/release/lib* ../../usr/lib

@@ -166,6 +166,19 @@ using namespace Ogre;"
       comment "/** From Ogre library. */"
     end
 
+    class 128003 "Node"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <Ogre.h>
+using namespace Ogre;"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From Ogre library. */"
+    end
+
     class 128069 "Graphics"
       abstract visibility package 
       cpp_decl "${description}
@@ -228,6 +241,23 @@ ${inlines}"
 	comment "/** Loop method, renders things to screen. */"
       end
 
+      operation 128003 "getNodeListString"
+	preserve_cpp_body_indent public explicit_return_type "string"
+	nparams 2
+	  param inout name "node" type class_ref 128003 // Node
+	  param inout name "level" explicit_type "int"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} * ${p0} = NULL, ${t1} ${p1} = 0${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}const ${t0} * ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Retrieves a simple space separated list of all nodes existing in the Ogre scene tree, in no particular order.
+\\param node the Ogre node that will be recursively inspected and printed to string. If NULL or not specified, the Ogre root scene node will be used.
+\\param level the level of indentation, that is, the depth of the node. only has consequences on the output format (indentation). If 0 or not specified, the first node will have no levels indentation (but its children will, if present).
+\\returns a string with 4-space indentated,new-line separated node names.*/"
+      end
+
       classrelation 128171 // mFrameListener (<directional composition>)
 	relation 128171 *-->
 	  a role_name "mFrameListener" multiplicity "1" private
@@ -260,6 +290,14 @@ ${inlines}"
 	  b parent class_ref 128196 // RenderWindow
       end
 
+      classrelation 128003 // impExp (<directional composition>)
+	relation 128003 *-->
+	  a role_name "impExp" multiplicity "1" private
+	    cpp default "    ${description}${static}${mutable}${volatile}${const}${type}* ${name}${value};"
+	    classrelation_ref 128003 // impExp (<directional composition>)
+	  b parent class_ref 128171 // ImpExp
+      end
+
       classrelation 128197 // <realization>
 	relation 128197 -_-|>
 	  a public
@@ -284,13 +322,6 @@ ${inlines}"
 	  b parent class_ref 128121 // Os
       end
 
-      classrelation 128003 // impExp (<directional composition>)
-	relation 128003 *-->
-	  a role_name "impExp" multiplicity "1" private
-	    cpp default "    ${description}${static}${mutable}${volatile}${const}${type}* ${name}${value};"
-	    classrelation_ref 128003 // impExp (<directional composition>)
-	  b parent class_ref 128171 // ImpExp
-      end
     end
 
     class 129254 "Sim"

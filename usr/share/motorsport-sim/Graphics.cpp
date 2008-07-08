@@ -112,5 +112,25 @@ void Graphics::main() {
     //mRoot->renderOneFrame();
   // Bouml preserved body end 0001F6C5
 }
+/** Retrieves a simple space separated list of all nodes existing in the Ogre scene tree, in no particular order.
+\param node the Ogre node that will be recursively inspected and printed to string. If NULL or not specified, the Ogre root scene node will be used.
+\param level the level of indentation, that is, the depth of the node. only has consequences on the output format (indentation). If 0 or not specified, the first node will have no levels indentation (but its children will, if present).
+\returns a string with 4-space indentated,new-line separated node names.*/
+string Graphics::getNodeListString(const Node * node, int level) {
+  // Bouml preserved body begin 0001F403
+    std::string result;
+    if (node == NULL) node = mSceneMgr->getRootSceneNode();
+    result = "\n";
+    for (int j=level;j;j--) result += " ";
+    result += node->getName();
+
+    Ogre::Node::ConstChildNodeIterator i = node->getChildIterator();
+    while (i.hasMoreElements())
+    {
+        result += getNodeListString( i.getNext(), level+4 );
+    }
+    return result;
+  // Bouml preserved body end 0001F403
+}
 
 } // namespace motorsport_sim

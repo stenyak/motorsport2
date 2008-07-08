@@ -4,13 +4,13 @@
 
 #include <string>
 using namespace std;
-#include <motorsport-sim/GraphicsHelper.h>
-
 #include <Ogre.h>
 using namespace Ogre;
-#include "../motorsport/Threadable.h"
+#include <motorsport-sim/GraphicsHelper.h>
+
 #include <OgreCollada.h>
 using namespace OgreCollada;
+#include "../motorsport/Threadable.h"
 
 namespace motorsport { class Os; } 
 
@@ -27,6 +27,11 @@ class Graphics : public motorsport::Threadable {
     void loadCollada(string filename);
     /** Loop method, renders things to screen. */
     void main();
+    /** Retrieves a simple space separated list of all nodes existing in the Ogre scene tree, in no particular order.
+    \param node the Ogre node that will be recursively inspected and printed to string. If NULL or not specified, the Ogre root scene node will be used.
+    \param level the level of indentation, that is, the depth of the node. only has consequences on the output format (indentation). If 0 or not specified, the first node will have no levels indentation (but its children will, if present).
+    \returns a string with 4-space indentated,new-line separated node names.*/
+    string getNodeListString(const Node * node = NULL, int level = 0);
 
   private:
     ExampleFrameListener* mFrameListener;
