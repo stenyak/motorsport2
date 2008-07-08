@@ -1,8 +1,12 @@
 format 49
 
+classcanvas 128003 class_ref 128171 // ImpExp
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 532 750 2005
+  end
 classcanvas 128043 class_ref 128043 // ExampleFrameListener
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 372 813 2000
+  xyz 434 811 2000
   end
 classcanvas 128101 class_ref 129253 // Core
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -21,7 +25,7 @@ packagecanvas 128280
     xyzwh 14 38 2000 811 449
 classcanvas 128324 class_ref 128068 // SceneManager
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 349 751 2000
+  xyz 363 706 2000
   end
 classcanvas 128341 class_ref 128213 // Threadable
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -40,7 +44,7 @@ classcanvas 128485 class_ref 129381 // Group
   end
 classcanvas 128580 class_ref 128196 // RenderWindow
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 577 752 2000
+  xyz 562 696 2000
   end
 classcanvas 129732 class_ref 128069 // Graphics
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -48,16 +52,20 @@ classcanvas 129732 class_ref 128069 // Graphics
   end
 classcanvas 130244 class_ref 128324 // Root
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 487 754 2000
+  xyz 458 749 2000
   end
 relationcanvas 128068 relation_ref 128068 // <directional aggregation>
   from ref 128102 z 2004 stereotype "<<shared_ptr>>" xyz 169 511 3000 to ref 128101
   role_a_pos 220 529 3000 no_role_b
   multiplicity_a_pos 204 529 3000 no_multiplicity_b
+relationcanvas 128131 relation_ref 128003 // <directional composition>
+  from ref 129732 z 2004 to ref 128003
+  role_a_pos 565 728 3000 no_role_b
+  multiplicity_a_pos 537 728 3000 no_multiplicity_b
 relationcanvas 128171 relation_ref 128171 // <directional composition>
   from ref 129732 z 1999 to ref 128043
-  role_a_pos 474 791 3000 no_role_b
-  multiplicity_a_pos 446 791 3000 no_multiplicity_b
+  role_a_pos 528 789 3000 no_role_b
+  multiplicity_a_pos 500 789 3000 no_multiplicity_b
 relationcanvas 128234 relation_ref 128234 // <directional composition>
   from ref 128341 z 2004 to ref 128106
   role_a_pos 670 63 3000 no_role_b
@@ -93,14 +101,14 @@ relationcanvas 129381 relation_ref 129509 // <directional aggregation>
   multiplicity_a_pos 176 153 3000 no_multiplicity_b
 relationcanvas 129860 relation_ref 129476 // <directional composition>
   from ref 129732 z 1999 to ref 128324
-  role_a_pos 357 722 3000 no_role_b
-  multiplicity_a_pos 342 722 3000 no_multiplicity_b
+  role_a_pos 451 684 3000 no_role_b
+  multiplicity_a_pos 423 684 3000 no_multiplicity_b
 relationcanvas 130116 relation_ref 129604 // <directional composition>
   from ref 129732 z 1999 to ref 128580
-  role_a_pos 623 730 3000 no_role_b
-  multiplicity_a_pos 595 730 3000 no_multiplicity_b
+  role_a_pos 604 674 3000 no_role_b
+  multiplicity_a_pos 576 674 3000 no_multiplicity_b
 relationcanvas 130372 relation_ref 129732 // <directional composition>
   from ref 129732 z 1999 to ref 130244
-  role_a_pos 514 729 3000 no_role_b
-  multiplicity_a_pos 499 731 3000 no_multiplicity_b
+  role_a_pos 494 727 3000 no_role_b
+  multiplicity_a_pos 466 727 3000 no_multiplicity_b
 end

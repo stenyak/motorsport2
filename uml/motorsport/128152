@@ -1,7 +1,7 @@
 format 49
 "motorsport-sim" // motorsport-sim
-  revision 15
-  modified_by 71 "stenyak"
+  revision 16
+  modified_by 3 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -111,7 +111,7 @@ using namespace OgreCollada;"
       idl_decl ""
       explicit_switch_type ""
       
-      comment "/** From Ogre library. */"
+      comment "/** Collada importer/exporter, from OgreCollada library. */"
     end
 
     class 128043 "ExampleFrameListener"
@@ -282,6 +282,14 @@ ${inlines}"
 	    cpp default "#include in source"
 	    classrelation_ref 130133 // <dependency>
 	  b parent class_ref 128121 // Os
+      end
+
+      classrelation 128003 // impExp (<directional composition>)
+	relation 128003 *-->
+	  a role_name "impExp" multiplicity "1" private
+	    cpp default "    ${description}${static}${mutable}${volatile}${const}${type}* ${name}${value};"
+	    classrelation_ref 128003 // impExp (<directional composition>)
+	  b parent class_ref 128171 // ImpExp
       end
     end
 

@@ -68,6 +68,9 @@ Graphics::Graphics(float frequency): Threadable(frequency), mFrameListener(0), m
         l->setPosition(20,80,50);
         mFrameListener= new ExampleFrameListener (mWindow, mCamera, mSceneMgr);
         mRoot->addFrameListener(mFrameListener);
+        
+        // Set up collada importer/exporter
+        impExp = CreateImpExp(mRoot, mSceneMgr);
 
         LogManager::getSingleton().setLogDetail( LL_BOREME );
     }
@@ -76,26 +79,29 @@ Graphics::Graphics(float frequency): Threadable(frequency), mFrameListener(0), m
 /** Simple destructor. */
 Graphics::~Graphics() {
   // Bouml preserved body begin 0001F645
-    if (mFrameListener) delete mFrameListener;
-    if (mRoot) delete mRoot;
+    if (mFrameListener)
+    {
+        delete mFrameListener;
+        mFrameListener = NULL;
+    }
+    if (mRoot)
+    {
+        delete mRoot; 
+        mRoot = NULL;
+    }
+    if (impExp)
+    {
+        DestroyImpExp(impExp);
+        impExp = NULL;
+    }
   // Bouml preserved body end 0001F645
 }
 /** Loads the desired file with pathname relative to Motorsport data directory. */
 void Graphics::loadCollada(string filename) {
   // Bouml preserved body begin 0001F42B
     filename = motorsport::Os::getDataPath(filename);
-    ImpExp* pImpExp = CreateImpExp(mRoot, mSceneMgr);
-    pImpExp->setResourceGroupName(filename);
-    pImpExp->importCollada(filename.c_str());
-    DestroyImpExp(pImpExp);
-
-    /*/
-    pImpExp = CreateImpExp(mRoot, mSceneMgr);
-    filename = motorsport::Os::getDataPath() + "Messerschmitt KR200.dae";
-    pImpExp->setResourceGroupName(filename);
-    pImpExp->importCollada(filename.c_str());
-    DestroyImpExp(pImpExp);
-    //*/
+    impExp->setResourceGroupName(filename);
+    impExp->importCollada(filename.c_str());
   // Bouml preserved body end 0001F42B
 }
 /** Loop method, renders things to screen. */

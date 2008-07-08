@@ -33,6 +33,7 @@ class Graphics : public motorsport::Threadable {
     SceneManager* mSceneMgr;
     Root* mRoot;
     RenderWindow* mWindow;
+    ImpExp* impExp;
 };
 
 } // namespace motorsport_sim
