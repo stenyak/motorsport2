@@ -8,14 +8,16 @@ namespace motorsport_sim {
 Graphics::Graphics(float frequency): Threadable(frequency), mFrameListener(0), mRoot(0), mWindow(0) {
   // Bouml preserved body begin 0001F5C5
     std::string pluginsPath = "";
-    // only use plugins.cfg if not static
     #ifndef OGRE_STATIC_LIB
+        // only use plugins.cfg if not static
         pluginsPath = motorsport::Os::getCfgPath("plugins.cfg");
     #endif
     std::string cfgPath = motorsport::Os::getCfgPath("ogre.cfg");
     std::string logPath = motorsport::Os::getLogsPath("ogre.log");
-    mRoot = new Root(pluginsPath, cfgPath, logPath);
-    //Ogre::LogManager::getSingleton().getDefaultLog()->setDebugOutputEnabled(false);
+    // prevent Ogre logs from being output to screen. We manually have to create a new log *before* the root is created. It gets deleted automatically when deleting ogre.
+    (new LogManager())->createLog(logPath, true, false, false); //TODO: redirect to our own logger.
+    LogManager::getSingleton().setLogDetail( LL_BOREME );
+    mRoot = new Root(pluginsPath, cfgPath, "");
     // Load resource paths from config file
     std::string resourcesPath = motorsport::Os::getCfgPath("resources.cfg");
     ConfigFile cf;
@@ -71,8 +73,10 @@ Graphics::Graphics(float frequency): Threadable(frequency), mFrameListener(0), m
         
         // Set up collada importer/exporter
         impExp = CreateImpExp(mRoot, mSceneMgr);
-
-        LogManager::getSingleton().setLogDetail( LL_BOREME );
+    }
+    else
+    {
+        //user closed the setup window
     }
   // Bouml preserved body end 0001F5C5
 }
