@@ -67,15 +67,15 @@ format 49
       size A4
     end
 
-    classdiagram 128035 "dependencies (from impl)"
-      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-      comment "Shows what method bodies require the inclusion of other classes headers in order to work. This is a graph showing what \"#include\"s are necessary in addition to those already implied by aggregation or derivation relationships."
-      size A4
-    end
-
     classdiagram 128192 "derivations"
       draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
       comment "Shows what classes are derived or implement other classes."
+      size A4
+    end
+
+    classdiagram 128035 "dependencies (from impl)"
+      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+      comment "Shows what method bodies require the inclusion of other classes headers in order to work. This is a graph showing what \"#include\"s are necessary in addition to those already implied by aggregation or derivation relationships."
       size A4
     end
   end

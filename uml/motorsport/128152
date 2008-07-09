@@ -226,7 +226,20 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "/** Loads the desired file with pathname relative to Motorsport data directory. */"
+	comment "/** Loads the desired dae file (.dae) with pathname relative to Motorsport data directory. */"
+      end
+
+      operation 128131 "loadResources"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 1
+	  param in name "filename" explicit_type "string"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Loads the desired ogre resources file (.cfg) with pathname relative to Motorsport data directory. */"
       end
 
       operation 128709 "main"

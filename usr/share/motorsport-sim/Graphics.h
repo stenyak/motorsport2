@@ -23,8 +23,10 @@ class Graphics : public motorsport::Threadable {
     Graphics(float frequency);
     /** Simple destructor. */
     virtual ~Graphics();
-    /** Loads the desired file with pathname relative to Motorsport data directory. */
+    /** Loads the desired dae file (.dae) with pathname relative to Motorsport data directory. */
     void loadCollada(string filename);
+    /** Loads the desired ogre resources file (.cfg) with pathname relative to Motorsport data directory. */
+    void loadResources(string filename);
     /** Loop method, renders things to screen. */
     void main();
     /** Retrieves a simple space separated list of all nodes existing in the Ogre scene tree, in no particular order.

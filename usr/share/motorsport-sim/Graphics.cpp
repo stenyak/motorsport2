@@ -19,24 +19,8 @@ Graphics::Graphics(float frequency): Threadable(frequency), mFrameListener(0), m
     LogManager::getSingleton().setLogDetail( LL_BOREME );
     mRoot = new Root(pluginsPath, cfgPath, "");
     // Load resource paths from config file
-    std::string resourcesPath = motorsport::Os::getCfgPath("resources.cfg");
-    ConfigFile cf;
-    cf.load(resourcesPath);
-    // Go through all sections & settings in the file
-    ConfigFile::SectionIterator seci = cf.getSectionIterator();
-    String secName, typeName, archName;
-    while (seci.hasMoreElements())
-    {
-        secName = seci.peekNextKey();
-        ConfigFile::SettingsMultiMap *settings = seci.getNext();
-        ConfigFile::SettingsMultiMap::iterator i;
-        for (i = settings->begin(); i != settings->end(); ++i)
-        {
-            typeName = i->first;
-            archName = i->second;
-            ResourceGroupManager::getSingleton().addResourceLocation( String(motorsport::Os::getDataPath(archName)), typeName, secName);
-        }
-    }
+    loadResources("resources.cfg");
+
     // Show the configuration dialog and initialise the system. You can skip this and use root.restoreConfig() to load configuration settings if you were sure there are valid ones saved in ogre.cfg
     if(mRoot->showConfigDialog())
     {
@@ -100,13 +84,36 @@ Graphics::~Graphics() {
     }
   // Bouml preserved body end 0001F645
 }
-/** Loads the desired file with pathname relative to Motorsport data directory. */
+/** Loads the desired dae file (.dae) with pathname relative to Motorsport data directory. */
 void Graphics::loadCollada(string filename) {
   // Bouml preserved body begin 0001F42B
     filename = motorsport::Os::getDataPath(filename);
     impExp->setResourceGroupName(filename);
     impExp->importCollada(filename.c_str());
   // Bouml preserved body end 0001F42B
+}
+/** Loads the desired ogre resources file (.cfg) with pathname relative to Motorsport data directory. */
+void Graphics::loadResources(string filename) {
+  // Bouml preserved body begin 0001F483
+    filename = motorsport::Os::getDataPath(filename);
+    ConfigFile cf;
+    cf.load(filename);
+    // Go through all sections & settings in the file
+    ConfigFile::SectionIterator seci = cf.getSectionIterator();
+    String secName, typeName, archName;
+    while (seci.hasMoreElements())
+    {
+        secName = seci.peekNextKey();
+        ConfigFile::SettingsMultiMap *settings = seci.getNext();
+        ConfigFile::SettingsMultiMap::iterator i;
+        for (i = settings->begin(); i != settings->end(); ++i)
+        {
+            typeName = i->first;
+            archName = i->second;
+            ResourceGroupManager::getSingleton().addResourceLocation( String(motorsport::Os::getDataPath(archName)), typeName, secName);
+        }
+    }
+  // Bouml preserved body end 0001F483
 }
 /** Loop method, renders things to screen. */
 void Graphics::main() {
