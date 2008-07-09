@@ -2,13 +2,19 @@ How to develop Motorsport Project under GNU/Linux
 =================================================
 
 First, you need to install certain libs using your distros package manager.
- - boost-1.35 (thread, shared_ptr, bind, date_time)
- - unittest++ (*)
+ - typical build tools
+ - boost-1.35 (thread, shared_ptr, bind, date_time, filesystem)
+ - unittest++
+ - OIS
+ - ogre
+ - ogreCollada
 
-* Note:  If your distro (such as Gentoo) doesn't provide unittest++, we
+* Note:  If your distro (such as Gentoo) doesn't provide some lib, we
 provide a way to install it for usage in Motorsport development. This script
-depends on subversion, so install it before running.
-$ ./grabDeps.sh
+depends on subversion and premake, so install them before running. It'll
+attempt to build and locally install many necessary libs. You can also
+specify which ones to retrieve:
+$ ./grabDeps.sh [ ogre | ogrecollada | unittest | scons | freeimage ]
 
 
 Development flow:
