@@ -5,6 +5,11 @@ syntax: regexp
 \.snap$
 history\.index$
 \.o$
+\.a$
+\.os$
+\.so$
+\.orig$
+^uml/motorsport/.*\.session$
 \.swp$
 ^usr/lib$
 ^usr/include$
@@ -17,4 +22,7 @@ history\.index$
 \.gcda$
 \.gcno$
 \.log$
-Session\.vim$
+^Session\.vim$
+^motorsport-sim$
+^motorsport-sim-tests$
+^motorsport-tests$
