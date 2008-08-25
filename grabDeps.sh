@@ -114,7 +114,24 @@ function ogrecollada
     cd ..
 }
 
-params="unittest scons freeimage ogre ogrecollada"
+function bullet
+{
+    mkcd deps
+        echo "==== Installing Bullet ===="
+        echo " - Grabbing from svn..."
+        svn checkout http://bullet.googlecode.com/svn/trunk bullet
+        echo " - Building..."
+        cd bullet
+            ./configure --prefix=$PWD/../../usr
+            make -j $cpus
+            echo " - Copying files..."
+            jam install
+        cd ..
+        echo "==== Bullet installed ===="
+    cd ..
+}
+
+params="unittest scons freeimage ogre ogrecollada bullet"
 
 if [ "$*" != "" ]; then
     params="$*"
@@ -128,6 +145,7 @@ do
         "freeimage") freeimage;;
         "ogre") ogre;;
         "ogrecollada") ogrecollada;;
+        "bullet") bullet;;
         *) ;;
     esac
 done

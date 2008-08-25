@@ -16,14 +16,14 @@ else
             cp -f $(dirname "$k")/*.gc* . 2>/dev/null
         done
 
-        echo ">>> Checking coverage..."
-        for l in usr/share/*/*.gcda
-        do
-            gcov -p $(dirname "$l")/*.cpp |grep -e "File\ '[^\/].*" -A 1 2>/dev/null 1>/dev/null
-        done
+        #echo ">>> Checking coverage..."
+        #for l in usr/share/*/*.gcda
+        #do
+        #    gcov -p $(dirname "$l")/*.cpp |grep -e "File\ '[^\/].*" -A 1 2>/dev/null 1>/dev/null
+        #done
 
         #grep -H "####" *.gcov  2>/dev/null|grep "^usr#share"  2>/dev/null|sed "s/\.gcov:/:/g;s/\([0-9]\):/\1: warning: line not covered\./;s/[\ ]*#####:[\ ]*//g;s/#/\//g;s/\^/\.\./g"
         rm *.gc* 2>/dev/null
-        echo ""
+        #echo ""
     done
 fi
