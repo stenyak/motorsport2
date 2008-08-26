@@ -30,6 +30,23 @@ SUITE(testCore)
         CHECK_THROW(shared_ptr<Core> c5(new Core(g2)), Exception);
     }
 }
+SUITE(testPhysics)
+{
+    TEST(physics)
+    {
+        shared_ptr<Physics> p1 (new Physics(100.0));
+        //std::cout<<p1->getNodeListString()<<std::endl;
+        //p1->loadCollada("beyron.dae");
+        //std::cout<<p1->getNodeListString()<<std::endl;
+
+        //FIXME: should be able to use start()
+        //p1->start();
+        //boost::this_thread::sleep(seconds(10));
+        //FIXME: make main protected once i fix start() crash in nvidia drivers
+        //p1->main();
+        CHECK_EQUAL(false, p1->isPaused());
+    }
+}
 SUITE(testException)
 {
     TEST(construction)

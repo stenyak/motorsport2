@@ -54,10 +54,10 @@ class Threadable {
     1: Check for \ref hasToStop regularly. As soon as it's true, the functor method must exit.
     2: Check for isPaused(). If it's true, the functor method should stop doing things, until it becomes false again. Sleeps should be used while waiting. */
     virtual void main() = 0;
-
-  private:
     /** Executes the \ref main method of the class, then sets "loopStarted" to true.*/
     void startLoop();
+
+  private:
     /** The frequency (in Hz) at which the thread will attempt to run its main loop.*/
     float frequency;
     /** False if the currently running thread should be stopped and deleted. Accessed by derived classes using \ref hasToStop method. */

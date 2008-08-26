@@ -3,6 +3,9 @@
 #define MOTORSPORT_PHYSICS_H
 
 #include "Threadable.h"
+#include <boost/shared_ptr.hpp>
+using namespace boost;
+#include <btBulletDynamicsCommon.h>
 
 namespace motorsport {
 
@@ -13,10 +16,12 @@ class Physics : public Threadable {
     Physics(float frequency);
     /** Simple destructor. */
     virtual ~Physics();
-
-  protected:
-    /** Physics loop method. */
+    /** Physics loop method. TODO: make protected.*/
     void main();
+
+  private:
+    shared_ptr<btRigidBody> fallRigidBody;
+    shared_ptr<btDiscreteDynamicsWorld> dynamicsWorld;
 };
 
 } // namespace motorsport

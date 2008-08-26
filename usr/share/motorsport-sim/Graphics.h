@@ -27,7 +27,7 @@ class Graphics : public motorsport::Threadable {
     void loadCollada(string filename);
     /** Loads the desired ogre resources file (.cfg) with pathname relative to Motorsport data directory. */
     void loadResources(string filename);
-    /** Loop method, renders things to screen. */
+    /** Loop method, renders things to screen. TODO: make protected.*/
     void main();
     /** Retrieves a simple space separated list of all nodes existing in the Ogre scene tree, in no particular order.
     \param node the Ogre node that will be recursively inspected and printed to string. If NULL or not specified, the Ogre root scene node will be used.

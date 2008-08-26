@@ -1,7 +1,7 @@
 format 49
 "motorsport-sim" // motorsport-sim
-  revision 16
-  modified_by 3 "stenyak"
+  revision 17
+  modified_by 104 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -251,7 +251,7 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "/** Loop method, renders things to screen. */"
+	comment "/** Loop method, renders things to screen. TODO: make protected.*/"
       end
 
       operation 128003 "getNodeListString"
@@ -334,7 +334,6 @@ ${inlines}"
 	    classrelation_ref 130133 // <dependency>
 	  b parent class_ref 128121 // Os
       end
-
     end
 
     class 129254 "Sim"

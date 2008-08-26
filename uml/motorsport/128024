@@ -1,7 +1,7 @@
 format 49
 "motorsport" // motorsport
-  revision 23
-  modified_by 38 "stenyak"
+  revision 25
+  modified_by 5 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -333,6 +333,30 @@ using namespace boost;"
       comment "/** From Boost libraries. Allows to handle filesystem operations.*/"
     end
 
+    class 128104 "btRigidBody"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <btBulletDynamicsCommon.h>"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From Bulletlibrary.*/"
+    end
+
+    class 128232 "btDiscreteDynamicsWorld"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <btBulletDynamicsCommon.h>"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From Bulletlibrary.*/"
+    end
+
     class 128213 "Threadable"
       abstract visibility package 
       cpp_decl "${description}
@@ -497,7 +521,7 @@ ${inlines}"
       end
 
       operation 128325 "startLoop"
-	preserve_cpp_body_indent private explicit_return_type "void"
+	preserve_cpp_body_indent public explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
 	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
@@ -635,7 +659,7 @@ ${inlines}"
       end
 
       operation 128106 "main"
-	preserve_cpp_body_indent protected explicit_return_type "void"
+	preserve_cpp_body_indent public explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
 	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
@@ -643,7 +667,7 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "/** Physics loop method. */"
+	comment "/** Physics loop method. TODO: make protected.*/"
       end
 
       classrelation 128085 // <realization>
@@ -652,6 +676,24 @@ ${inlines}"
 	    cpp default "${type}"
 	    classrelation_ref 128085 // <realization>
 	  b parent class_ref 128213 // Threadable
+      end
+
+      classrelation 128360 // fallRigidBody (<directional aggregation>)
+	relation 128360 o-->
+	  stereotype "shared_ptr"
+	  a role_name "fallRigidBody" multiplicity "1" private
+	    cpp default "    ${description}${static}${mutable}${volatile}${stereotype}<${type}> ${name}${value};"
+	    classrelation_ref 128360 // fallRigidBody (<directional aggregation>)
+	  b parent class_ref 128104 // btRigidBody
+      end
+
+      classrelation 128616 // dynamicsWorld (<directional aggregation>)
+	relation 128616 o-->
+	  stereotype "shared_ptr"
+	  a role_name "dynamicsWorld" multiplicity "1" private
+	    cpp default "    ${description}${static}${mutable}${volatile}${stereotype}<${type}> ${name}${value};"
+	    classrelation_ref 128616 // dynamicsWorld (<directional aggregation>)
+	  b parent class_ref 128232 // btDiscreteDynamicsWorld
       end
     end
 
