@@ -1,2 +1,2 @@
 #!/bin/bash
-scons && ./run.sh motorsport-tests && ./run.sh motorsport-sim-tests
+scons && ./run.sh motorsport-tests #&& ./run.sh motorsport-sim-tests

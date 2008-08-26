@@ -85,7 +85,7 @@ function ogre
         echo " - Building..."
         cd ogre
             ./bootstrap
-            ./configure --prefix=$PWD/../../usr
+            ./configure --prefix=$PWD/../../usr --enable-debug
             make -j $cpus
             echo " - Copying files..."
             make install
@@ -139,7 +139,7 @@ function bullet
         svn checkout http://bullet.googlecode.com/svn/trunk bullet
         echo " - Building..."
         cd bullet
-            ./configure --prefix=$PWD/../../usr
+            ./configure --prefix=$PWD/../../usr --enable-debug
             make -j $cpus
             echo " - Copying files..."
             jam install
