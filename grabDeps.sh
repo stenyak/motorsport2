@@ -61,9 +61,9 @@ function freeimage
         echo " - Grabbing from cvs..."
         echo "Press enter to continue (empty password)."
     cvs -d:pserver:anonymous@freeimage.cvs.sourceforge.net:/cvsroot/freeimage login
-    cvs -z3 -d:pserver:anonymous@freeimage.cvs.sourceforge.net:/cvsroot/freeimage co -P freeImage
+    cvs -z3 -d:pserver:anonymous@freeimage.cvs.sourceforge.net:/cvsroot/freeimage co -P FreeImage
         echo " - Building..."
-        cd freeimage
+        cd Freeimage
             # specify custom prefix by hand:
             t=$(tempfile)
             cat Makefile.gnu |sed "s/\/usr/\/\.\.\/\.\.\/usr/g;s/-.\ root//g" > $t; cp $t Makefile.gnu
@@ -114,6 +114,23 @@ function ogrecollada
     cd ..
 }
 
+function boost
+{
+    mkcd deps
+        echo "==== Installing Boost ===="
+        echo " - Grabbing from svn..."
+        svn co http://svn.boost.org/svn/boost/trunk boost-trunk -r 46712 #v1.35
+        echo " - Building..."
+        cd boost-trunk
+            ./configure --prefix=$PWD/../../usr
+            make -j $cpus
+            echo " - Copying files..."
+            make install
+        cd ..
+        echo "==== Boost installed ===="
+    cd ..
+}
+
 function bullet
 {
     mkcd deps
@@ -131,7 +148,7 @@ function bullet
     cd ..
 }
 
-params="unittest scons freeimage ogre ogrecollada bullet"
+params="unittest scons freeimage ogre ogrecollada boost bullet"
 
 if [ "$*" != "" ]; then
     params="$*"
@@ -145,6 +162,7 @@ do
         "freeimage") freeimage;;
         "ogre") ogre;;
         "ogrecollada") ogrecollada;;
+        "boost") boost;;
         "bullet") bullet;;
         *) ;;
     esac

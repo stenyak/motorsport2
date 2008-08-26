@@ -5,12 +5,12 @@
 #include <string>
 using namespace std;
 #include <exception>
-using namespace std;
+
 
 namespace motorsport {
 
 /** Basic Motorsport exception class. */
-class Exception : public exception {
+class Exception : public std::exception {
   public:
     /** Simple constructor.
     \param description a \ref description of the exception. */
