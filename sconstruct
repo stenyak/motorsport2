@@ -87,9 +87,9 @@ depBoostDate = { "ccflags":"-isystem usr/include/boost-1_35", "libs":"boost_date
 depBoostThread = { "ccflags":"-isystem usr/include/boost-1_35", "libs":"boost_thread-gcc41-mt-1_35", "includePaths":"usr/include/boost-1_35", "libPaths":"usr/lib" }
 depBoostFilesystem = { "ccflags":"-isystem usr/include/boost-1_35", "libs":"boost_filesystem-gcc41-mt-1_35 boost_system-gcc41-mt-1_35", "includePaths":"usr/include/boost-1_35", "libPaths":"usr/lib" }
 
+depBullet = { "libPaths":"usr/lib", "libs":"bulletcollision bulletdynamics bulletmath bulletsoftbody", "includePaths":"usr/include/bullet" }
 depOgre = { "ccflags":"-fmessage-length=0 -fexceptions -fident -isystem usr/include/OGRE", "libs":"OgreMain", "includePaths":"usr/include/OGRE", "libPaths":"usr/lib" }
 depOgreCollada = { "libs":"OgreCollada FCollada LibXML", "includePaths":"usr/include", "libPaths":"usr/lib" }
-#depOgreCollada = { "sources":"libFCollada", "libs":"OgreCollada", "includePaths":"usr/include", "libPaths":"usr/lib" }
 depMotorsport = { "libPaths":"usr/lib/motorsport", "libs":"motorsport", "includePaths":"usr/include" }
 depOIS = { "libs":"OIS" }
 depUnitTest = { "ccflags":"-isystem usr/include/unittest++", "includePaths":"usr/include" , "libPaths":"usr/lib", "libs":"UnitTest++" }
@@ -101,20 +101,20 @@ depMotorsportSim = {"libPaths":"usr/lib/motorsport-sim","libs":"motorsport-sim",
 # Builds
 ################################################################################
 cfgMotorsport = { "name": "motorsport" ,"sources": "Os.cpp Core.cpp Loggable.cpp Group.cpp Exception.cpp Physics.cpp Threadable.cpp" ,"headers": "Os.h Core.h Group.h Loggable.h Exception.h Physics.h Threadable.h" }
-objMotorsport = build("SharedLibrary", [cfgMotorsport, cfgDebug, cfgWarns, cfgCov, depBoostShared, depBoostFilesystem])
+objMotorsport = build("SharedLibrary", [cfgMotorsport, cfgDebug, cfgWarns, cfgCov, depBoostShared, depBoostFilesystem, depBullet])
 
 cfgMotorsportTests = { "name": "motorsport-tests" ,"sources": "main.cpp" }
-objTests = build("Program", [cfgMotorsportTests, cfgDebug, cfgWarns, cfgCov, depMotorsport, depBoostShared, depBoostDate, depBoostThread, depBoostFilesystem, depUnitTest])
+objTests = build("Program", [cfgMotorsportTests, cfgDebug, cfgWarns, cfgCov, depMotorsport, depBoostShared, depBoostDate, depBoostThread, depBoostFilesystem, depBullet, depUnitTest])
 
 
 cfgDepMotorsportSim = { "name": "motorsport-sim" ,"sources": "Sim.cpp Graphics.cpp" ,"headers": "Sim.h Graphics.h GraphicsHelper.h" }
-objDepMotorsportSim = build("StaticLibrary", [cfgDepMotorsportSim, cfgDebug, cfgWarns, cfgCov, depBoostShared, depMotorsport, depOgre, depOIS, depOgreCollada])
+objDepMotorsportSim = build("StaticLibrary", [cfgDepMotorsportSim, cfgDebug, cfgWarns, cfgCov, depBoostShared, depMotorsport, depOgre, depBullet, depOIS, depOgreCollada])
 
 cfgMotorsportSim = { "name": "motorsport-sim" ,"sources": "main.cpp" }
-objMotorsportSim = build("Program", [cfgMotorsportSim, cfgDebug, cfgWarns, cfgCov, depBoostShared, depBoostThread, depBoostFilesystem, depMotorsport, depMotorsportSim, depOgre, depOIS, depOgreCollada])
+objMotorsportSim = build("Program", [cfgMotorsportSim, cfgDebug, cfgWarns, cfgCov, depBoostShared, depBoostThread, depBoostFilesystem, depMotorsport, depMotorsportSim, depOgre, depBullet, depOIS, depOgreCollada])
 
 cfgMotorsportSimTests = { "name": "motorsport-sim-tests" ,"sources": "tests.cpp" }
-objMotorsportSimTests = build("Program", [cfgMotorsportSimTests, cfgDebug, cfgWarns, cfgCov, depBoostShared, depBoostThread, depBoostFilesystem, depUnitTest, depMotorsport, depMotorsportSim, depOgre, depOIS, depOgreCollada])
+objMotorsportSimTests = build("Program", [cfgMotorsportSimTests, cfgDebug, cfgWarns, cfgCov, depBoostShared, depBoostThread, depBoostFilesystem, depUnitTest, depMotorsport, depMotorsportSim, depOgre, depBullet, depOIS, depOgreCollada])
 
 cfgThreadTest = { "name": "thread-test" ,"sources": "main.cpp" }
 objThreadTest = build("Program", [cfgThreadTest, cfgDebug, cfgWarns, cfgCov, depBoostShared, depUnitTest ])
