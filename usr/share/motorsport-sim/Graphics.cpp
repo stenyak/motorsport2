@@ -18,45 +18,31 @@ Graphics::Graphics(float frequency): Threadable(frequency), mFrameListener(0), m
     (new LogManager())->createLog(logPath, true, false, false); //TODO: redirect to our own logger.
     LogManager::getSingleton().setLogDetail( LL_BOREME );
     mRoot = new Root(pluginsPath, cfgPath, "");
-    // Load resource paths from config file
-    loadResources("resources.cfg");
 
     // Show the configuration dialog and initialise the system. You can skip this and use root.restoreConfig() to load configuration settings if you were sure there are valid ones saved in ogre.cfg
     if(mRoot->showConfigDialog())
     {
-        // If returned true, user clicked OK so initialise
-        // Here we choose to let the system create a default rendering window by passing 'true'
-        mWindow = mRoot->initialise(true);
-        // Create the SceneManager, in this case a generic one
-        mSceneMgr = mRoot->createSceneManager(ST_GENERIC, "ExampleSMInstance");
-        // Create the camera
-        Camera* mCamera = mSceneMgr->createCamera("PlayerCam");
-        // Position it at 500 in Z direction
+        // user clicked OK
+        mWindow = mRoot->initialise(true, "MotorsportSim (powered by Motorsport)");
+        mSceneMgr = mRoot->createSceneManager(ST_GENERIC);
+        loadResources("resources.cfg");
+        // set some things up
+        Camera* mCamera = mSceneMgr->createCamera("camera"); //what name should we use?
         mCamera->setPosition(Vector3(-3,3,-3));
-        // Look back along -Z
         mCamera->lookAt(Vector3(0,0,0));
         mCamera->setNearClipDistance(1);
-        // Create one viewport, entire window
-        Viewport* vp = mWindow->addViewport(mCamera);
-        vp->setBackgroundColour(ColourValue(0,0,0));
-        // Alter the camera aspect ratio to match the viewport
-        mCamera->setAspectRatio( Real(vp->getActualWidth()) / Real(vp->getActualHeight()));
-        // Set default mipmap level (NB some APIs ignore this)
-        TextureManager::getSingleton().setDefaultNumMipmaps(5);
-        // Initialise, parse scripts etc
-        /// Must at least do ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-        ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-
-        // General render setup
         mSceneMgr->setAmbientLight(ColourValue(0.5, 0.5, 0.5));
         mSceneMgr->setSkyDome(true, "Examples/CloudySky", 5, 8);
         Light* l = mSceneMgr->createLight("MainLight");
         l->setPosition(20,80,50);
+        Viewport* vp = mWindow->addViewport(mCamera);
+        TextureManager::getSingleton().setDefaultNumMipmaps(5);
+        mCamera->setAspectRatio( Real(vp->getActualWidth()) / Real(vp->getActualHeight())); //alters the camera aspect ratio to match the viewport
+        vp->setBackgroundColour(ColourValue(0,0,0));
+        // we add input controllers
         mFrameListener= new ExampleFrameListener (mWindow, mCamera, mSceneMgr);
         mRoot->addFrameListener(mFrameListener);
-        
-        // Set up collada importer/exporter
-        impExp = CreateImpExp(mRoot, mSceneMgr);
+        impExp = CreateImpExp(mRoot, mSceneMgr); // set up collada importer/exporter
     }
     else
     {
@@ -113,9 +99,11 @@ void Graphics::loadResources(string filename) {
             ResourceGroupManager::getSingleton().addResourceLocation( String(motorsport::Os::getDataPath(archName)), typeName, secName);
         }
     }
+    //this loads all resource groups to memory. remove for delayed/customized time of load. ogrecollada is not affected by this, i think.
+    ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
   // Bouml preserved body end 0001F483
 }
-/** Loop method, renders things to screen. */
+/** Loop method, renders things to screen. TODO: make protected.*/
 void Graphics::main() {
   // Bouml preserved body begin 0001F6C5
     mRoot->startRendering();
