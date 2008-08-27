@@ -1,7 +1,7 @@
 format 49
 "motorsport" // motorsport
-  revision 25
-  modified_by 5 "stenyak"
+  revision 26
+  modified_by 33 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -282,6 +282,19 @@ using namespace boost;"
       comment "/** From Boost libraries.*/"
     end
 
+    class 128005 "barrier"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <boost/thread/barrier.hpp>
+using namespace boost;"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From Boost libraries.*/"
+    end
+
     class 128618 "posix_time"
       visibility package 
       cpp_external cpp_decl "${name}
@@ -479,7 +492,7 @@ ${inlines}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
 	
-	comment "/** Regular destructor. Calls \\ref stop in order to terminate the thread. */"
+	comment "/** Regular destructor. TODO: It should be overriden by the derived destructor, which should call safeStop() before doing anything at all. */"
       end
 
       operation 128197 "safeStop"
@@ -499,7 +512,7 @@ ${inlines}"
 	nparams 1
 	  param in name "frequency" explicit_type "float"
 	cpp_decl "    ${description}${inline}${name}${(}${t0} ${p0}${)}${volatile}${throw};"
-	cpp_def "${description}${inline}${class}::${name}${(}${t0} ${p0}${)}${volatile}${throw}: frequency(frequency), shouldStop(false), paused(false), loopStarted(false) {
+	cpp_def "${description}${inline}${class}::${name}${(}${t0} ${p0}${)}${volatile}${throw}: frequency(frequency), shouldStop(false), paused(false) {
   ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
@@ -516,20 +529,8 @@ ${inlines}"
 	preserve_php_body_indent 
 	
 	comment "/** Main thread method, contains the actual code of the thread. Should be implemented by all derived classes. The method must implement two things:
-1: Check for \\ref hasToStop regularly. As soon as it's true, the functor method must exit.
-2: Check for isPaused(). If it's true, the functor method should stop doing things, until it becomes false again. Sleeps should be used while waiting. */"
-      end
-
-      operation 128325 "startLoop"
-	preserve_cpp_body_indent public explicit_return_type "void"
-	nparams 0
-	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
-	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}"
-	preserve_java_body_indent 
-	preserve_php_body_indent 
-	
-	comment "/** Executes the \\ref main method of the class, then sets \"loopStarted\" to true.*/"
+1: Check for \\ref hasToStop regularly. As soon as it's true, exit the function.
+2: Check for isPaused(). If it's true, stop doing things until it becomes false again. Sleeps should be used while waiting. */"
       end
 
       attribute 128085 "frequency"
@@ -558,15 +559,6 @@ ${inlines}"
 	php_decl ""
 	idl_decl ""
 	comment "/** True if the currently running thread should be paused. */"
-      end
-
-      attribute 128069 "loopStarted"
-	private explicit_type "bool"
-	cpp_decl "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};"
-	java_decl ""
-	php_decl ""
-	idl_decl ""
-	comment "/** True if the thread loop has already started. */"
       end
 
       classrelation 128234 // mutBthread (<directional composition>)
@@ -678,23 +670,22 @@ ${inlines}"
 	  b parent class_ref 128213 // Threadable
       end
 
-      classrelation 128360 // fallRigidBody (<directional aggregation>)
-	relation 128360 o-->
-	  stereotype "shared_ptr"
+      classrelation 128360 // fallRigidBody (<directional composition>)
+	relation 128360 *-->
 	  a role_name "fallRigidBody" multiplicity "1" private
-	    cpp default "    ${description}${static}${mutable}${volatile}${stereotype}<${type}> ${name}${value};"
-	    classrelation_ref 128360 // fallRigidBody (<directional aggregation>)
+	    cpp default "    ${description}${static}${mutable}${volatile}${const}${type}* ${name}${value};"
+	    classrelation_ref 128360 // fallRigidBody (<directional composition>)
 	  b parent class_ref 128104 // btRigidBody
       end
 
-      classrelation 128616 // dynamicsWorld (<directional aggregation>)
-	relation 128616 o-->
-	  stereotype "shared_ptr"
+      classrelation 128616 // dynamicsWorld (<directional composition>)
+	relation 128616 *-->
 	  a role_name "dynamicsWorld" multiplicity "1" private
-	    cpp default "    ${description}${static}${mutable}${volatile}${stereotype}<${type}> ${name}${value};"
-	    classrelation_ref 128616 // dynamicsWorld (<directional aggregation>)
+	    cpp default "    ${description}${static}${mutable}${volatile}${const}${type}* ${name}${value};"
+	    classrelation_ref 128616 // dynamicsWorld (<directional composition>)
 	  b parent class_ref 128232 // btDiscreteDynamicsWorld
       end
+
     end
 
     class 128163 "Exception"

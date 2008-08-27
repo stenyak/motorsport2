@@ -39,7 +39,7 @@ class Threadable {
     void pause();
     /** Stops and deletes the thread. The thread should be already \ref isCreated created.*/
     void stop();
-    /** Regular destructor. Calls \ref stop in order to terminate the thread. */
+    /** Regular destructor. TODO: It should be overriden by the derived destructor, which should call safeStop() before doing anything at all. */
     virtual ~Threadable();
 
   protected:
@@ -51,11 +51,9 @@ class Threadable {
 
   public:
     /** Main thread method, contains the actual code of the thread. Should be implemented by all derived classes. The method must implement two things:
-    1: Check for \ref hasToStop regularly. As soon as it's true, the functor method must exit.
-    2: Check for isPaused(). If it's true, the functor method should stop doing things, until it becomes false again. Sleeps should be used while waiting. */
+    1: Check for \ref hasToStop regularly. As soon as it's true, exit the function.
+    2: Check for isPaused(). If it's true, stop doing things until it becomes false again. Sleeps should be used while waiting. */
     virtual void main() = 0;
-    /** Executes the \ref main method of the class, then sets "loopStarted" to true.*/
-    void startLoop();
 
   private:
     /** The frequency (in Hz) at which the thread will attempt to run its main loop.*/
@@ -64,8 +62,6 @@ class Threadable {
     bool shouldStop;
     /** True if the currently running thread should be paused. */
     bool paused;
-    /** True if the thread loop has already started. */
-    bool loopStarted;
     /** A recursive mutex, which should be used to lock the \ref bthread thread while trying to construct/destruct it, and while accessing the pause/resume/isPaused methods. */
     mutex mutBthread;
     /** Holds data related to the boost::thread. */

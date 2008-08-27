@@ -3,8 +3,6 @@
 #define MOTORSPORT_PHYSICS_H
 
 #include "Threadable.h"
-#include <boost/shared_ptr.hpp>
-using namespace boost;
 #include <btBulletDynamicsCommon.h>
 
 namespace motorsport {
@@ -20,6 +18,17 @@ class Physics : public Threadable {
     void main();
 
   private:
+    btRigidBody* fallRigidBody;
+    btDiscreteDynamicsWorld* dynamicsWorld;
+    btAxisSweep3* broadphase;
+    btDefaultCollisionConfiguration* collisionConfiguration;
+    btCollisionDispatcher* dispatcher;
+    btSequentialImpulseConstraintSolver* solver;
+    btCollisionShape* groundShape;
+    btCollisionShape* fallShape;
+    btDefaultMotionState* groundMotionState;
+    btRigidBody* groundRigidBody;
+    btDefaultMotionState* fallMotionState;
     shared_ptr<btRigidBody> fallRigidBody;
     shared_ptr<btDiscreteDynamicsWorld> dynamicsWorld;
 };

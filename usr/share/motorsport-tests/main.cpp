@@ -34,17 +34,26 @@ SUITE(testPhysics)
 {
     TEST(physics)
     {
-        shared_ptr<Physics> p1 (new Physics(100.0));
-        //std::cout<<p1->getNodeListString()<<std::endl;
-        //p1->loadCollada("beyron.dae");
-        //std::cout<<p1->getNodeListString()<<std::endl;
+        shared_ptr<Physics> p4 (new Physics(1000.0));
+        shared_ptr<Physics> p5 (new Physics(100.0));
+        //std::cout<<p4->getNodeListString()<<std::endl;
+        //p4->loadCollada("beyron.dae");
+        //std::cout<<p4->getNodeListString()<<std::endl;
 
-        //FIXME: should be able to use start()
-        //p1->start();
-        //boost::this_thread::sleep(seconds(10));
-        //FIXME: make main protected once i fix start() crash in nvidia drivers
-        //p1->main();
-        CHECK_EQUAL(false, p1->isPaused());
+        p4->start();
+        boost::this_thread::sleep(seconds(1));
+//p4 has 1000,0 steps
+        p5->start();
+        boost::this_thread::sleep(seconds(2));
+//p4 has 3000,0 steps
+//p5 has 200,0 steps
+        p4->pause();
+        boost::this_thread::sleep(seconds(5));
+//p4 has 3000,5000 steps;
+//p5 has 700,0 steps;
+        p4->stop();
+        p5->stop();
+
     }
 }
 SUITE(testException)

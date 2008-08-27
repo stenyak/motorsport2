@@ -53,6 +53,7 @@ Graphics::Graphics(float frequency): Threadable(frequency), mFrameListener(0), m
 /** Simple destructor. */
 Graphics::~Graphics() {
   // Bouml preserved body begin 0001F645
+    safeStop();
     if (mFrameListener)
     {
         delete mFrameListener;
