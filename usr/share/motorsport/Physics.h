@@ -29,8 +29,6 @@ class Physics : public Threadable {
     btDefaultMotionState* groundMotionState;
     btRigidBody* groundRigidBody;
     btDefaultMotionState* fallMotionState;
-    shared_ptr<btRigidBody> fallRigidBody;
-    shared_ptr<btDiscreteDynamicsWorld> dynamicsWorld;
 };
 
 } // namespace motorsport

@@ -17,8 +17,6 @@ Physics::Physics(float frequency): Threadable(frequency) {
     btDefaultMotionState* groundMotionState;
     btRigidBody* groundRigidBody;
     btDefaultMotionState* fallMotionState;
-    shared_ptr<btRigidBody> fallRigidBody;
-    shared_ptr<btDiscreteDynamicsWorld> dynamicsWorld;
 */
     // Build the broadphase
     int maxProxies = 1024;
@@ -73,23 +71,8 @@ Physics::~Physics() {
 void Physics::main() {
   // Bouml preserved body begin 0001F46A
     int count = 0;
-    int paused= 0;
-/*
-    while (!hasToStop())
-    {
-        if (isPaused())
-        {
-            ++paused;
-        }
-        else
-        {
-            dynamicsWorld->stepSimulation(1/getFrequency(),0);
-            ++count;
-        }
-    }
-*/
-
-    time_duration myFixedStep = microseconds((long int)(1000000./getFrequency()));
+    time_duration period = microseconds((long int)(1000000./getFrequency()));
+    time_duration halfperiod = microseconds((long int)(500000./getFrequency()));
     ptime lasttime, currtime;
     lasttime = microsec_clock::local_time();
     time_duration zero = lasttime - lasttime;
@@ -97,26 +80,25 @@ void Physics::main() {
     {
         if (isPaused())
         {
-            ++paused;
+            boost::this_thread::sleep(period); //TODO: modify API to allow a simple resume or a restart (forgetting the passed time)
         }
         else
         {
             currtime = microsec_clock::local_time(); 
             time_duration dt = currtime - lasttime;
-            while (dt > zero) //TODO: merge this loop with the parent, so that it can pause things if physics get under realtime.
+            while (dt > zero) //TODO: merge this loop with the parent, so that the thread can be pauses if physics get under realtime.
             {
                 ++count;
                 dynamicsWorld->stepSimulation(1/getFrequency(),0);
-                dt -= myFixedStep;
-                lasttime += myFixedStep;
+                dt -= period;
+                lasttime += period;
             }
+            boost::this_thread::sleep(halfperiod); //FIXME: profile previous loop, and adjust sleep accordingly on the fly
         }
-        boost::this_thread::sleep(myFixedStep);
     }
     btTransform trans;
     fallRigidBody->getMotionState()->getWorldTransform(trans);
-    //std::cout << "Final position: "<< count << ", " << trans.getOrigin().getY() << std::endl;
-    std::cout<<"<< Finished a loop at "<<getFrequency()<< " Hz. Stepped "<< count<< " times. Paused "<< paused<< " times."<< std::endl;
+    std::cout<<"<< Finished "<<count<<" steps at "<<getFrequency()<< " Hz. Final position: "<< trans.getOrigin().getY() << std::endl;
   // Bouml preserved body end 0001F46A
 }
 
