@@ -86,12 +86,23 @@ void Physics::main() {
         {
             currtime = microsec_clock::local_time(); 
             time_duration dt = currtime - lasttime;
-            while (dt > halfperiod) //TODO: merge this loop with the parent, so that the thread can be pauses if physics get under realtime.
+            const bool substepping = true;
+            const int substeps = 100;
+            if (substepping)
             {
-                ++count;
-                dynamicsWorld->stepSimulation(1/getFrequency(),0);
-                dt -= period;
-                lasttime += period;
+                int countInc = dynamicsWorld->stepSimulation(dt.total_microseconds()/1000000.,substeps,1./getFrequency());
+                count += countInc;
+                lasttime += period * countInc;
+            }
+            else
+            {
+                while (dt > halfperiod) //TODO: merge this loop with the parent, so that the thread can be pauses if physics get under realtime.
+                {
+                    ++count;
+                    dynamicsWorld->stepSimulation(1./getFrequency(),0);
+                    dt -= period;
+                    lasttime += period;
+                }
             }
             boost::this_thread::sleep(halfperiod); //FIXME: profile previous loop, and adjust sleep accordingly on the fly
         }
