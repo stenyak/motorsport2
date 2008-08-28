@@ -86,7 +86,7 @@ void Physics::main() {
         {
             currtime = microsec_clock::local_time(); 
             time_duration dt = currtime - lasttime;
-            while (dt > zero) //TODO: merge this loop with the parent, so that the thread can be pauses if physics get under realtime.
+            while (dt > halfperiod) //TODO: merge this loop with the parent, so that the thread can be pauses if physics get under realtime.
             {
                 ++count;
                 dynamicsWorld->stepSimulation(1/getFrequency(),0);
