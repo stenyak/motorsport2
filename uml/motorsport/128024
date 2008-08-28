@@ -1,7 +1,7 @@
 format 49
 "motorsport" // motorsport
-  revision 26
-  modified_by 33 "stenyak"
+  revision 27
+  modified_by 64 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -282,19 +282,6 @@ using namespace boost;"
       comment "/** From Boost libraries.*/"
     end
 
-    class 128005 "barrier"
-      visibility package 
-      cpp_external cpp_decl "${name}
-#include <boost/thread/barrier.hpp>
-using namespace boost;"
-      java_decl ""
-      php_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      comment "/** From Boost libraries.*/"
-    end
-
     class 128618 "posix_time"
       visibility package 
       cpp_external cpp_decl "${name}
@@ -362,6 +349,18 @@ using namespace boost;"
       visibility package 
       cpp_external cpp_decl "${name}
 #include <btBulletDynamicsCommon.h>"
+      java_decl ""
+      php_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "/** From Bulletlibrary.*/"
+    end
+
+    class 128064 "ColladaConverter"
+      visibility package 
+      cpp_external cpp_decl "${name}
+#include <BulletColladaConverter/ColladaConverter.h>"
       java_decl ""
       php_decl ""
       idl_decl ""
@@ -686,6 +685,26 @@ ${inlines}"
 	  b parent class_ref 128232 // btDiscreteDynamicsWorld
       end
 
+      classrelation 129216 // colladaConverter (<directional composition>)
+	relation 129216 *-->
+	  a role_name "colladaConverter" multiplicity "1" private
+	    cpp default "    ${description}${static}${mutable}${volatile}${const}${type}* ${name}${value};"
+	    classrelation_ref 129216 // colladaConverter (<directional composition>)
+	  b parent class_ref 128064 // ColladaConverter
+      end
+
+      operation 130112 "loadCollada"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 1
+	  param in name "filename" explicit_type "string"
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Loads the desired dae file (.dae) with pathname relative to Motorsport data directory. */"
+      end
     end
 
     class 128163 "Exception"
@@ -771,6 +790,7 @@ ${inlines}"
 	    classrelation_ref 128291 // <realization>
 	  b parent class_ref 128291 // exception
       end
+
     end
 
     class 129637 "Loggable"

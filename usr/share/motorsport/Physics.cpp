@@ -112,5 +112,10 @@ void Physics::main() {
     std::cout<<"<< Finished "<<count<<" steps at "<<getFrequency()<< " Hz. Final position: "<< trans.getOrigin().getY() << std::endl;
   // Bouml preserved body end 0001F46A
 }
+/** Loads the desired dae file (.dae) with pathname relative to Motorsport data directory. */
+void Physics::loadCollada(string filename) {
+  // Bouml preserved body begin 0001FC40
+  // Bouml preserved body end 0001FC40
+}
 
 } // namespace motorsport

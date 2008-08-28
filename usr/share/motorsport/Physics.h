@@ -4,6 +4,9 @@
 
 #include "Threadable.h"
 #include <btBulletDynamicsCommon.h>
+#include <BulletColladaConverter/ColladaConverter.h>
+#include <string>
+using namespace std;
 
 namespace motorsport {
 
@@ -20,6 +23,7 @@ class Physics : public Threadable {
   private:
     btRigidBody* fallRigidBody;
     btDiscreteDynamicsWorld* dynamicsWorld;
+    ColladaConverter* colladaConverter;
     btAxisSweep3* broadphase;
     btDefaultCollisionConfiguration* collisionConfiguration;
     btCollisionDispatcher* dispatcher;
@@ -29,6 +33,10 @@ class Physics : public Threadable {
     btDefaultMotionState* groundMotionState;
     btRigidBody* groundRigidBody;
     btDefaultMotionState* fallMotionState;
+
+  public:
+    /** Loads the desired dae file (.dae) with pathname relative to Motorsport data directory. */
+    void loadCollada(string filename);
 };
 
 } // namespace motorsport

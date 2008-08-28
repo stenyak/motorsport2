@@ -25,7 +25,8 @@ SUITE(testSim)
         shared_ptr<Graphics> g1 (new Graphics(40.0));
         // At this point, there should be a window on the screen.
         std::cout<<g1->getNodeListString()<<std::endl;
-        g1->loadCollada("beyron.dae");
+        //g1->loadCollada("beyron.dae");
+        g1->loadCollada("jenga.dae");
         std::cout<<g1->getNodeListString()<<std::endl;
         //std::cout<<"-------------"<<std::endl;
         //g1->loadCollada("Messerschmitt KR200.dae");

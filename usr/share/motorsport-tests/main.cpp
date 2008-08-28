@@ -39,7 +39,7 @@ SUITE(testPhysics)
         shared_ptr<Physics> p6 (new Physics(60.0));
         shared_ptr<Physics> p7 (new Physics(30.0));
         //std::cout<<p4->getNodeListString()<<std::endl;
-        //p4->loadCollada("beyron.dae");
+        p4->loadCollada("jenga.dae");
         //std::cout<<p4->getNodeListString()<<std::endl;
 
         p4->start();
