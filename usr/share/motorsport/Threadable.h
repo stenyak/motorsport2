@@ -41,6 +41,8 @@ class Threadable {
     void stop();
     /** Regular destructor. TODO: It should be overriden by the derived destructor, which should call safeStop() before doing anything at all. */
     virtual ~Threadable();
+    /** Returns the number of steps computed during the Threadable instance lifetime.*/
+    unsigned long int getSteps() const;
 
   protected:
     /** Stops and deletes the thread. The thread doesn't need to be already \ref isCreated created.*/
@@ -52,8 +54,13 @@ class Threadable {
   public:
     /** Main thread method, contains the actual code of the thread. Should be implemented by all derived classes. The method must implement two things:
     1: Check for \ref hasToStop regularly. As soon as it's true, exit the function.
-    2: Check for isPaused(). If it's true, stop doing things until it becomes false again. Sleeps should be used while waiting. */
+    2: Check for isPaused(). If it's true, stop doing things until it becomes false again. Sleeps should be used while waiting.
+    3: Increament \ref steps each time an step is computed. */
     virtual void main() = 0;
+
+  protected:
+    /** Stores the number of steps computed since the Threadable object was created. */
+    unsigned long steps;
 
   private:
     /** The frequency (in Hz) at which the thread will attempt to run its main loop.*/

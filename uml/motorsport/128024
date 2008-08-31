@@ -1,7 +1,7 @@
 format 49
 "motorsport" // motorsport
-  revision 27
-  modified_by 64 "stenyak"
+  revision 28
+  modified_by 94 "stenyak"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -494,6 +494,18 @@ ${inlines}"
 	comment "/** Regular destructor. TODO: It should be overriden by the derived destructor, which should call safeStop() before doing anything at all. */"
       end
 
+      operation 128094 "getSteps"
+	preserve_cpp_body_indent const public explicit_return_type "unsigned long int"
+	nparams 0
+	cpp_decl "    ${description}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};"
+	cpp_def "${description}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}"
+	preserve_java_body_indent 
+	preserve_php_body_indent 
+	
+	comment "/** Returns the number of steps computed during the Threadable instance lifetime.*/"
+      end
+
       operation 128197 "safeStop"
 	preserve_cpp_body_indent protected explicit_return_type "void"
 	nparams 0
@@ -511,7 +523,7 @@ ${inlines}"
 	nparams 1
 	  param in name "frequency" explicit_type "float"
 	cpp_decl "    ${description}${inline}${name}${(}${t0} ${p0}${)}${volatile}${throw};"
-	cpp_def "${description}${inline}${class}::${name}${(}${t0} ${p0}${)}${volatile}${throw}: frequency(frequency), shouldStop(false), paused(false) {
+	cpp_def "${description}${inline}${class}::${name}${(}${t0} ${p0}${)}${volatile}${throw}: frequency(frequency), shouldStop(false), paused(false), steps(0) {
   ${body}}"
 	preserve_java_body_indent 
 	preserve_php_body_indent 
@@ -529,7 +541,17 @@ ${inlines}"
 	
 	comment "/** Main thread method, contains the actual code of the thread. Should be implemented by all derived classes. The method must implement two things:
 1: Check for \\ref hasToStop regularly. As soon as it's true, exit the function.
-2: Check for isPaused(). If it's true, stop doing things until it becomes false again. Sleeps should be used while waiting. */"
+2: Check for isPaused(). If it's true, stop doing things until it becomes false again. Sleeps should be used while waiting.
+3: Increament \\ref steps each time an step is computed. */"
+      end
+
+      attribute 128094 "steps"
+	protected explicit_type "unsigned long"
+	cpp_decl "    ${description}${static}${mutable}${volatile}${const}${type} ${name}${value};"
+	java_decl ""
+	php_decl ""
+	idl_decl ""
+	comment "/** Stores the number of steps computed since the Threadable object was created. */"
       end
 
       attribute 128085 "frequency"
@@ -705,6 +727,14 @@ ${inlines}"
 	
 	comment "/** Loads the desired dae file (.dae) with pathname relative to Motorsport data directory. */"
       end
+
+      classrelation 129344 // <dependency>
+	relation 129344 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 129344 // <dependency>
+	  b parent class_ref 128121 // Os
+      end
     end
 
     class 128163 "Exception"
@@ -790,7 +820,6 @@ ${inlines}"
 	    classrelation_ref 128291 // <realization>
 	  b parent class_ref 128291 // exception
       end
-
     end
 
     class 129637 "Loggable"

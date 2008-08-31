@@ -1,5 +1,6 @@
 
 #include "Physics.h"
+#include "Os.h"
 
 namespace motorsport {
 
@@ -45,6 +46,9 @@ Physics::Physics(float frequency): Threadable(frequency) {
     btRigidBody::btRigidBodyConstructionInfo fallRigidBodyCI(mass,fallMotionState,fallShape,fallInertia);
     fallRigidBody = (new btRigidBody(fallRigidBodyCI));
     dynamicsWorld->addRigidBody(fallRigidBody);
+    //Collada converter initialization
+    colladaConverter = new ColladaConverter(dynamicsWorld);
+    
   // Bouml preserved body end 0001F755
 }
 /** Simple destructor. */
@@ -65,12 +69,12 @@ Physics::~Physics() {
     delete dispatcher;
     delete collisionConfiguration;
     delete broadphase;
+    delete colladaConverter;
   // Bouml preserved body end 0001F855
 }
 /** Physics loop method. TODO: make protected.*/
 void Physics::main() {
   // Bouml preserved body begin 0001F46A
-    int count = 0;
     time_duration period = microseconds((long int)(1000000./getFrequency()));
     time_duration halfperiod = microseconds((long int)(500000./getFrequency()));
     ptime lasttime, currtime;
@@ -90,15 +94,15 @@ void Physics::main() {
             const int substeps = 100;
             if (substepping)
             {
-                int countInc = dynamicsWorld->stepSimulation(dt.total_microseconds()/1000000.,substeps,1./getFrequency());
-                count += countInc;
-                lasttime += period * countInc;
+                int stepsInc = dynamicsWorld->stepSimulation(dt.total_microseconds()/1000000.,substeps,1./getFrequency());
+                steps += stepsInc;
+                lasttime += period * stepsInc;
             }
             else
             {
                 while (dt > halfperiod) //TODO: merge this loop with the parent, so that the thread can be pauses if physics get under realtime.
                 {
-                    ++count;
+                    ++steps;
                     dynamicsWorld->stepSimulation(1./getFrequency(),0);
                     dt -= period;
                     lasttime += period;
@@ -109,12 +113,14 @@ void Physics::main() {
     }
     btTransform trans;
     fallRigidBody->getMotionState()->getWorldTransform(trans);
-    std::cout<<"<< Finished "<<count<<" steps at "<<getFrequency()<< " Hz. Final position: "<< trans.getOrigin().getY() << std::endl;
+    //std::cout<<"<< Finished "<<steps<<" steps at "<<getFrequency()<< " Hz. Final position: "<< trans.getOrigin().getY() << std::endl;
   // Bouml preserved body end 0001F46A
 }
 /** Loads the desired dae file (.dae) with pathname relative to Motorsport data directory. */
 void Physics::loadCollada(string filename) {
   // Bouml preserved body begin 0001FC40
+    filename = motorsport::Os::getDataPath(filename);
+    colladaConverter->load(filename.c_str());
   // Bouml preserved body end 0001FC40
 }
 

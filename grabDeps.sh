@@ -143,6 +143,7 @@ function bullet
             make -j $cpus
             echo " - Copying files..."
             jam install
+            find -iname '*.a' |xargs cp -t ../../usr/lib/
         cd ..
         echo "==== Bullet installed ===="
     cd ..

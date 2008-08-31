@@ -90,6 +90,12 @@ Threadable::~Threadable() {
     safeStop();
   // Bouml preserved body end 0001F7D5
 }
+/** Returns the number of steps computed during the Threadable instance lifetime.*/
+unsigned long int Threadable::getSteps() const {
+  // Bouml preserved body begin 0001F45E
+    return steps;
+  // Bouml preserved body end 0001F45E
+}
 /** Stops and deletes the thread. The thread doesn't need to be already \ref isCreated created.*/
 void Threadable::safeStop() {
   // Bouml preserved body begin 0001F4C5
@@ -110,7 +116,7 @@ void Threadable::safeStop() {
 }
 /** Basic threadable constructor. No thread will be spawned until \ref create is used.
 \param frequency the rate at which the thread will try to loop (in Hz). */
-Threadable::Threadable(float frequency): frequency(frequency), shouldStop(false), paused(false) {
+Threadable::Threadable(float frequency): frequency(frequency), shouldStop(false), paused(false), steps(0) {
   // Bouml preserved body begin 0001F4D5
   // Bouml preserved body end 0001F4D5
 }

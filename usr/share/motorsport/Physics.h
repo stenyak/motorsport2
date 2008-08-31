@@ -8,6 +8,8 @@
 #include <string>
 using namespace std;
 
+namespace motorsport { class Os; } 
+
 namespace motorsport {
 
 /** Implementation of physics engine. */

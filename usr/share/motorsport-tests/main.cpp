@@ -34,55 +34,30 @@ SUITE(testPhysics)
 {
     TEST(physics)
     {
-        shared_ptr<Physics> p4 (new Physics(300.0));
-        shared_ptr<Physics> p5 (new Physics(100.0));
-        shared_ptr<Physics> p6 (new Physics(60.0));
-        shared_ptr<Physics> p7 (new Physics(30.0));
-        //std::cout<<p4->getNodeListString()<<std::endl;
-        p4->loadCollada("jenga.dae");
-        //std::cout<<p4->getNodeListString()<<std::endl;
+        float hz = 333;
+        time_duration td = milliseconds(200);
+        float steps = hz*td.total_microseconds()/1000000.;
 
+        shared_ptr<Physics> p4 (new Physics(hz));
+        CHECK_EQUAL((unsigned)0, p4->getSteps());
         p4->start();
-        p5->start();
-        p6->start();
-        p7->start();
-        boost::this_thread::sleep(seconds(1));
+        boost::this_thread::sleep(td);
         p4->stop();
-        p5->stop();
-        p6->stop();
-        p7->stop();
-        std::cout<<std::endl;
-        p4->start();
-        p5->start();
-        p6->start();
-        p7->start();
-        boost::this_thread::sleep(seconds(1));
-        p4->stop();
-        p5->stop();
-        p6->stop();
-        p7->stop();
-        std::cout<<std::endl;
-        p4->start();
-        p5->start();
-        p6->start();
-        p7->start();
-        boost::this_thread::sleep(seconds(1));
-        p4->stop();
-        p5->stop();
-        p6->stop();
-        p7->stop();
-        std::cout<<std::endl;
-        p4->start();
-        p5->start();
-        p6->start();
-        p7->start();
-        boost::this_thread::sleep(seconds(1));
-        p4->stop();
-        p5->stop();
-        p6->stop();
-        p7->stop();
-        std::cout<<std::endl;
+        CHECK_CLOSE(steps, p4->getSteps(), 0.05*steps);
 
+        hz = 2000;
+        td = milliseconds(100);
+        steps = hz*td.total_microseconds()/1000000.;
+        shared_ptr<Physics> p5 (new Physics(hz));
+        CHECK_EQUAL((unsigned)0, p5->getSteps());
+        p5->start();
+        boost::this_thread::sleep(td);
+        p5->stop();
+        CHECK_CLOSE(steps, p5->getSteps(), 0.05*steps);
+
+        //std::cout<<p4->getNodeListString()<<std::endl;
+        //p4->loadCollada("jenga.dae");
+        //std::cout<<p4->getNodeListString()<<std::endl;
     }
 }
 SUITE(testException)

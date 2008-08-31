@@ -104,7 +104,7 @@ relationcanvas 128744 relation_ref 128616 // <directional composition>
   role_a_pos 724 50 3000 no_role_b
   multiplicity_a_pos 699 48 3000 no_multiplicity_b
 relationcanvas 128853 relation_ref 129877 // <directional aggregation>
-  decenter_begin 167
+  decenter_begin 166
   decenter_end 293
   from ref 128101 z 2004 stereotype "<<vector_shared_ptr>>" xyz 287 259 3000 to ref 128341
   role_a_pos 371 274 3000 no_role_b
