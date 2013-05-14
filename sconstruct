@@ -88,7 +88,7 @@ depBoostThread = { "ccflags":"-isystem usr/include/boost-1_35", "libs":"boost_th
 depBoostFilesystem = { "ccflags":"-isystem usr/include/boost-1_35", "libs":"boost_filesystem-gcc41-mt-1_35 boost_system-gcc41-mt-1_35", "includePaths":"usr/include/boost-1_35", "libPaths":"usr/lib" }
 
 depBullet = { "libPaths":"usr/lib", "libs":"bulletcollision bulletdynamics bulletsoftbody bulletmath colladadom bulletmultithreaded GIMPACT bulletopenglsupport convexdecomposition glui BulletColladaConverter GIMPACTUtils liblibxml", "includePaths":"usr/include/bullet" }
-depOgre = { "ccflags":"-fmessage-length=0 -fexceptions -fident -isystem usr/include/OGRE", "libs":"OgreMain", "includePaths":"usr/include/OGRE", "libPaths":"usr/lib" }
+depOgre = { "ccflags":"-fmessage-length=0 -fexceptions -fident -isystem usr/include/OGRE", "libs":"OgreMain", "includePaths":"/usr/include/OGRE", "libPaths":"usr/lib" }
 depOgreCollada = { "libs":"OgreCollada FCollada LibXML", "includePaths":"usr/include", "libPaths":"usr/lib" }
 depMotorsport = { "libPaths":"usr/lib/motorsport", "libs":"motorsport", "includePaths":"usr/include" }
 depOIS = { "libs":"OIS" }
