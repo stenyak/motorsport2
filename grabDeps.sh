@@ -9,7 +9,7 @@ function mkcd
         echo "Creating $1 directory..."
         mkdir -p $1
     fi
-    cd $1
+    pushd $1 >/dev/null
 }
 
 function unittest
@@ -19,9 +19,9 @@ function unittest
         echo " - Grabbing from svn..."
         svn co https://unittest-cpp.svn.sourceforge.net/svnroot/unittest-cpp unittest-cpp
         echo " - Building..."
-        cd unittest-cpp/UnitTest++
+        pushd unittest-cpp/UnitTest++ >/dev/null
             make -j $cpus
-        cd ../..
+        popd
         echo " - Copying libraries..."
         mkdir -p ../usr/lib
         cp unittest-cpp/UnitTest++/libUnitTest++.a ../usr/lib
@@ -32,7 +32,7 @@ function unittest
         find ../usr/include/unittest++/ -name '*.cpp' -exec rm {} \;
         find ../usr/include/unittest++/ -type d -name '.svn' -exec rm -rf {} \;
         echo "==== UnitTest++ installed ===="
-    cd ..
+    popd
 }
 
 function scons
@@ -42,16 +42,16 @@ function scons
         echo " - Grabbing from svn..."
         svn checkout http://scons.tigris.org/svn/scons/trunk scons --username guest --password ""
         echo " - Building..."
-        cd scons
+        pushd scons >/dev/null
             export SCONS_LIB_DIR=`pwd`/src/engine
             python src/script/scons.py build/scons
             echo " - Copying files..."
-            cd build/scons
+            pushd build/scons >/dev/null
                 python setup.py install --prefix=../../../../usr
-            cd ../..
-        cd ..
+            popd
+        popd
         echo "==== SCons installed ===="
-    cd ..
+    popd
 }
 
 function freeimage
@@ -63,7 +63,7 @@ function freeimage
     cvs -d:pserver:anonymous@freeimage.cvs.sourceforge.net:/cvsroot/freeimage login
     cvs -z3 -d:pserver:anonymous@freeimage.cvs.sourceforge.net:/cvsroot/freeimage co -P FreeImage
         echo " - Building..."
-        cd Freeimage
+        pushd FreeImage >/dev/null
             # specify custom prefix by hand:
             t=$(tempfile)
             cat Makefile.gnu |sed "s/\/usr/\/\.\.\/\.\.\/usr/g;s/-.\ root//g" > $t; cp $t Makefile.gnu
@@ -71,9 +71,9 @@ function freeimage
             make -j $cpus
             echo " - Copying files..."
             make install
-        cd ..
+        popd
         echo "==== FreeImage installed ===="
-    cd ..
+    popd
 }
 
 function ogre
@@ -83,15 +83,15 @@ function ogre
         echo " - Grabbing from svn..."
         svn co https://svn.ogre3d.org/svnroot/ogre/trunk ogre
         echo " - Building..."
-        cd ogre
+        pushd ogre >/dev/null
             ./bootstrap
             ./configure --prefix=$PWD/../../usr --enable-debug
             make -j $cpus
             echo " - Copying files..."
             make install
-        cd ..
+        popd
         echo "==== Ogre installed ===="
-    cd ..
+    popd
 }
 
 function ogrecollada
@@ -101,17 +101,17 @@ function ogrecollada
         echo " - Grabbing from svn..."
         svn co https://ogrecollada.svn.sourceforge.net/svnroot/ogrecollada/trunk ogrecollada
         echo " - Building..."
-        cd ogrecollada
-            cd premake
+        pushd ogrecollada >/dev/null
+            pushd premake >/dev/null
                 PKG_CONFIG_PATH="$PWD/../../../usr/lib/pkgconfig" premake --verbose --target gnu
                 PKG_CONFIG_PATH="$PWD/../../../usr/lib/pkgconfig" make -j $cpus
-            cd ..
+            popd
             echo " - Copying files..."
             cp bin/release/lib* ../../usr/lib
             cp OgreCollada/OgreCollada/include/*.h ../../usr/include
-        cd ..
+        popd
         echo "==== OgreCollada installed ===="
-    cd ..
+    popd
 }
 
 function boost
@@ -121,14 +121,14 @@ function boost
         echo " - Grabbing from svn..."
         svn co http://svn.boost.org/svn/boost/trunk boost-trunk -r 46712 #v1.35
         echo " - Building..."
-        cd boost-trunk
+        pushd boost-trunk >/dev/null
             ./configure --prefix=$PWD/../../usr
             make -j $cpus
             echo " - Copying files..."
             make install
-        cd ..
+        popd
         echo "==== Boost installed ===="
-    cd ..
+    popd
 }
 
 function bullet
@@ -138,15 +138,15 @@ function bullet
         echo " - Grabbing from svn..."
         svn checkout http://bullet.googlecode.com/svn/trunk bullet
         echo " - Building..."
-        cd bullet
+        pushd bullet >/dev/null
             ./configure --prefix=$PWD/../../usr --enable-debug
             make -j $cpus
             echo " - Copying files..."
             jam install
             find -iname '*.a' |xargs cp -t ../../usr/lib/
-        cd ..
+        popd
         echo "==== Bullet installed ===="
-    cd ..
+    popd
 }
 
 params="unittest scons freeimage ogre ogrecollada boost bullet"
