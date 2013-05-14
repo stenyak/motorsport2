@@ -44,7 +44,7 @@ function scons
         echo " - Building..."
         pushd scons >/dev/null
             export SCONS_LIB_DIR=`pwd`/src/engine
-            python src/script/scons.py build/scons
+            python src/script/scons.py build/scons >/dev/null
             echo " - Copying files..."
             pushd build/scons >/dev/null
                 python setup.py install --prefix=../../../../usr
