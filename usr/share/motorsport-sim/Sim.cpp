@@ -4,7 +4,7 @@
 
 #include <motorsport/Group.h>
 using namespace motorsport;
-#include <iostream.h>
+#include <iostream>
 using namespace std;
 namespace motorsport_sim {
 
